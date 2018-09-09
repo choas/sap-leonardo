@@ -1,0 +1,34 @@
+{
+  "name": "sap-leonardo",
+  "version": "0.1.0",
+  "description": "NPM module for SAP Leonardo Machine Learning Foundation - Functional Services https://api.sap.com/package/SAPLeonardoMLFunctionalServices",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "./node_modules/mocha/bin/mocha -r ts-node/register -s 3000 src/test_*.ts"
+  },
+  "author": "Lars Gregori <github@larsgregori.de>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "https",
+    "url": "https://github.com/choas/sap-leonardo.git"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "es6-promise": "^4.2.4",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/mocha": "^5.2.5",
+    "@types/request": "^2.47.1",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3"
+  }
+}
