@@ -8,7 +8,7 @@ describe('ocr', () => {
     var ocr = new OCR(process.env.API_KEY);
 
     describe('image to text', () => {
-        it('should return an Englisch text', (done) => {
+        it('should return an English text', (done) => {
             ocr.ocr("./testdata/ocr/english_1000.png").then(body => {
                 expect(body).to.have.property('id');
                 expect(body).to.have.property('predictions');
@@ -40,7 +40,7 @@ describe('ocr', () => {
             }).then(done, done);
         });
 
-        it('should return an German text', (done) => {
+        it('should return a German text', (done) => {
             let options = { "lang": "de", "outputType": "txt", "pageSegMode": "1", "modelType": "lstmStandard" };
             ocr.ocr("./testdata/ocr/deutsch.png", options).then(body => {
                 expect(body).to.have.property('id');
