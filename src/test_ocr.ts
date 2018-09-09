@@ -21,7 +21,7 @@ describe('ocr', () => {
                 expect(body.predictions[0]).to.be.equal(english_text);
 
             }).then(done, done);
-        }).timeout(10000).slow(10000);
+        });
     });
 
     describe('image to text with options', () => {
@@ -38,7 +38,7 @@ describe('ocr', () => {
                 expect(body.predictions[0]).to.match(/^<html:html/)
 
             }).then(done, done);
-        }).timeout(10000).slow(10000);
+        });
 
         it('should return an German text', (done) => {
             let options = { "lang": "de", "outputType": "txt", "pageSegMode": "1", "modelType": "lstmStandard" };
@@ -53,7 +53,7 @@ describe('ocr', () => {
                 expect(body.predictions[0]).to.match(/Stückchen/);
 
             }).then(done, done);
-        }).timeout(10000).slow(10000);
+        });
 
     });
 

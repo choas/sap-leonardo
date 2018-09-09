@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "./node_modules/mocha/bin/mocha -r ts-node/register -s 5000 src/test_*.ts"
+    "test": "./node_modules/mocha/bin/mocha -r ts-node/register -s 10000 -t 10000 src/test_*.ts"
   },
   "author": "Lars Gregori <github@larsgregori.de>",
   "license": "Apache-2.0",
