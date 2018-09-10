@@ -1,7 +1,12 @@
 # SAP Leonardo Machine Learning Foundation - Functional Services
 
+npm module for SAP Leonardo Machine Learning Foundation - Functional Services
+
 "SAP Leonardo Machine Learning foundation provides readily consumable pre-trained models, as well as customizable models." ---- https://api.sap.com/package/SAPLeonardoMLFunctionalServices
 
+[![Build Status](https://api.travis-ci.org/choas/sap-leonardo.svg?branch=master)](https://travis-ci.org/choas/sap-leonardo)
+[![Dependency status](https://david-dm.org/choas/sap-leonardo/status.svg)](https://david-dm.org/choas/sap-leonardo)
+[![devDependencies Status](https://david-dm.org/choas/sap-leonardo/dev-status.svg)](https://david-dm.org/choas/sap-leonardo?type=dev)
 
 
 ## Usage
@@ -21,8 +26,15 @@ imageclassification.classification("./elephant-114543_640.jpg")
 })
 ```
 
+## Implemented Services
+
+- [Inference Service for Customizable Image Classification](https://api.sap.com/api/image_classification_api/resource)
+- [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
+- [Inference Service for Machine Translation](https://api.sap.com/api/translation_api/resource)
+- [Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)
 
 ## Test
+
 First define your API Key:
 ```sh
 export API_KEY="apiKey3x4mpleUs3y0ur0wnKey112233"
@@ -39,6 +51,7 @@ npm test
 ```
 
 ## Image Sources
+
 - [testdata/elephant-114543](https://pixabay.com/en/elephant-african-bush-elephant-114543/)
 - [testdata/ocr/english.png](https://help.sap.com/viewer/b04a8fe9c04745b98ad8652ccd5d636f/1.0/en-US/3fa18aca0e35421394b620327875f04a.html) (Screenshot)
 - [testdata/ocr/deutsch.png](http://gutenberg.spiegel.de/buch/-6248/69) (Screenshot)
