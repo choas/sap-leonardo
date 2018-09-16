@@ -11,6 +11,8 @@ npm module for SAP Leonardo Machine Learning Foundation - Functional Services
 
 ## Usage
 
+Sign up (for free) at [SAP API Business Hub](https://api.sap.com/).
+
 ```sh
 npm install sap-leonardo
 ```
@@ -33,9 +35,18 @@ imageclassification.classification("./elephant-114543_640.jpg")
 - [Inference Service for Machine Translation](https://api.sap.com/api/translation_api/resource)
 - [Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)
 
+
+## Build
+
+```sh
+npm run build
+```
+
+
 ## Test
 
-First define your API Key:
+Define your API Key:
+
 ```sh
 export API_KEY="apiKey3x4mpleUs3y0ur0wnKey112233"
 ```
