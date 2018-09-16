@@ -34,6 +34,7 @@ imageclassification.classification("./elephant-114543_640.jpg")
 - [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
 - [Inference Service for Machine Translation](https://api.sap.com/api/translation_api/resource)
 - [Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)
+- [Inference Service for Face Detection](https://api.sap.com/api/face_detection_api/resource)
 
 
 ## Build
