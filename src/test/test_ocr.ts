@@ -7,7 +7,7 @@ describe('ocr', () => {
 
     var ocr = new OCR(process.env.API_KEY);
 
-    describe('image to text', () => {
+    xdescribe('image to text', () => {
         it('should return an English text', (done) => {
             ocr.ocr("./testdata/ocr/english_1000.png").then(body => {
                 expect(body).to.have.property('id');
@@ -24,7 +24,7 @@ describe('ocr', () => {
         });
     });
 
-    describe('image to text with options', () => {
+    xdescribe('image to text with options', () => {
         it('should return XML', (done) => {
             let options = { "lang": "en", "outputType": "xml", "pageSegMode": "1", "modelType": "lstmStandard" };
             ocr.ocr("./testdata/ocr/english_1000.png", options).then(body => {
@@ -52,6 +52,27 @@ describe('ocr', () => {
 
                 expect(body.predictions[0]).to.match(/Stückchen/);
 
+            }).then(done, done);
+        });
+
+    });
+
+    describe('image to text (via job)', () => {
+        var jobid;
+
+        it('should return a job id', (done) => {
+            ocr.jobs("./testdata/ocr/english_1000.png").then(body => {
+                expect(body).to.have.property('id');
+                expect(body).to.have.property('status').to.be.equal("PENDING");
+                jobid = body.id;
+            }).then(done, done);
+        });
+
+        it('should return no error for the job id', (done) => {
+            ocr.jobsId(jobid).then(body => {
+                console.log(body);
+                expect(body).to.have.property('id').to.be.equal(jobid);
+                expect(body).to.have.property('status'); //.to.be.equal("PENDING");
             }).then(done, done);
         });
 

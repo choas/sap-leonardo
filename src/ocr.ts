@@ -16,7 +16,7 @@ export class OCR {
     this._baseUrl = baseUrl
   }
 
-  ocr(files: string, options: any = null) : Promise<any> {
+  ocr(files: string, options: any = null, asJobs: Boolean = false) : Promise<any> {
     
     return new Promise<any>((resolve, reject) => {
 
@@ -42,7 +42,7 @@ export class OCR {
           APIKey: this._apiKey
         }
 
-        var url = this._baseUrl + "/ml/ocr/ocr";
+        var url = this._baseUrl + "/ml/ocr/ocr" + (asJobs ? "/jobs" : "");
 
         request.post({url: url, formData: formData, headers: headers}, (err, response, body) => {
           if (err) {
@@ -55,4 +55,32 @@ export class OCR {
       });
     });
   }
+
+  jobs(files: string, options: any = null) : Promise<any> {
+    return this.ocr(files, options, true);
+  }
+
+  jobsId(id: string) : Promise<any> {
+    
+    return new Promise<any>((resolve, reject) => {
+
+        var headers = {
+          Accept: 'application/json',
+          APIKey: this._apiKey
+        }
+
+        var url = this._baseUrl + "/ml/ocr/ocr/jobs/" + id;
+
+        request.get({url: url, headers: headers}, (err, response, body) => {
+          if (err) {
+            console.error('ERROR', err);
+            reject(err);
+          }
+          resolve(JSON.parse(body));
+        });
+
+      });
+  }
+
+
 }
