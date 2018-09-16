@@ -63,12 +63,12 @@ npm test
 
 ## Image Sources
 
-- [testdata/elephant-114543](https://pixabay.com/en/elephant-african-bush-elephant-114543/)
+- [testdata/elephant-114543_*.jpg](https://pixabay.com/en/elephant-african-bush-elephant-114543/)
 - [testdata/ocr/english.png](https://help.sap.com/viewer/b04a8fe9c04745b98ad8652ccd5d636f/1.0/en-US/3fa18aca0e35421394b620327875f04a.html) (Screenshot)
 - [testdata/ocr/deutsch.png](http://gutenberg.spiegel.de/buch/-6248/69) (Screenshot)
+- [testdata/man-3365368_640.jpg](https://pixabay.com/en/man-woman-group-teamwork-3365368/)
 
-
-## License
+## Licenseq
 
 Copyright 2018 Lars Gregori
 
