@@ -40,4 +40,26 @@ export class LanguageDetection {
         });
     }
 
+    version(): Promise<any> {
+
+        return new Promise<any>((resolve, reject) => {
+            var headers = {
+                "Content-Type": 'application/json',
+                Accept: 'application/json',
+                APIKey: this._apiKey
+            }
+
+            var url = this._baseUrl + "/ml/languagedetection/version";
+
+            request.get({ url: url, headers: headers }, (err, response, body) => {
+                if (err) {
+                    console.error('ERROR', err);
+                    reject(err);
+                }
+                resolve(JSON.parse(body));
+            });
+
+        });
+    }
+
 }

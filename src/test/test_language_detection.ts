@@ -42,4 +42,14 @@ describe('language detection', () => {
 
     });
 
+    describe('provide version', () => {
+
+        it('should provide version', (done) => {
+
+            languageDetection.version().then(body => {
+                expect(body).to.have.property('version').to.be.equal('1.0-SNAPSHOT');
+            }).then(done, done);
+        });
+    });
+
 });
