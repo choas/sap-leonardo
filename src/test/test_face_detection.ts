@@ -17,8 +17,8 @@ describe('face detection', () => {
         expect(body).to.have.property('status').to.be.equal('DONE');
         
         expect(body.predictions).to.be.an('array').have.lengthOf(1);
-        expect(body.predictions[0]).to.have.property('faces');
-        expect(body.predictions[0].faces).to.be.an('array').have.lengthOf(4);
+        expect(body.predictions[0]).to.have.property('faces').to.be.an('array').have.lengthOf(4);
+        expect(body.predictions[0]).to.have.property('numberOfFaces').to.be.equal(4);
 
         let expected_results = [ 
             {
