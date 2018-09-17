@@ -1,6 +1,6 @@
 {
   "name": "sap-leonardo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "NPM module for SAP Leonardo Machine Learning Foundation - Functional Services https://api.sap.com/package/SAPLeonardoMLFunctionalServices",
   "main": "dist/index.js",
   "scripts": {
