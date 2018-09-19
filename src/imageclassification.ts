@@ -1,14 +1,14 @@
 "use strict";
 
 import * as request from 'request';
-import * as fs  from 'fs';
-import {Promise} from 'es6-promise'
+import * as fs from 'fs';
+import { Promise } from 'es6-promise'
 import * as assert from 'assert';
 
 export class Imageclassification {
 
-  private _apiKey : string;
-  private _baseUrl : string;
+  private _apiKey: string;
+  private _baseUrl: string;
 
   constructor(apiKey: string, baseUrl: string = "https://sandbox.api.sap.com") {
     assert(apiKey, "apiKey is required");
@@ -16,8 +16,8 @@ export class Imageclassification {
     this._baseUrl = baseUrl
   }
 
-  classification(files: string) : Promise<any> {
-    
+  classification(files: string): Promise<any> {
+
     return new Promise<any>((resolve, reject) => {
 
       fs.readFile(files, {}, (err, data) => {
@@ -26,7 +26,7 @@ export class Imageclassification {
           reject(err);
         }
         var formData = {
-          files: {value: data, options: files}
+          files: { value: data, options: files }
         }
 
         var headers = {
@@ -36,7 +36,7 @@ export class Imageclassification {
 
         var url = this._baseUrl + "/ml/imageclassification/classification";
 
-        request.post({url: url, formData: formData, headers: headers}, (err, response, body) => {
+        request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {
           if (err) {
             console.error('ERROR', err);
             reject(err);
@@ -48,7 +48,7 @@ export class Imageclassification {
     });
   }
 
-  customizable(modelName: string, version: string, files: string) : Promise<any> {
+  customizable(modelName: string, version: string, files: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       var url = "/ml/imageclassification/models/" + modelName + "/versions/" + version;
       reject("not implemented");
