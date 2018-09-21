@@ -58,7 +58,7 @@ describe('ocr', () => {
   });
 
   describe('image to text (via job)', () => {
-    var jobid;
+    var jobid : string;
 
     it('should return a job id', (done) => {
       ocr.jobs("./testdata/ocr/english_1000.png").then(body => {

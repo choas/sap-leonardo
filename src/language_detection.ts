@@ -11,7 +11,7 @@ export class LanguageDetection {
   private _apiKey: string;
   private _baseUrl: string;
 
-  constructor(apiKey: string, baseUrl: string = "https://sandbox.api.sap.com") {
+  constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
     assert(apiKey, "apiKey is required");
     this._apiKey = apiKey;
     this._baseUrl = baseUrl
