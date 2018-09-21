@@ -1,10 +1,8 @@
 "use strict";
 
 import * as request from 'request';
-import * as fs from 'fs';
 import { Promise } from 'es6-promise'
 import * as assert from 'assert';
-
 
 export class LanguageDetection {
 

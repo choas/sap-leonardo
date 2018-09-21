@@ -4,7 +4,6 @@ import * as request from 'request';
 import { Promise } from 'es6-promise'
 import * as assert from 'assert';
 
-
 export interface TranslationRequest {
   sourceLanguage: string;
   targetLanguages: string[];
