@@ -62,14 +62,6 @@ describe('imageclassification', () => {
       }).then(done, done);
     });
 
-    it('should throw an error for more than 1 megapixel', (done) => {
-      imageclassification.classification("./testdata/elephant-114543_1920.jpg").then(body => {
-        expect(body).to.have.property('error');
-        expect(body.error).to.have.property('message');
-        expect(body.error.message).to.be.equal("Invalid request: image resolution too high for elephant-114543_1920.jpg; max allowed resolution: 1.0 MegaPixels");
-      }).then(done, done);
-    });
-
   });
 
 });
