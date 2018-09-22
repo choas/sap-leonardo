@@ -85,7 +85,7 @@ describe('multi-instance image segmentation', () => {
           expect(body.predictions[0].results[i].score).to.be.equal(expected_results[i].score);
 
           // encoded mask data should have the size of bbox width * height
-          var encodedMaskData = new Buffer(body.predictions[0].results[i].mask, 'base64');
+          var encodedMaskData = Buffer.from(body.predictions[0].results[i].mask, 'base64');
           var bbox = body.predictions[0].results[i].bbox;
           var bboxWidth = Math.abs(bbox.x2 - bbox.x1);
           var bboxHeight = Math.abs(bbox.y2 - bbox.y1);
@@ -110,9 +110,9 @@ describe('multi-instance image segmentation', () => {
 
           expect(body.predictions[0]).to.have.property('imageName').is.equal(fileName);
 
-          //fs.writeFileSync("MultiInstanceImageSegmentation.png", new Buffer(body.predictions[0].imageString, 'base64'));
+          //fs.writeFileSync("MultiInstanceImageSegmentation.png", Buffer.from(body.predictions[0].imageString, 'base64'));
 
-          var encodedImageData = new Buffer(body.predictions[0].imageString, 'base64');
+          var encodedImageData = Buffer.from(body.predictions[0].imageString, 'base64');
 
           var isJPG =
             encodedImageData[0] === 0xFF &&
