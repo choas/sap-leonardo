@@ -18,6 +18,20 @@
     "README.md",
     "LICENSE"
   ],
+  "keywords": [
+    "sap leonardo",
+    "machine learning",
+    "ml",
+    "image classification",
+    "image segmentation",
+    "optical character recognition",
+    "ocr",
+    "face detection",
+    "human detection",
+    "machine translation",
+    "language detection",
+    "product text classification"
+  ],
   "dependencies": {
     "es6-promise": "^4.2.5",
     "request": "^2.88.0"
