@@ -40,8 +40,7 @@ export class Translation {
 
       request.post({ url: url, body: data, headers: headers }, (err, response, body) => {
         if (err) {
-          console.error('ERROR', err);
-          reject(err);
+          return reject(err);
         }
         resolve(JSON.parse(body));
       });

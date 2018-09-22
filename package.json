@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "./node_modules/mocha/bin/mocha -r ts-node/register -s 30000 -t 30000 src/test/test_*.ts"
+    "test": "./node_modules/.bin/mocha -r ts-node/register -s 30000 -t 30000 src/test/test_*.ts",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -s 30000 -t 30000 dist/test/test_*.js"
   },
   "author": "Lars Gregori <github@larsgregori.de>",
   "license": "Apache-2.0",
@@ -41,6 +42,7 @@
     "@types/mocha": "^5.2.5",
     "@types/request": "^2.47.1",
     "chai": "^4.1.2",
+    "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.3"

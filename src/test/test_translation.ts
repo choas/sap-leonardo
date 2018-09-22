@@ -120,4 +120,32 @@ describe('translation', () => {
     });
   });
 
+  describe('error coverage', () => {
+
+    var translation = new Translation(
+      process.env.API_KEY,
+      'http://localhost:11111');
+
+    it('should return connection refused error', (done) => {
+
+      let body: TranslationRequest = {
+        sourceLanguage: "es",
+        targetLanguages: ["en", "de"],
+        units: [
+          {
+            value: "",
+            key: "TEXT_ESPAÑOL"
+          }
+        ]
+      }
+      translation.translation(body).then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
+    });
+
+  });
+
 });

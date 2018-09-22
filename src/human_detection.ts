@@ -22,8 +22,7 @@ export class HumanDetection {
 
       fs.readFile(files, {}, (err, data) => {
         if (err) {
-          console.error('ERROR', err);
-          reject(err);
+          return reject(err);
         }
         var formData = {
           file: { value: data, options: files }
@@ -38,8 +37,7 @@ export class HumanDetection {
 
         request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {
           if (err) {
-            console.error('ERROR', err);
-            reject(err);
+            return reject(err);
           }
           resolve(JSON.parse(body));
         });
@@ -54,8 +52,7 @@ export class HumanDetection {
 
       fs.readFile(files, {}, (err, data) => {
         if (err) {
-          console.error('ERROR', err);
-          reject(err);
+          return reject(err);
         }
         var formData = {
           file: { value: data, options: files }

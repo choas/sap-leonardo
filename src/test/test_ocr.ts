@@ -58,7 +58,7 @@ describe('ocr', () => {
   });
 
   describe('image to text (via job)', () => {
-    var jobid : string;
+    var jobid: string;
 
     it('should return a job id', (done) => {
       ocr.jobs("./testdata/ocr/english_1000.png").then(body => {
@@ -73,6 +73,55 @@ describe('ocr', () => {
         expect(body).to.have.property('id').to.be.equal(jobid);
         expect(body).to.have.property('status');
       }).then(done, done);
+    });
+
+  });
+
+  describe('error coverage', () => {
+
+    it('should return a file not found error', (done) => {
+      ocr.ocr("file_does_not_exist").then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal(-2);
+          expect(err).to.have.property('code').to.be.equal('ENOENT');
+        }).then(done, done);
+    })
+
+    it('should return connection refused error', (done) => {
+      var ocr = new OCR(
+        process.env.API_KEY,
+        'http://localhost:11111');
+      ocr.ocr("./testdata/ocr/english_1000.png").then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
+    });
+
+    it('should return connection refused (jobs) error', (done) => {
+      var ocr = new OCR(
+        process.env.API_KEY,
+        'http://localhost:11111');
+      ocr.jobs("./testdata/ocr/english_1000.png", null).then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
+    });
+
+    it('should return connection refused (jobId) error', (done) => {
+      var ocr = new OCR(
+        process.env.API_KEY,
+        'http://localhost:11111');
+      ocr.jobsId("").then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
     });
 
   });

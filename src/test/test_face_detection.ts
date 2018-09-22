@@ -57,4 +57,30 @@ describe('face detection', () => {
     });
   });
 
+  describe('error coverage', () => {
+
+    it('should return a file not found error', (done) => {
+      faceDetection.faceDetection("file_does_not_exist").then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal(-2);
+          expect(err).to.have.property('code').to.be.equal('ENOENT');
+        }).then(done, done);
+    })
+
+    it('should return connection refused error', (done) => {
+      var faceDetection = new FaceDetection(
+        process.env.API_KEY,
+        'http://localhost:11111');
+      faceDetection.faceDetection("./testdata/man-3365368_640.jpg").then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
+    });
+
+  });
+
+
 });

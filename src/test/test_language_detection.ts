@@ -45,11 +45,36 @@ describe('language detection', () => {
   describe('provide version', () => {
 
     it('should provide version', (done) => {
-
       languageDetection.version().then(body => {
         expect(body).to.have.property('version').to.be.equal('1.0-SNAPSHOT');
       }).then(done, done);
     });
+  });
+
+  describe('error coverage', () => {
+
+    var languageDetection = new LanguageDetection(
+      process.env.API_KEY,
+      'http://localhost:11111');
+
+    it('should return connection refused error', (done) => {
+      languageDetection.language("").then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
+    });
+
+    it('should return connection refused (version) error', (done) => {
+      languageDetection.version().then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
+    });
+
   });
 
 });

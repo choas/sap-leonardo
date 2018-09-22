@@ -22,8 +22,7 @@ export class OCR {
 
       fs.readFile(files, {}, (err, data) => {
         if (err) {
-          console.error('ERROR', err);
-          reject(err);
+          return reject(err);
         }
         var formData;
         if (options) {
@@ -46,8 +45,7 @@ export class OCR {
 
         request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {
           if (err) {
-            console.error('ERROR', err);
-            reject(err);
+            return reject(err);
           }
           resolve(JSON.parse(body));
         });
@@ -73,8 +71,7 @@ export class OCR {
 
       request.get({ url: url, headers: headers }, (err, response, body) => {
         if (err) {
-          console.error('ERROR', err);
-          reject(err);
+          return reject(err);
         }
         resolve(JSON.parse(body));
       });

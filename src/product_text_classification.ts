@@ -40,14 +40,8 @@ export class ProductTextClassification {
       var url = this._baseUrl + "/ml/producttextclassifier/inference_sync";
 
       request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {
-
-
-      // var data = JSON.stringify({ texts: texts });
-
-      // request.post({ url: url, body: data, headers: headers }, (err, response, body) => {
         if (err) {
-          console.error('ERROR', err);
-          reject(err);
+          return reject(err);
         }
         resolve(JSON.parse(body));
       });

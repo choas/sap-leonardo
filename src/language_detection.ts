@@ -29,8 +29,7 @@ export class LanguageDetection {
 
       request.post({ url: url, body: data, headers: headers }, (err, response, body) => {
         if (err) {
-          console.error('ERROR', err);
-          reject(err);
+          return reject(err);
         }
         resolve(JSON.parse(body));
       });
@@ -51,8 +50,7 @@ export class LanguageDetection {
 
       request.get({ url: url, headers: headers }, (err, response, body) => {
         if (err) {
-          console.error('ERROR', err);
-          reject(err);
+          return reject(err);
         }
         resolve(JSON.parse(body));
       });

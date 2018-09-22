@@ -102,10 +102,26 @@ describe('product text classification', () => {
         }).then(done, done);
       });
   
-  
-  
     });
 
   });
+
+  describe('error coverage', () => {
+
+    var productTextClassification = new ProductTextClassification(
+      process.env.API_KEY,
+      'http://localhost:11111');
+
+    it('should return connection refused error', (done) => {
+      productTextClassification.inferenceSync("./testdata/product_text.zip", null).then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
+    });
+
+  });
+
 
 });

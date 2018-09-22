@@ -22,8 +22,7 @@ export class Imageclassification {
 
       fs.readFile(files, {}, (err, data) => {
         if (err) {
-          console.error('ERROR', err);
-          reject(err);
+          return reject(err);
         }
         var formData = {
           files: { value: data, options: files }
@@ -38,8 +37,7 @@ export class Imageclassification {
 
         request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {
           if (err) {
-            console.error('ERROR', err);
-            reject(err);
+            return reject(err);
           }
           resolve(JSON.parse(body));
         });
@@ -50,7 +48,7 @@ export class Imageclassification {
 
   customizable(modelName: string, version: string, files: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      var url = "/ml/imageclassification/models/" + modelName + "/versions/" + version;
+      //var url = "/ml/imageclassification/models/" + modelName + "/versions/" + version;
       reject("not implemented");
     });
   }

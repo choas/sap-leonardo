@@ -36,7 +36,7 @@ describe('imageclassification', () => {
     });
   });
 
-  describe('some errors', () => {
+  describe('some image classification errors', () => {
     it('should throw an error for wrong file type (text)', (done) => {
       imageclassification.classification("./LICENSE").then(body => {
         expect(body).to.have.property('error');
@@ -60,6 +60,39 @@ describe('imageclassification', () => {
         expect(body.fault).to.have.property('faultstring');
         expect(body.fault.faultstring).to.be.equal("Invalid ApiKey");
       }).then(done, done);
+    });
+
+  });
+
+  describe('error coverage', () => {
+
+    it('should return a file not found error', (done) => {
+      imageclassification.classification("file_does_not_exist").then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal(-2);
+          expect(err).to.have.property('code').to.be.equal('ENOENT');
+        }).then(done, done);
+    })
+
+    it('should return connection refused error', (done) => {
+      var imageclassification = new Imageclassification(
+        process.env.API_KEY,
+        'http://localhost:11111');
+      imageclassification.classification("./testdata/elephant-114543_640.jpg").then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
+    });
+
+    it('should return method not implemented error', (done) => {
+      imageclassification.customizable("", "", "").then(
+        body => { },
+        err => {
+          expect(err).is.equal("not implemented");
+        }).then(done, done);
     });
 
   });

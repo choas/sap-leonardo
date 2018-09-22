@@ -138,4 +138,29 @@ describe('multi-instance image segmentation', () => {
 
   });
 
+  describe('error coverage', () => {
+
+    it('should return a file not found error', (done) => {
+      multiInstanceImageSegmentation.instanceSegmentor("file_does_not_exist").then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal(-2);
+          expect(err).to.have.property('code').to.be.equal('ENOENT');
+        }).then(done, done);
+    })
+
+    it('should return connection refused error', (done) => {
+      var multiInstanceImageSegmentation = new MultiInstanceImageSegmentation(
+        process.env.API_KEY,
+        'http://localhost:11111');
+      multiInstanceImageSegmentation.instanceSegmentor("./testdata/" + fileName).then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
+          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        }).then(done, done);
+    });
+
+  });
+
 });
