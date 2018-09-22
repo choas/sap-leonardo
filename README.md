@@ -12,24 +12,30 @@ npm module for SAP Leonardo Machine Learning Foundation - Functional Services
 
 ## Usage
 
-Sign up (for free) at [SAP API Business Hub](https://api.sap.com/).
+Sign up a free account at [SAP API Business Hub](https://api.sap.com/).
 
+Install the npm package:
 ```sh
 npm install sap-leonardo
 ```
 
+Use e.g. the image classification service with your API key:
 ```javascript
 var leonardo = require('sap-leonardo');
 
-var imageclassification = new leonardo.Imageclassification("apiKey3x4mpleUs3y0ur0wnKey112233");
+var imageclassification = new leonardo.Imageclassification("apiKey3x4mpleUs3y0ur0wnKey123abc");
 
 imageclassification.classification("./elephant-114543_640.jpg")
 .then(body => {
     console.log(JSON.stringify(body, null, "  "))
 })
 ```
+For more examples of how to use the services, have a look at the tests.
+
 
 ## Implemented Services
+
+Following services are implemented (unordered; the way I've added them):
 
 - [Inference Service for Customizable Image Classification](https://api.sap.com/api/image_classification_api/resource)
 - [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
@@ -38,6 +44,8 @@ imageclassification.classification("./elephant-114543_640.jpg")
 - [Inference Service for Face Detection](https://api.sap.com/api/face_detection_api/resource)
 - [Inference Service for Human Detection](https://api.sap.com/api/human_detection_api/resource)
 - [Product Text Classification API](https://api.sap.com/api/product_text_classification_api/resource)
+- [Inference Service for Multi-Instance Image Segmentation](https://api.sap.com/api/instance_segmentor_api/resource)
+
 
 ## Build
 
@@ -70,8 +78,9 @@ npm test
 - [testdata/ocr/english.png](https://help.sap.com/viewer/b04a8fe9c04745b98ad8652ccd5d636f/1.0/en-US/3fa18aca0e35421394b620327875f04a.html) (Screenshot)
 - [testdata/ocr/deutsch.png](http://gutenberg.spiegel.de/buch/-6248/69) (Screenshot)
 - [testdata/man-3365368_640.jpg](https://pixabay.com/en/man-woman-group-teamwork-3365368/)
+- [testdata/juice-1271881_640.jpg](https://pixabay.com/en/juice-health-detox-organic-1271881/)
 
-## Licenseq
+## License
 
 Copyright 2018 Lars Gregori
 
