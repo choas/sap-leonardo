@@ -37,7 +37,7 @@ export class MultiInstanceImageSegmentation {
         var url = this._baseUrl + "/ml/instancesegmentor/instance-segmentor";
 
         if (format) {
-          url += "/format:" + format;
+          url += "/format:jpg";
         }
 
         request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {

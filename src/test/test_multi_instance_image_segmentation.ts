@@ -6,7 +6,7 @@ import { MultiInstanceImageSegmentation } from "../index";
 
 var fileName = "juice-1271881_640.jpg";
 
-describe('mwulti-instance image segmentation', () => {
+describe('multi-instance image segmentation', () => {
 
   var multiInstanceImageSegmentation = new MultiInstanceImageSegmentation(process.env.API_KEY);
 
@@ -83,18 +83,25 @@ describe('mwulti-instance image segmentation', () => {
           expect(body.predictions[0].results[i].classId).to.be.equal(expected_results[i].classId);
           expect(body.predictions[0].results[i].className).to.be.equal(expected_results[i].className);
           expect(body.predictions[0].results[i].score).to.be.equal(expected_results[i].score);
+
+          // encoded mask data should have the size of bbox width * height
+          var encodedMaskData = new Buffer(body.predictions[0].results[i].mask, 'base64');
+          var bbox = body.predictions[0].results[i].bbox;
+          var bboxWidth = Math.abs(bbox.x2 - bbox.x1);
+          var bboxHeight = Math.abs(bbox.y2 - bbox.y1);
+          expect(encodedMaskData.length).to.be.equal(bboxWidth * bboxHeight);
         }
       }).then(done, done);
     });
   });
 
-  describe('mwulti-instance image oegmentation image:jpg', () => {
+  describe('multi-instance image segmentation image:jpg', () => {
 
     var multiInstanceImageSegmentation = new MultiInstanceImageSegmentation(process.env.API_KEY);
 
-    describe('three items', () => {
-      it('should predict three items', (done) => {
-        multiInstanceImageSegmentation.instanceSegmentor("./testdata/" + fileName, "jpg").then(body => {
+    describe('return image', () => {
+      it('should return a png image', (done) => {
+        multiInstanceImageSegmentation.instanceSegmentor("./testdata/" + fileName, true).then(body => {
 
           expect(body).to.have.property('id');
           expect(body).to.have.property('predictions').is.an('array').with.length(1);
@@ -103,7 +110,27 @@ describe('mwulti-instance image segmentation', () => {
 
           expect(body.predictions[0]).to.have.property('imageName').is.equal(fileName);
 
-          //fs.writeFileSync("MultiInstanceImageSegmentation.jpg", new Buffer(body.predictions[0].imageString, 'base64'));
+          //fs.writeFileSync("MultiInstanceImageSegmentation.png", new Buffer(body.predictions[0].imageString, 'base64'));
+
+          var encodedImageData = new Buffer(body.predictions[0].imageString, 'base64');
+
+          var isJPG =
+            encodedImageData[0] === 0xFF &&
+            encodedImageData[1] === 0xD8 &&
+            encodedImageData[2] === 0xFF;
+
+          var isPNG =
+            encodedImageData[0] === 0x89 &&
+            encodedImageData[1] === 0x50 &&
+            encodedImageData[2] === 0x4E &&
+            encodedImageData[3] === 0x47 &&
+            encodedImageData[4] === 0x0D &&
+            encodedImageData[5] === 0x0A &&
+            encodedImageData[6] === 0x1A &&
+            encodedImageData[7] === 0x0A;
+
+          expect(isJPG).is.false;
+          expect(isPNG).is.true;
 
         }).then(done, done);
       });
