@@ -9,6 +9,7 @@
 [![devDependencies Status](https://david-dm.org/choas/sap-leonardo/dev-status.svg)](https://david-dm.org/choas/sap-leonardo?type=dev)
 [![Known Vulnerabilities](https://snyk.io/test/github/choas/sap-leonardo/badge.svg?targetFile=package.json)](https://snyk.io/test/github/choas/sap-leonardo?targetFile=package.json)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fchoas%2Fsap-leonardo.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fchoas%2Fsap-leonardo?ref=badge_shield)
+[![Coverage Status](https://coveralls.io/repos/github/choas/sap-leonardo/badge.svg?branch=master)](https://coveralls.io/github/choas/sap-leonardo?branch=master)
 
 
 ## Usage
