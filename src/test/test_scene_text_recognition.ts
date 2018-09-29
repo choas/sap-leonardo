@@ -11,8 +11,6 @@ describe('SceneTextRecognition', () => {
     it('should return a text', (done) => {
       sceneTextRecognition.sceneTextRecognition("./testdata/stop-634941_640.jpg").then(body => {
 
-        console.log(JSON.stringify(body, null, " "));
-
         expect(body).to.have.property('id');
         expect(body).to.have.property('predictions');
         expect(body).to.have.property('processedTime');
