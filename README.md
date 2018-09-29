@@ -81,6 +81,7 @@ npm test
 - [testdata/ocr/deutsch.png](http://gutenberg.spiegel.de/buch/-6248/69) (Screenshot)
 - [testdata/man-3365368_640.jpg](https://pixabay.com/en/man-woman-group-teamwork-3365368/)
 - [testdata/juice-1271881_640.jpg](https://pixabay.com/en/juice-health-detox-organic-1271881/)
+- [testdata/stop-634941_640.jpg](https://pixabay.com/en/stop-shield-traffic-sign-road-sign-634941/)
 
 ## License
 
