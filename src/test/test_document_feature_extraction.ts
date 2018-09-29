@@ -27,24 +27,24 @@ describe('document feature extraction', () => {
       }).then(done, done);
     });
 
-    describe('files', () => {
-  
-      it('should detect features', (done) => {
-  
-        documentFeatureExtraction.inferenceSync("./testdata/product_text.zip", null).then(body => {
-          expect(body).to.have.property('_id');
-          expect(body).to.have.property('doc_vectors').to.be.an('array').with.length(1);
-          expect(body).to.have.property('processed_time');
-          expect(body).to.have.property('request');
-          expect(body).to.have.property('status').to.be.equal('DONE');
-          expect(body).to.have.property('tenantName');
-  
-          expect(body.doc_vectors[0]).to.have.property('embedding').to.be.an('array').with.length(200).is.eql(embedding);
-          expect(body.doc_vectors[0]).to.have.property('id').to.be.equal('product_text.txt');
-    
-        }).then(done, done);
-      });
-  
+  });
+
+  describe('files', () => {
+
+    it('should detect features', (done) => {
+
+      documentFeatureExtraction.inferenceSync("./testdata/product_text.zip", null).then(body => {
+        expect(body).to.have.property('_id');
+        expect(body).to.have.property('doc_vectors').to.be.an('array').with.length(1);
+        expect(body).to.have.property('processed_time');
+        expect(body).to.have.property('request');
+        expect(body).to.have.property('status').to.be.equal('DONE');
+        expect(body).to.have.property('tenantName');
+
+        expect(body.doc_vectors[0]).to.have.property('embedding').to.be.an('array').with.length(200).is.eql(embedding);
+        expect(body.doc_vectors[0]).to.have.property('id').to.be.equal('product_text.txt');
+
+      }).then(done, done);
     });
 
   });
