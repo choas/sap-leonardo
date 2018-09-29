@@ -48,7 +48,8 @@ Following services are implemented (unordered; the way I've added them):
 - [Product Text Classification API](https://api.sap.com/api/product_text_classification_api/resource)
 - [Inference Service for Multi-Instance Image Segmentation](https://api.sap.com/api/instance_segmentor_api/resource)
 - [Inference Service for Scene Text Recognition](https://api.sap.com/api/scene_text_recognition_api/resource)
-- [Document Feature Extraction](https://api.sap.com/api/document_feature_extraction_api/resource)
+- [Inference Service for Document Feature Extraction](https://api.sap.com/api/document_feature_extraction_api/resource)
+- [Inference Service for Similarity Scoring](https://api.sap.com/api/similarity_scoring_api/resource)
 
 ## Build
 
