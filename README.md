@@ -48,6 +48,7 @@ Following services are implemented (unordered; the way I've added them):
 - [Product Text Classification API](https://api.sap.com/api/product_text_classification_api/resource)
 - [Inference Service for Multi-Instance Image Segmentation](https://api.sap.com/api/instance_segmentor_api/resource)
 - [Inference Service for Scene Text Recognition](https://api.sap.com/api/scene_text_recognition_api/resource)
+- [Document Feature Extraction](https://api.sap.com/api/document_feature_extraction_api/resource)
 
 ## Build
 
@@ -58,18 +59,18 @@ npm run build
 
 ## Test
 
-1. define your API Key:
+define your API Key:
 
 ```sh
 export API_KEY="apiKey3x4mpleUs3y0ur0wnKey112233"
 ```
 
-2. install all dependencies:
+install all dependencies:
 ```sh
 npm install
 ```
 
-3. run the tests:
+run the tests:
 ```sh
 npm test
 ```
@@ -82,6 +83,7 @@ npm test
 - [testdata/man-3365368_640.jpg](https://pixabay.com/en/man-woman-group-teamwork-3365368/)
 - [testdata/juice-1271881_640.jpg](https://pixabay.com/en/juice-health-detox-organic-1271881/)
 - [testdata/stop-634941_640.jpg](https://pixabay.com/en/stop-shield-traffic-sign-road-sign-634941/)
+
 
 ## License
 
