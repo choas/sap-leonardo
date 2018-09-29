@@ -47,7 +47,7 @@ Following services are implemented (unordered; the way I've added them):
 - [Inference Service for Human Detection](https://api.sap.com/api/human_detection_api/resource)
 - [Product Text Classification API](https://api.sap.com/api/product_text_classification_api/resource)
 - [Inference Service for Multi-Instance Image Segmentation](https://api.sap.com/api/instance_segmentor_api/resource)
-
+- [Inference Service for Scene Text Recognition](https://api.sap.com/api/scene_text_recognition_api/resource)
 
 ## Build
 
@@ -58,18 +58,18 @@ npm run build
 
 ## Test
 
-Define your API Key:
+1. define your API Key:
 
 ```sh
 export API_KEY="apiKey3x4mpleUs3y0ur0wnKey112233"
 ```
 
-Install all dependencies:
+2. install all dependencies:
 ```sh
 npm install
 ```
 
-To run the tests:
+3. run the tests:
 ```sh
 npm test
 ```
