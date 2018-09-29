@@ -108,6 +108,15 @@ describe('product text classification', () => {
 
   describe('error coverage', () => {
 
+    it('should return a file not found error', (done) => {
+      productTextClassification.inferenceSync("file_does_not_exist", null).then(
+        body => { },
+        err => {
+          expect(err).to.have.property('errno').to.be.equal(-2);
+          expect(err).to.have.property('code').to.be.equal('ENOENT');
+        }).then(done, done);
+    })
+
     var productTextClassification = new ProductTextClassification(
       process.env.API_KEY,
       'http://localhost:11111');
