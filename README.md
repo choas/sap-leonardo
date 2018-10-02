@@ -23,16 +23,20 @@ npm install sap-leonardo
 
 Use e.g. the image classification service with your API key:
 ```javascript
-var leonardo = require('sap-leonardo');
+const leonardo = require('sap-leonardo');
 
 var imageclassification = new leonardo.Imageclassification("apiKey3x4mpleUs3y0ur0wnKey123abc");
 
 imageclassification.classification("./elephant-114543_640.jpg")
-.then(body => {
-    console.log(JSON.stringify(body, null, "  "))
-})
+  .then(body => {
+    console.log(JSON.stringify(body, null, "  "));
+    var firstResult = body.predictions[0].results[0];
+    console.log("RESULT:", firstResult.label, firstResult.score)
+    // RESULT: tusker 0.7052137851715088
+  })
+  .catch(err => { console.error(err) });
 ```
-For more examples of how to use the services, have a look at the tests.
+More examples can be found in the examples and tests folder.
 
 
 ## Implemented Services
