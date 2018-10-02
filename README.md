@@ -36,7 +36,7 @@ imageclassification.classification("./elephant-114543_640.jpg")
   })
   .catch(err => { console.error(err) });
 ```
-More examples can be found in the examples and tests folder.
+More examples can be found in the examples and src/test folder.
 
 
 ## Implemented Services
