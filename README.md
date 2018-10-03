@@ -90,6 +90,9 @@ npm test
 - [testdata/juice-1271881_640.jpg](https://pixabay.com/en/juice-health-detox-organic-1271881/)
 - [testdata/stop-634941_640.jpg](https://pixabay.com/en/stop-shield-traffic-sign-road-sign-634941/)
 - [testdata/chucks-153310_640.png](https://pixabay.com/en/chucks-converse-shoes-footwear-153310/)
+- [hiking-shoes-3074971_640.png](https://pixabay.com/en/hiking-shoes-boots-leather-3074971/)
+- [converse-2069209_640.jpg](https://pixabay.com/en/converse-shoes-grass-outdoors-2069209/)
+
 
 ## License
 
