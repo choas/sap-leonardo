@@ -1,0 +1,20 @@
+= CHANGELOG
+
+== next
+more examples: mulit_instance_image_segmentation, similarity_scoring, which_shoe
+
+== 0.5.0
+Inference Service For Customizable Image Feature Extraction
+
+== before 0.5.0
+Inference Service for Customizable Image Classification
+Inference Service for Optical Character Recognition (OCR)
+Inference Service for Machine Translation
+Inference Service for Language Detection
+Inference Service for Face Detection
+Inference Service for Human Detection
+Product Text Classification API
+Inference Service for Multi-Instance Image Segmentation
+Inference Service for Scene Text Recognition
+Inference Service for Document Feature Extraction
+Inference Service for Similarity Scoring
