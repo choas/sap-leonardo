@@ -54,6 +54,7 @@ Following services are implemented (unordered; the way I've added them):
 - [Inference Service for Scene Text Recognition](https://api.sap.com/api/scene_text_recognition_api/resource)
 - [Inference Service for Document Feature Extraction](https://api.sap.com/api/document_feature_extraction_api/resource)
 - [Inference Service for Similarity Scoring](https://api.sap.com/api/similarity_scoring_api/resource)
+- [Inference Service For Customizable Image Feature Extraction](https://api.sap.com/api/img_feature_extraction_api/resource)
 
 ## Build
 
@@ -88,7 +89,7 @@ npm test
 - [testdata/man-3365368_640.jpg](https://pixabay.com/en/man-woman-group-teamwork-3365368/)
 - [testdata/juice-1271881_640.jpg](https://pixabay.com/en/juice-health-detox-organic-1271881/)
 - [testdata/stop-634941_640.jpg](https://pixabay.com/en/stop-shield-traffic-sign-road-sign-634941/)
-
+- [testdata/chucks-153310_640.png](https://pixabay.com/en/chucks-converse-shoes-footwear-153310/)
 
 ## License
 
