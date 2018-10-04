@@ -1,47 +1,47 @@
 "use strict";
 
-import * as request from 'request';
-import * as fs from 'fs';
-import { Promise } from 'es6-promise'
-import * as assert from 'assert';
+import * as assert from "assert";
+import { Promise } from "es6-promise";
+import * as fs from "fs";
+import * as request from "request";
 
 export class SimilarityScoring {
 
-  private _apiKey: string;
-  private _baseUrl: string;
+  private apiKey: string;
+  private baseUrl: string;
 
   constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
     assert(apiKey, "apiKey is required");
-    this._apiKey = apiKey;
-    this._baseUrl = baseUrl
+    this.apiKey = apiKey;
+    this.baseUrl = baseUrl;
   }
 
-  similarityScoring(files: any, texts: any, options: string): Promise<any> {
+  public similarityScoring(files: any, texts: any, options: string): Promise<any> {
 
     return new Promise<any>((resolve, reject) => {
-      var headers = {
-        "Content-Type": 'application/json',
-        Accept: 'application/json',
-        APIKey: this._apiKey
-      }
+      const headers = {
+        "APIKey": this.apiKey,
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      };
 
-      var formData;
+      let formData;
       if (files) {
-        var data = fs.readFileSync(files, {});
+        const data = fs.readFileSync(files, {});
         formData = {
           files: { value: data, options: files },
-          options: options
-        }
+          options,
+        };
       } else {
         formData = {
-          texts: texts,
-          options: options
-        }
+          options,
+          texts,
+        };
       }
 
-      var url = this._baseUrl + "/ml/similarityscoring/similarity-scoring";
+      const url = this.baseUrl + "/ml/similarityscoring/similarity-scoring";
 
-      request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {
+      request.post({ url, formData, headers }, (err, response, body) => {
         if (err) {
           return reject(err);
         }

@@ -1,33 +1,33 @@
 "use strict";
 
-import * as request from 'request';
-import { Promise } from 'es6-promise'
-import * as assert from 'assert';
+import * as assert from "assert";
+import { Promise } from "es6-promise";
+import * as request from "request";
 
 export class LanguageDetection {
 
-  private _apiKey: string;
-  private _baseUrl: string;
+  private apiKey: string;
+  private baseUrl: string;
 
   constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
     assert(apiKey, "apiKey is required");
-    this._apiKey = apiKey;
-    this._baseUrl = baseUrl
+    this.apiKey = apiKey;
+    this.baseUrl = baseUrl;
   }
 
-  language(message: string): Promise<any> {
+  public language(message: string): Promise<any> {
 
     return new Promise<any>((resolve, reject) => {
-      var headers = {
-        "Content-Type": 'application/json',
-        Accept: 'application/json',
-        APIKey: this._apiKey
-      }
+      const headers = {
+        "APIKey": this.apiKey,
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      };
 
-      var url = this._baseUrl + "/ml/languagedetection/language";
-      var data = JSON.stringify({ message: message });
+      const url = this.baseUrl + "/ml/languagedetection/language";
+      const data = JSON.stringify({ message });
 
-      request.post({ url: url, body: data, headers: headers }, (err, response, body) => {
+      request.post({ url, body: data, headers }, (err, response, body) => {
         if (err) {
           return reject(err);
         }
@@ -37,18 +37,18 @@ export class LanguageDetection {
     });
   }
 
-  version(): Promise<any> {
+  public version(): Promise<any> {
 
     return new Promise<any>((resolve, reject) => {
-      var headers = {
-        "Content-Type": 'application/json',
-        Accept: 'application/json',
-        APIKey: this._apiKey
-      }
+      const headers = {
+        "APIKey": this.apiKey,
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      };
 
-      var url = this._baseUrl + "/ml/languagedetection/version";
+      const url = this.baseUrl + "/ml/languagedetection/version";
 
-      request.get({ url: url, headers: headers }, (err, response, body) => {
+      request.get({ url, headers }, (err, response, body) => {
         if (err) {
           return reject(err);
         }

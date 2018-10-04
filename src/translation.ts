@@ -1,44 +1,44 @@
 "use strict";
 
-import * as request from 'request';
-import { Promise } from 'es6-promise'
-import * as assert from 'assert';
+import * as assert from "assert";
+import { Promise } from "es6-promise";
+import * as request from "request";
 
-export interface TranslationRequest {
+export interface ITranslationRequest {
   sourceLanguage: string;
   targetLanguages: string[];
-  units: TextTranslationRequest[];
+  units: ITextTranslationRequest[];
 }
 
-export interface TextTranslationRequest {
+export interface ITextTranslationRequest {
   value: string;
   key: string;
 }
 
 export class Translation {
 
-  private _apiKey: string;
-  private _baseUrl: string;
+  private apiKey: string;
+  private baseUrl: string;
 
   constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
     assert(apiKey, "apiKey is required");
-    this._apiKey = apiKey;
-    this._baseUrl = baseUrl
+    this.apiKey = apiKey;
+    this.baseUrl = baseUrl;
   }
 
-  translation(body: TranslationRequest): Promise<any> {
+  public translation(translationRequest: ITranslationRequest): Promise<any> {
 
     return new Promise<any>((resolve, reject) => {
-      var headers = {
-        "Content-Type": 'application/json',
-        Accept: 'application/json',
-        APIKey: this._apiKey
-      }
+      const headers = {
+        "APIKey": this.apiKey,
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      };
 
-      var url = this._baseUrl + "/ml/translation/translation";
-      var data = JSON.stringify(body)
+      const url = this.baseUrl + "/ml/translation/translation";
+      const data = JSON.stringify(translationRequest);
 
-      request.post({ url: url, body: data, headers: headers }, (err, response, body) => {
+      request.post({ url, body: data, headers }, (err, response, body) => {
         if (err) {
           return reject(err);
         }

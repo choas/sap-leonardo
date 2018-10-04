@@ -1,49 +1,49 @@
 "use strict";
 
-import * as request from 'request';
-import * as fs from 'fs';
-import { Promise } from 'es6-promise'
-import * as assert from 'assert';
+import * as assert from "assert";
+import { Promise } from "es6-promise";
+import * as fs from "fs";
+import * as request from "request";
 
 export class OCR {
 
-  private _apiKey: string;
-  private _baseUrl: string;
+  private apiKey: string;
+  private baseUrl: string;
 
   constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
     assert(apiKey, "apiKey is required");
-    this._apiKey = apiKey;
-    this._baseUrl = baseUrl
+    this.apiKey = apiKey;
+    this.baseUrl = baseUrl;
   }
 
-  ocr(files: string, options: any = null, asJobs: Boolean = false): Promise<any> {
+  public ocr(files: string, options: any = null, asJobs: boolean = false): Promise<any> {
 
     return new Promise<any>((resolve, reject) => {
 
-      fs.readFile(files, {}, (err, data) => {
-        if (err) {
-          return reject(err);
+      fs.readFile(files, {}, (fileErr, fileData) => {
+        if (fileErr) {
+          return reject(fileErr);
         }
-        var formData;
+        let formData;
         if (options) {
           formData = {
-            files: { value: data, options: files },
-            options: JSON.stringify(options)
-          }
+            files: { value: fileData, options: files },
+            options: JSON.stringify(options),
+          };
         } else {
           formData = {
-            files: { value: data, options: files }
-          }
+            files: { value: fileData, options: files },
+          };
         }
 
-        var headers = {
-          Accept: 'application/json',
-          APIKey: this._apiKey
-        }
+        const headers = {
+          APIKey: this.apiKey,
+          Accept: "application/json",
+        };
 
-        var url = this._baseUrl + "/ml/ocr/ocr" + (asJobs ? "/jobs" : "");
+        const url = this.baseUrl + "/ml/ocr/ocr" + (asJobs ? "/jobs" : "");
 
-        request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {
+        request.post({ url, formData, headers }, (err, response, body) => {
           if (err) {
             return reject(err);
           }
@@ -54,22 +54,22 @@ export class OCR {
     });
   }
 
-  jobs(files: string, options: any = null): Promise<any> {
+  public jobs(files: string, options: any = null): Promise<any> {
     return this.ocr(files, options, true);
   }
 
-  jobsId(id: string): Promise<any> {
+  public jobsId(id: string): Promise<any> {
 
     return new Promise<any>((resolve, reject) => {
 
-      var headers = {
-        Accept: 'application/json',
-        APIKey: this._apiKey
-      }
+      const headers = {
+        APIKey: this.apiKey,
+        Accept: "application/json",
+      };
 
-      var url = this._baseUrl + "/ml/ocr/ocr/jobs/" + id;
+      const url = this.baseUrl + "/ml/ocr/ocr/jobs/" + id;
 
-      request.get({ url: url, headers: headers }, (err, response, body) => {
+      request.get({ url, headers }, (err, response, body) => {
         if (err) {
           return reject(err);
         }
@@ -78,6 +78,5 @@ export class OCR {
 
     });
   }
-
 
 }

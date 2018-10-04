@@ -1,41 +1,41 @@
 "use strict";
 
-import * as request from 'request';
-import * as fs from 'fs';
-import { Promise } from 'es6-promise'
-import * as assert from 'assert';
+import * as assert from "assert";
+import { Promise } from "es6-promise";
+import * as fs from "fs";
+import * as request from "request";
 
 export class Imageclassification {
 
-  private _apiKey: string;
-  private _baseUrl: string;
+  private apiKey: string;
+  private baseUrl: string;
 
   constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
     assert(apiKey, "apiKey is required");
-    this._apiKey = apiKey;
-    this._baseUrl = baseUrl
+    this.apiKey = apiKey;
+    this.baseUrl = baseUrl;
   }
 
-  classification(files: string): Promise<any> {
+  public classification(files: string): Promise<any> {
 
     return new Promise<any>((resolve, reject) => {
 
-      fs.readFile(files, {}, (err, data) => {
-        if (err) {
-          return reject(err);
+      fs.readFile(files, {}, (fileErr, fileData) => {
+        if (fileErr) {
+          return reject(fileErr);
         }
-        var formData = {
-          files: { value: data, options: files }
-        }
+        const formData = {
+          files: { value: fileData, options: files },
+        };
 
-        var headers = {
-          Accept: 'application/json',
-          APIKey: this._apiKey
-        }
+        const headers = {
+          APIKey: this.apiKey,
+          Accept: "application/json",
+        };
 
-        var url = this._baseUrl + "/ml/imageclassification/classification";
+        const url = this.baseUrl + "/ml/imageclassification/classification";
 
-        request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {
+        request.post({ url, formData, headers }, (err, response, body) => {
           if (err) {
             return reject(err);
           }
@@ -46,10 +46,10 @@ export class Imageclassification {
     });
   }
 
-  /*eslint no-unused-vars: ["off", { "args": "all" }]*/
-  customizable(modelName: string, version: string, files: string): Promise<any> {
+  /*eslint no-unused-consts: ["off", { "args": "all" }]*/
+  public customizable(modelName: string, version: string, files: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      //var url = "/ml/imageclassification/models/" + modelName + "/versions/" + version;
+      // const url = "/ml/imageclassification/models/" + modelName + "/versions/" + version;
       reject("not implemented");
     });
   }

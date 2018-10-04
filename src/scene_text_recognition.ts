@@ -1,41 +1,41 @@
 "use strict";
 
-import * as request from 'request';
-import * as fs from 'fs';
-import { Promise } from 'es6-promise'
-import * as assert from 'assert';
+import * as assert from "assert";
+import { Promise } from "es6-promise";
+import * as fs from "fs";
+import * as request from "request";
 
 export class SceneTextRecognition {
 
-  private _apiKey: string;
-  private _baseUrl: string;
+  private apiKey: string;
+  private baseUrl: string;
 
   constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
     assert(apiKey, "apiKey is required");
-    this._apiKey = apiKey;
-    this._baseUrl = baseUrl
+    this.apiKey = apiKey;
+    this.baseUrl = baseUrl;
   }
 
-  sceneTextRecognition(files: string): Promise<any> {
+  public sceneTextRecognition(files: string): Promise<any> {
 
     return new Promise<any>((resolve, reject) => {
 
-      fs.readFile(files, {}, (err, data) => {
-        if (err) {
-          return reject(err);
+      fs.readFile(files, {}, (fileErr, fileData) => {
+        if (fileErr) {
+          return reject(fileErr);
         }
-        var formData = {
-          files: { value: data, options: files }
-        }
+        const formData = {
+          files: { value: fileData, options: files },
+        };
 
-        var headers = {
-          Accept: 'application/json',
-          APIKey: this._apiKey
-        }
+        const headers = {
+          APIKey: this.apiKey,
+          Accept: "application/json",
+        };
 
-        var url = this._baseUrl + "/ml/scenetextrecognition/scene-text-recognition";
+        const url = this.baseUrl + "/ml/scenetextrecognition/scene-text-recognition";
 
-        request.post({ url: url, formData: formData, headers: headers }, (err, response, body) => {
+        request.post({ url, formData, headers }, (err, response, body) => {
           if (err) {
             return reject(err);
           }
