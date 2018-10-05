@@ -25,16 +25,14 @@ Use e.g. the image classification service with your API key:
 ```javascript
 const leonardo = require('sap-leonardo');
 
-var imageclassification = new leonardo.Imageclassification("apiKey3x4mpleUs3y0ur0wnKey123abc");
-
+var imageclassification = new leonardo.Imageclassification("apiKey");
 imageclassification.classification("./elephant-114543_640.jpg")
-  .then(body => {
-    console.log(JSON.stringify(body, null, "  "));
+  .then((body) => {
     var firstResult = body.predictions[0].results[0];
-    console.log("RESULT:", firstResult.label, firstResult.score)
-    // RESULT: tusker 0.7052137851715088
+    console.log("result:", firstResult.label, firstResult.score);
+    // result: tusker 0.7052137851715088
   })
-  .catch(err => { console.error(err) });
+  .catch((err) => { console.error(err); });
 ```
 More examples can be found in the examples and src/test folder.
 
@@ -55,6 +53,7 @@ Following services are implemented (unordered; the way I've added them):
 - [Inference Service for Document Feature Extraction](https://api.sap.com/api/document_feature_extraction_api/resource)
 - [Inference Service for Similarity Scoring](https://api.sap.com/api/similarity_scoring_api/resource)
 - [Inference Service For Customizable Image Feature Extraction](https://api.sap.com/api/img_feature_extraction_api/resource)
+
 
 ## Build
 
@@ -80,6 +79,10 @@ run the tests:
 ```sh
 npm test
 ```
+
+## Blog Posts
+- [NPM Module for SAP Leonardo Machine Learning](https://blogs.sap.com/2018/10/04/npm-module-for-sap-leonardo-machine-learning/)
+
 
 ## Image Sources
 
