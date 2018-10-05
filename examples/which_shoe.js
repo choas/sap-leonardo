@@ -13,8 +13,7 @@ const IMG_SHOE_TEST = "converse-2069209_640.jpg";
 const multiInstanceImageSegmentation = new leonardo.MultiInstanceImageSegmentation(process.env.API_KEY);
 const imageFeatureExtraction = new leonardo.ImageFeatureExtraction(process.env.API_KEY);
 const similarityScoring = new leonardo.SimilarityScoring(process.env.API_KEY);
-var vectorWhich;
-/*eslint max-lines-per-function: ["error", 200]*/
+var vector0, vector1, vector2;
 multiInstanceImageSegmentation.instanceSegmentor(IMG_PATH + IMG_SHOE_TEST)
   .then((body) => body.predictions[0].results[0].bbox)
   .then((bbox) => {
@@ -29,59 +28,54 @@ multiInstanceImageSegmentation.instanceSegmentor(IMG_PATH + IMG_SHOE_TEST)
       });
   })
   .then(() => {
-
     imageFeatureExtraction.featureExtraction("croped.jpg")
       .then((body) => {
-        console.log("W");
-
-        vectorWhich = body.predictions[0].featureVectors;
+        vector0 = body.predictions[0].featureVectors;
       });
   })
   .then(() => {
-        imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE1)
-          .then((body) => {
-            console.log("1");
-            const vector1 = body.predictions[0].featureVectors;
-            imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE2)
-              .then((body) => {
-                console.log("2");
-                const vector2 = body.predictions[0].featureVectors;
+    imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE1)
+      .then((body) => {
+        vector1 = body.predictions[0].featureVectors;
+      });
+  })
+  .then(() => {
+    imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE2)
+      .then((body) => {
+        vector2 = body.predictions[0].featureVectors;
+      });
+  })
+  .then(() => {
 
-                const data =
-                {
-                  "0": [
-                    {
-                      "id": "which_shoe",
-                      "vector": vectorWhich
-                    },
-                    {
-                      "id": "shoe_1",
-                      "vector": vector1
-                    },
-                    {
-                      "id": "shoe_2",
-                      "vector": vector2
-                    }
-                  ]
-                };
-                const options = JSON.stringify({ numSimilarVectors: 2 });
-                similarityScoring.similarityScoring(null, JSON.stringify(data), options)
-                  .then((body) => {
-                    console.log("S");
-
-                    const firstPrediction = body.predictions[0];
-                    const firstSimilarVector = firstPrediction.similarVectors[0];
-                    const secondSimilarVector = firstPrediction.similarVectors[1];
-                    console.log(
-                      "result:", firstPrediction.id + ":",
-                      firstSimilarVector.id + "=" + firstSimilarVector.score,
-                      secondSimilarVector.id + "=" + secondSimilarVector.score
-                    );
-                    // result: which_shoe: shoe_1=0.7352935851635458 shoe_2=0.7072068060448491
-                  });
-              });
-          });
-      //});
-    //});
+    const data =
+    {
+      "0": [
+        {
+          "id": "which_shoe",
+          "vector": vector0
+        },
+        {
+          "id": "shoe_1",
+          "vector": vector1
+        },
+        {
+          "id": "shoe_2",
+          "vector": vector2
+        }
+      ]
+    };
+    const options = JSON.stringify({ numSimilarVectors: 2 });
+    similarityScoring.similarityScoring(null, JSON.stringify(data), options)
+      .then((body) => {
+        const firstPrediction = body.predictions[0];
+        const firstSimilarVector = firstPrediction.similarVectors[0];
+        const secondSimilarVector = firstPrediction.similarVectors[1];
+        console.log(
+          "result:", firstPrediction.id + ":",
+          firstSimilarVector.id + "=" + firstSimilarVector.score,
+          secondSimilarVector.id + "=" + secondSimilarVector.score
+        );
+        // result: which_shoe: shoe_1=0.7352935851635458 shoe_2=0.7072068060448491
+      });
   })
   .catch((err) => { console.error(err); });
