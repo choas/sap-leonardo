@@ -1,81 +1,86 @@
 "use strict";
 
-import { expect } from 'chai';
-import { DocumentFeatureExtraction } from '../index';
+import { expect } from "chai";
+import { DocumentFeatureExtraction } from "../index";
 
-describe('document feature extraction', () => {
+describe("document feature extraction", () => {
 
-  var documentFeatureExtraction = new DocumentFeatureExtraction(process.env.API_KEY);
+  const documentFeatureExtraction = new DocumentFeatureExtraction(process.env.API_KEY);
 
-  describe('texts', () => {
+  describe("texts", () => {
 
-    const productText = "Get the clarity of 4K UHD in an old-fashioned smart TV design that's mind controllable. Ultra HD makes everything smooth and sharp. Magic power gives you instant access to your favourite content and the movie night is just a smile away." // note: is this an adjusted description for a Smart TV
+    // tslint:disable-next-line:max-line-length
+    const productText = "Get the clarity of 4K UHD in an old-fashioned smart TV design that's mind controllable. Ultra HD makes everything smooth and sharp. Magic power gives you instant access to your favourite content and the movie night is just a smile away."; // note: is this an adjusted description for a Smart TV
 
-    it('should detect features', (done) => {
+    it("should detect features", (done) => {
 
-      documentFeatureExtraction.inferenceSync(null, productText).then(body => {
-        expect(body).to.have.property('_id');
-        expect(body).to.have.property('doc_vectors').to.be.an('array').with.length(1);
-        expect(body).to.have.property('processed_time');
-        expect(body).to.have.property('request');
-        expect(body).to.have.property('status').to.be.equal('DONE');
-        expect(body).to.have.property('tenantName');
+      documentFeatureExtraction.inferenceSync(null, productText).then((body) => {
+        expect(body).to.have.property("_id");
+        expect(body).to.have.property("doc_vectors").to.be.an("array").with.length(1);
+        expect(body).to.have.property("processed_time");
+        expect(body).to.have.property("request");
+        expect(body).to.have.property("status").to.be.equal("DONE");
+        expect(body).to.have.property("tenantName");
 
-        expect(body.doc_vectors[0]).to.have.property('embedding').to.be.an('array').with.length(200).is.eql(embedding);
-        expect(body.doc_vectors[0]).to.have.property('id').to.be.equal('0');
-
-      }).then(done, done);
-    });
-
-  });
-
-  describe('files', () => {
-
-    it('should detect features', (done) => {
-
-      documentFeatureExtraction.inferenceSync("./testdata/product_text.zip", null).then(body => {
-        expect(body).to.have.property('_id');
-        expect(body).to.have.property('doc_vectors').to.be.an('array').with.length(1);
-        expect(body).to.have.property('processed_time');
-        expect(body).to.have.property('request');
-        expect(body).to.have.property('status').to.be.equal('DONE');
-        expect(body).to.have.property('tenantName');
-
-        expect(body.doc_vectors[0]).to.have.property('embedding').to.be.an('array').with.length(200).is.eql(embedding);
-        expect(body.doc_vectors[0]).to.have.property('id').to.be.equal('product_text.txt');
+        expect(body.doc_vectors[0]).to.have.property("embedding").to.be.an("array").with.length(200).is.eql(embedding);
+        expect(body.doc_vectors[0]).to.have.property("id").to.be.equal("0");
 
       }).then(done, done);
     });
 
   });
 
-  describe('error coverage', () => {
+  describe("files", () => {
 
-    it('should return a file not found error', (done) => {
+    it("should detect features", (done) => {
+
+      documentFeatureExtraction.inferenceSync("./testdata/product_text.zip", null).then((body) => {
+        expect(body).to.have.property("_id");
+        expect(body).to.have.property("doc_vectors").to.be.an("array").with.length(1);
+        expect(body).to.have.property("processed_time");
+        expect(body).to.have.property("request");
+        expect(body).to.have.property("status").to.be.equal("DONE");
+        expect(body).to.have.property("tenantName");
+
+        expect(body.doc_vectors[0]).to.have.property("embedding").to.be.an("array").with.length(200).is.eql(embedding);
+        expect(body.doc_vectors[0]).to.have.property("id").to.be.equal("product_text.txt");
+
+      }).then(done, done);
+    });
+
+  });
+
+  describe("error coverage", () => {
+
+    it("should return a file not found error", (done) => {
       documentFeatureExtraction.inferenceSync("file_does_not_exist", null).then(
-        body => { },
-        err => {
-          expect(err).to.have.property('errno').to.be.equal(-2);
-          expect(err).to.have.property('code').to.be.equal('ENOENT');
+        () => { expect.fail(); },
+        (err) => {
+          expect(err).to.have.property("errno").to.be.equal(-2);
+          expect(err).to.have.property("code").to.be.equal("ENOENT");
         }).then(done, done);
-    })
+    });
 
-    var documentFeatureExtraction = new DocumentFeatureExtraction(
+    const documentFeatureExtractionErr = new DocumentFeatureExtraction(
       process.env.API_KEY,
-      'http://localhost:11111');
+      "http://localhost:11111");
 
-    it('should return connection refused error', (done) => {
-      documentFeatureExtraction.inferenceSync("./testdata/product_text.zip", null).then(
-        body => { },
-        err => {
-          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
-          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+    it("should return connection refused error", (done) => {
+      documentFeatureExtractionErr.inferenceSync("./testdata/product_text.zip", null).then(
+        () => { expect.fail(); },
+        (err) => {
+          expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
+          expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
         }).then(done, done);
     });
 
   });
 
-  var embedding = [
+  // tslint:disable:object-literal-key-quotes
+  // tslint:disable:max-line-length
+  // tslint:disable:trailing-comma
+
+  const embedding = [
     0.1563027948141098,
     0.004084547515958548,
     -0.005777653772383928,

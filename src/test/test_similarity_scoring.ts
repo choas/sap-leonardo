@@ -1,74 +1,70 @@
 "use strict";
 
-import { expect } from 'chai';
-import { SimilarityScoring } from '../index';
+import { expect } from "chai";
+import { SimilarityScoring } from "../index";
 
-describe('similarity scoring', () => {
+describe("similarity scoring", () => {
 
-  var similarityScoring = new SimilarityScoring(process.env.API_KEY);
+  const similarityScoring = new SimilarityScoring(process.env.API_KEY);
 
-  const options = JSON.stringify({ "numSimilarVectors": 2 });
+  const options = JSON.stringify({ numSimilarVectors: 2 });
 
-  describe('texts', () => {
+  describe("texts", () => {
 
-    it('should detect similarity scores', (done) => {
+    it("should detect similarity scores", (done) => {
 
-      similarityScoring.similarityScoring(null, JSON.stringify(data), options).then(body => {
+      similarityScoring.similarityScoring(null, JSON.stringify(data), options).then((body) => {
 
-        expect(body).to.have.property('id');
-        expect(body).to.have.property('predictions');
-        expect(body).to.have.property('processedTime');
-        expect(body).to.have.property('status').to.be.equal('DONE');
+        expect(body).to.have.property("id");
+        expect(body).to.have.property("predictions");
+        expect(body).to.have.property("processedTime");
+        expect(body).to.have.property("status").to.be.equal("DONE");
 
-        expect(body.predictions).to.be.an('array').have.lengthOf(3).is.eql(predictions);
-
-      }).then(done, done);
-    });
-
-  });
-
-
-  describe('files', () => {
-
-    it('should detect similarity scores', (done) => {
-
-      similarityScoring.similarityScoring("./testdata/vector.zip", null, options).then(body => {
-
-        expect(body).to.have.property('id');
-        expect(body).to.have.property('predictions');
-        expect(body).to.have.property('processedTime');
-        expect(body).to.have.property('status').to.be.equal('DONE');
-
-        expect(body.predictions).to.be.an('array').have.lengthOf(3).is.eql(predictions);
+        expect(body.predictions).to.be.an("array").have.lengthOf(3).is.eql(predictions);
 
       }).then(done, done);
     });
 
   });
 
+  describe("files", () => {
 
+    it("should detect similarity scores", (done) => {
 
-  describe('similarity scoring with different options', () => {
+      similarityScoring.similarityScoring("./testdata/vector.zip", null, options).then((body) => {
 
-    var similarityScoring = new SimilarityScoring(process.env.API_KEY);
+        expect(body).to.have.property("id");
+        expect(body).to.have.property("predictions");
+        expect(body).to.have.property("processedTime");
+        expect(body).to.have.property("status").to.be.equal("DONE");
 
+        expect(body.predictions).to.be.an("array").have.lengthOf(3).is.eql(predictions);
 
-    describe('texts', () => {
+      }).then(done, done);
+    });
 
-      it('should detect similarity scores for 1 similar vector', (done) => {
+  });
 
-        const options = JSON.stringify({ "numSimilarVectors": 1 });
+  describe("similarity scoring with different options", () => {
 
-        similarityScoring.similarityScoring(null, JSON.stringify(data), options).then(body => {
+    const similarityScoringWithOptions = new SimilarityScoring(process.env.API_KEY);
 
-          expect(body).to.have.property('id');
-          expect(body).to.have.property('predictions');
-          expect(body).to.have.property('processedTime');
-          expect(body).to.have.property('status').to.be.equal('DONE');
+    describe("texts", () => {
 
-          expect(body.predictions).to.be.an('array').have.lengthOf(3);
+      it("should detect similarity scores for 1 similar vector", (done) => {
 
-          for (var i = 0; i < 3; i++) {
+        const optionsOne = JSON.stringify({ numSimilarVectors: 1 });
+
+        similarityScoringWithOptions.similarityScoring(null, JSON.stringify(data), optionsOne).then((body) => {
+
+          expect(body).to.have.property("id");
+          expect(body).to.have.property("predictions");
+          expect(body).to.have.property("processedTime");
+          expect(body).to.have.property("status").to.be.equal("DONE");
+
+          expect(body.predictions).to.be.an("array").have.lengthOf(3);
+
+          for (let i = 0; i < 3; i++) {
             expect(body.predictions[i].similarVectors[0].score).to.be.equal(predictions[i].similarVectors[0].score);
           }
 
@@ -79,36 +75,36 @@ describe('similarity scoring', () => {
 
   });
 
+  describe("error coverage", () => {
 
-  describe('error coverage', () => {
-
-    it('should return a file not found error', (done) => {
-      similarityScoring.similarityScoring("file_does_not_exist", null, "").then(
-        body => { },
-        err => {
-          expect(err).to.have.property('errno').to.be.equal(-2);
-          expect(err).to.have.property('code').to.be.equal('ENOENT');
+    it("should return a file not found error", (done) => {
+      similarityScoringErr.similarityScoring("file_does_not_exist", null, "").then(
+        () => { expect.fail(); },
+        (err) => {
+          expect(err).to.have.property("errno").to.be.equal(-2);
+          expect(err).to.have.property("code").to.be.equal("ENOENT");
         }).then(done, done);
-    })
+    });
 
-    var similarityScoring = new SimilarityScoring(
+    const similarityScoringErr = new SimilarityScoring(
       process.env.API_KEY,
-      'http://localhost:11111');
+      "http://localhost:11111");
 
-    it('should return connection refused error', (done) => {
-      similarityScoring.similarityScoring("./testdata/product_text.zip", null, "").then(
-        body => { },
-        err => {
-          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
-          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+    it("should return connection refused error", (done) => {
+      similarityScoringErr.similarityScoring("./testdata/product_text.zip", null, "").then(
+        () => { expect.fail(); },
+        (err) => {
+          expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
+          expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
         }).then(done, done);
     });
 
   });
 
-
-  var data =
-  {
+  // tslint:disable:object-literal-key-quotes
+  // tslint:disable:max-line-length
+  // tslint:disable:trailing-comma
+  const data = {
     "0": [
       {
         "id": "vector_0",
@@ -123,10 +119,9 @@ describe('similarity scoring', () => {
         "vector": [0.3556300142239819, 0.5045324288959441, 0.7577918039699381, 0.8632635582322563, 0.633311116403191, 0.2435334301982892, 0.6287482927751646, 0.7181573415502425, 0.5023501732127003, 0.18362374274429505]
       }
     ]
-  }
+  };
 
-
-  var predictions = [
+  const predictions = [
     {
       "id": "vector_0",
       "similarVectors": [
@@ -157,15 +152,15 @@ describe('similarity scoring', () => {
       "id": "vector_2",
       "similarVectors": [
         {
-          "id": "vector_1",
-          "score": 0.853805753175138
+          id: "vector_1",
+          score: 0.853805753175138
         },
         {
-          "id": "vector_0",
-          "score": 0.849864721937753
+          id: "vector_0",
+          score: 0.849864721937753
         }
       ]
-    }
+    },
   ];
 
 });

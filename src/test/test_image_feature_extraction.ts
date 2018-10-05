@@ -1,67 +1,67 @@
 "use strict";
 
-import { expect } from 'chai';
+import { expect } from "chai";
 import { ImageFeatureExtraction } from "../index";
 
-describe('image feature extraction', () => {
+describe("image feature extraction", () => {
 
-  var imageFeatureExtraction = new ImageFeatureExtraction(process.env.API_KEY);
+  const imageFeatureExtraction = new ImageFeatureExtraction(process.env.API_KEY);
 
-  describe('shoe', () => {
-    it('should return a vector', (done) => {
-      imageFeatureExtraction.featureExtraction("./testdata/chucks-153310_640.png").then(body => {
+  describe("shoe", () => {
+    it("should return a vector", (done) => {
+      imageFeatureExtraction.featureExtraction("./testdata/chucks-153310_640.png").then((body) => {
+        expect(body).to.have.property("id");
+        expect(body).to.have.property("predictions");
+        expect(body).to.have.property("processedTime");
+        expect(body).to.have.property("status").to.be.equal("DONE");
 
-        console.log(JSON.stringify(body, null, "  "));
-
-        expect(body).to.have.property('id');
-        expect(body).to.have.property('predictions');
-        expect(body).to.have.property('processedTime');
-        expect(body).to.have.property('status').to.be.equal('DONE');
-
-        expect(body.predictions).to.be.an('array').have.lengthOf(1);
-        expect(body.predictions[0]).to.have.property('featureVectors');
-        expect(body.predictions[0].featureVectors).to.be.an('array').have.lengthOf(2048);
+        expect(body.predictions).to.be.an("array").have.lengthOf(1);
+        expect(body.predictions[0]).to.have.property("featureVectors");
+        expect(body.predictions[0].featureVectors).to.be.an("array").have.lengthOf(2048);
 
         expect(body.predictions[0].featureVectors).to.be.eql(featureVectors);
       }).then(done, done);
     });
   });
 
+  describe("error coverage", () => {
 
-  describe('error coverage', () => {
-
-    it('should return a file not found error', (done) => {
+    it("should return a file not found error", (done) => {
       imageFeatureExtraction.featureExtraction("file_does_not_exist").then(
-        body => { },
-        err => {
-          expect(err).to.have.property('errno').to.be.equal(-2);
-          expect(err).to.have.property('code').to.be.equal('ENOENT');
-        }).then(done, done);
-    })
-
-    it('should return connection refused error', (done) => {
-      var imageFeatureExtraction = new ImageFeatureExtraction(
-        process.env.API_KEY,
-        'http://localhost:11111');
-        imageFeatureExtraction.featureExtraction("./testdata/chucks-153310_640.png").then(
-        body => { },
-        err => {
-          expect(err).to.have.property('errno').to.be.equal('ECONNREFUSED');
-          expect(err).to.have.property('code').to.be.equal('ECONNREFUSED');
+        (body) => { newFunction(); },
+        (err) => {
+          expect(err).to.have.property("errno").to.be.equal(-2);
+          expect(err).to.have.property("code").to.be.equal("ENOENT");
         }).then(done, done);
     });
 
-    xit('should return method not implemented error', (done) => {
+    it("should return connection refused error", (done) => {
+      const imageFeatureExtractionErr = new ImageFeatureExtraction(
+        process.env.API_KEY,
+        "http://localhost:11111");
+      imageFeatureExtractionErr.featureExtraction("./testdata/chucks-153310_640.png").then(
+        () => { expect.fail(); },
+        (err) => {
+          expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
+          expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
+        }).then(done, done);
+    });
+
+    xit("should return method not implemented error", (done) => {
       imageFeatureExtraction.featureExtraction("").then(
-        body => { },
-        err => {
+        () => { expect.fail(); },
+        (err) => {
           expect(err).is.equal("not implemented");
         }).then(done, done);
     });
 
   });
 
-  var featureVectors = [
+  // tslint:disable:object-literal-key-quotes
+  // tslint:disable:max-line-length
+  // tslint:disable:trailing-comma
+
+  const featureVectors = [
     0.04334653913974762,
     0.10124225914478302,
     0.24316343665122986,
@@ -2112,5 +2112,8 @@ describe('image feature extraction', () => {
     0.31467556953430176
   ];
 
-
 });
+
+function newFunction() {
+  expect.fail();
+}

@@ -46,7 +46,7 @@ export class Imageclassification {
     });
   }
 
-  /*eslint no-unused-consts: ["off", { "args": "all" }]*/
+  /*eslint no-unused-vars ["off", { "args": "all" }]*/
   public customizable(modelName: string, version: string, files: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       // const url = "/ml/imageclassification/models/" + modelName + "/versions/" + version;
