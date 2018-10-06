@@ -27,23 +27,17 @@ multiInstanceImageSegmentation.instanceSegmentor(IMG_PATH + IMG_SHOE_TEST)
         }
       });
   })
-  .then(() => {
-    imageFeatureExtraction.featureExtraction("croped.jpg")
-      .then((body) => {
-        vector0 = body.predictions[0].featureVectors;
-      });
+  .then(() => imageFeatureExtraction.featureExtraction("croped.jpg"))
+  .then((body) => {
+    vector0 = body.predictions[0].featureVectors;
   })
-  .then(() => {
-    imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE1)
-      .then((body) => {
-        vector1 = body.predictions[0].featureVectors;
-      });
+  .then(() => imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE1))
+  .then((body) => {
+    vector1 = body.predictions[0].featureVectors;
   })
-  .then(() => {
-    imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE2)
-      .then((body) => {
-        vector2 = body.predictions[0].featureVectors;
-      });
+  .then(() => imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE2))
+  .then((body) => {
+    vector2 = body.predictions[0].featureVectors;
   })
   .then(() => {
 
@@ -65,17 +59,17 @@ multiInstanceImageSegmentation.instanceSegmentor(IMG_PATH + IMG_SHOE_TEST)
       ]
     };
     const options = JSON.stringify({ numSimilarVectors: 2 });
-    similarityScoring.similarityScoring(null, JSON.stringify(data), options)
-      .then((body) => {
-        const firstPrediction = body.predictions[0];
-        const firstSimilarVector = firstPrediction.similarVectors[0];
-        const secondSimilarVector = firstPrediction.similarVectors[1];
-        console.log(
-          "result:", firstPrediction.id + ":",
-          firstSimilarVector.id + "=" + firstSimilarVector.score,
-          secondSimilarVector.id + "=" + secondSimilarVector.score
-        );
-        // result: which_shoe: shoe_1=0.7352935851635458 shoe_2=0.7072068060448491
-      });
+    return similarityScoring.similarityScoring(null, JSON.stringify(data), options);
+  })
+  .then((body) => {
+    const firstPrediction = body.predictions[0];
+    const firstSimilarVector = firstPrediction.similarVectors[0];
+    const secondSimilarVector = firstPrediction.similarVectors[1];
+    console.log(
+      "result:", firstPrediction.id + ":",
+      firstSimilarVector.id + "=" + firstSimilarVector.score,
+      secondSimilarVector.id + "=" + secondSimilarVector.score
+    );
+    // result: which_shoe: shoe_1=0.7352935851635458 shoe_2=0.7072068060448491
   })
   .catch((err) => { console.error(err); });
