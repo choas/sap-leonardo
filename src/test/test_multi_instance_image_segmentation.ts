@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import * as fs from "fs";
+// import * as fs from "fs";
 import { MultiInstanceImageSegmentation } from "../index";
 
 const fileName = "juice-1271881_640.jpg";
@@ -54,9 +54,9 @@ describe("multi-instance image segmentation", () => {
 
           expect(body.predictions[0]).to.have.property("imageName").is.equal(fileName);
 
-          fs.writeFileSync(
-            "MultiInstanceImageSegmentation.png",
-            Buffer.from(body.predictions[0].imageString, "base64"));
+          // fs.writeFileSync(
+          //   "MultiInstanceImageSegmentation.png",
+          //   Buffer.from(body.predictions[0].imageString, "base64"));
 
           const encodedImageData = Buffer.from(body.predictions[0].imageString, "base64");
 
