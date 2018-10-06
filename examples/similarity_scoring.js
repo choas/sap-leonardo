@@ -3,7 +3,7 @@
 const leonardo = require('sap-leonardo');
 
 // set the API_KEY in the console, e.g. export API_KEY=abc123
-var similarityScoring = new leonardo.SimilarityScoring(process.env.API_KEY);
+const similarityScoring = new leonardo.SimilarityScoring(process.env.API_KEY);
 const data =
 {
   "0": [
@@ -34,7 +34,7 @@ const data =
   ]
 };
 
-const options = JSON.stringify({ "numSimilarVectors": 2 });
+const options = JSON.stringify({ numSimilarVectors: 2 });
 similarityScoring.similarityScoring(null, JSON.stringify(data), options)
   .then((body) => {
     console.log(
