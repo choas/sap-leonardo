@@ -39,19 +39,14 @@ More examples can be found in the examples and src/test folder.
 
 ## Implemented Services
 
-Following services are implemented (unordered; the way I've added them):
-
-
-
+Following services (with a link) are implemented:
 
 - [Inference Service For Customizable Image Feature Extraction](https://api.sap.com/api/img_feature_extraction_api/resource)
 - [Product Text Classification API](https://api.sap.com/api/product_text_classification_api/resource)
 - [Inference Service for Scene Text Recognition](https://api.sap.com/api/scene_text_recognition_api/resource)
 - [Inference Service for Document Feature Extraction](https://api.sap.com/api/document_feature_extraction_api/resource)
 - [Inference Service for Multi-Instance Image Segmentation](https://api.sap.com/api/instance_segmentor_api/resource)
-
-- ~~Inference Service for Face Feature Extraction~~
-
+- [Inference Service for Face Feature Extraction](https://api.sap.com/api/face_feature_extraction_api/resource)
 - [Inference Service for Machine Translation](https://api.sap.com/api/translation_api/resource)
 
 - ~~Training Service for Customizable Object Detection~~
@@ -70,7 +65,7 @@ Following services are implemented (unordered; the way I've added them):
 - [Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)
 
 - ~~Training Service for Customizable Text Classification~~
-- ~~Inference Service for Customizable Object Detection~~
+- ~~Inference Service for Customizable Object Detection~~~~
 
 - [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
 
