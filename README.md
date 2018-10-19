@@ -56,8 +56,8 @@ Following services (with a link) are implemented:
 - [Inference Service for Similarity Scoring](https://api.sap.com/api/similarity_scoring_api/resource)
 - [Inference Service for Customizable Image Classification](https://api.sap.com/api/image_classification_api/resource)
 
-- ~~Time Series Changepoint Detection API~~
-- ~~Product Image Classification API~~
+- ~~decommissioned: Time Series Changepoint Detection API~~
+- [Product Image Classification API](https://api.sap.com/api/product_image_classification_api/resource)
 - ~~Training Service for Customizable Similarity Search~~
 - ~~Inference Service for Customizable Similarity Search~~
 - ~~Inference Service for Topic Detection~~
