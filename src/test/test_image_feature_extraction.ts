@@ -47,8 +47,8 @@ describe("image feature extraction", () => {
         }).then(done, done);
     });
 
-    xit("should return method not implemented error", (done) => {
-      imageFeatureExtraction.featureExtraction("").then(
+    it("should return method not implemented error", (done) => {
+      imageFeatureExtraction.customizable("", "", "").then(
         () => { expect.fail(); },
         (err) => {
           expect(err).is.equal("not implemented");

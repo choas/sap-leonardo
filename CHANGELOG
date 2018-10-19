@@ -2,6 +2,7 @@
 
 ## 0.5.2
 Inference Service For Customizable Image Feature Extraction
+ImageFeatureExtraction:customizable
 examples: 
 - face feature extraction with similarity
 - face detection
