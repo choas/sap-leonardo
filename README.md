@@ -1,5 +1,7 @@
 # SAP Leonardo Machine Learning Foundation - Functional Services
 
+[![NPM](https://nodei.co/npm/sap-leonardo.png?mini=true)](https://nodei.co/npm/sap-leonardo/)
+
 [NPM module](https://www.npmjs.com/package/sap-leonardo) for SAP Leonardo Machine Learning Foundation - Functional Services
 
 "SAP Leonardo Machine Learning foundation provides readily consumable pre-trained models, as well as customizable models." ---- https://api.sap.com/package/SAPLeonardoMLFunctionalServices
