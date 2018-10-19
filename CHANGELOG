@@ -3,6 +3,7 @@
 ## 0.5.2
 Inference Service For Customizable Image Feature Extraction
 ImageFeatureExtraction:customizable
+test similarity scoring with algorithm test cases
 examples: 
 - face feature extraction with similarity
 - face detection

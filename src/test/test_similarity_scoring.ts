@@ -49,7 +49,7 @@ describe("similarity scoring", () => {
 
     const similarityScoringWithOptions = new SimilarityScoring(process.env.API_KEY);
 
-    describe("texts", () => {
+    describe("numSimilarVectors", () => {
 
       it("should detect similarity scores for 1 similar vector", (done) => {
 
@@ -72,6 +72,75 @@ describe("similarity scoring", () => {
       });
 
     });
+
+    describe("algorithm", () => {
+
+      it("should detect similarity scores for naive", (done) => {
+
+        const optionsOne = JSON.stringify({ numSimilarVectors: 2, algorithm: "naive"});
+
+        similarityScoringWithOptions.similarityScoring(null, JSON.stringify(data), optionsOne).then((body) => {
+
+          expect(body).to.have.property("id");
+          expect(body).to.have.property("predictions");
+          expect(body).to.have.property("processedTime");
+          expect(body).to.have.property("status").to.be.equal("DONE");
+
+          expect(body.predictions).to.be.an("array").have.lengthOf(3);
+
+          // for (let i = 0; i < 3; i++) {
+          //   expect(body.predictions[i].similarVectors[0].score).to.be.equal(predictions[i].similarVectors[0].score);
+          // }
+          expect(body.predictions).to.be.an("array").have.lengthOf(3).is.eql(predictions);
+
+        }).then(done, done);
+      });
+
+      it("should detect similarity scores for matrix_mult", (done) => {
+
+        const optionsOne = JSON.stringify({ numSimilarVectors: 2, algorithm: "matrix_mult"});
+
+        similarityScoringWithOptions.similarityScoring(null, JSON.stringify(data), optionsOne).then((body) => {
+
+          expect(body).to.have.property("id");
+          expect(body).to.have.property("predictions");
+          expect(body).to.have.property("processedTime");
+          expect(body).to.have.property("status").to.be.equal("DONE");
+
+          expect(body.predictions).to.be.an("array").have.lengthOf(3);
+
+          // for (let i = 0; i < 3; i++) {
+          //   expect(body.predictions[i].similarVectors[0].score).to.be.equal(predictions[i].similarVectors[0].score);
+          // }
+          expect(body.predictions).to.be.an("array").have.lengthOf(3).is.eql(predictions);
+
+        }).then(done, done);
+      });
+
+      it("should detect similarity scores for clustering", (done) => {
+
+        const optionsOne = JSON.stringify({ numSimilarVectors: 2, algorithm: "clustering"});
+
+        similarityScoringWithOptions.similarityScoring(null, JSON.stringify(data), optionsOne).then((body) => {
+
+          expect(body).to.have.property("id");
+          expect(body).to.have.property("predictions");
+          expect(body).to.have.property("processedTime");
+          expect(body).to.have.property("status").to.be.equal("DONE");
+
+          expect(body.predictions).to.be.an("array").have.lengthOf(3);
+
+          // for (let i = 0; i < 3; i++) {
+          //   expect(body.predictions[i].similarVectors[0].score).to.be.equal(predictions[i].similarVectors[0].score);
+          // }
+          expect(body.predictions).to.be.an("array").have.lengthOf(3).is.eql(predictions);
+
+        }).then(done, done);
+      });
+
+    });
+
+    // algorithm - Optional. Algorithm to use for calculation, one of [“naive”, “matrix_mult”, “clustering”]
 
   });
 
