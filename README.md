@@ -115,6 +115,7 @@ npm test
 - [testdata/chucks-153310_640.png](https://pixabay.com/en/chucks-converse-shoes-footwear-153310/)
 - [hiking-shoes-3074971_640.png](https://pixabay.com/en/hiking-shoes-boots-leather-3074971/)
 - [converse-2069209_640.jpg](https://pixabay.com/en/converse-shoes-grass-outdoors-2069209/)
+- [keyboard-70506_640.jpg](https://pixabay.com/en/keyboard-computer-hardware-keys-70506/)
 
 
 ## License
