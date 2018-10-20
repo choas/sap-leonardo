@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## next
+examples:
+- OCR
+
 ## 0.5.2
 Inference Service For Customizable Image Feature Extraction
 ImageFeatureExtraction:customizable
