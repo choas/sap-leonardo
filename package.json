@@ -19,18 +19,23 @@
     "README.md"
   ],
   "keywords": [
-    "sap leonardo",
+    "sap",
+    "leonardo",
     "machine learning",
     "ml",
-    "image classification",
-    "image segmentation",
-    "optical character recognition",
+    "image",
+    "text",
+    "classification",
+    "segmentation",
     "ocr",
-    "face detection",
-    "human detection",
-    "machine translation",
-    "language detection",
-    "product text classification"
+    "optical",
+    "character",
+    "recognition",
+    "face",
+    "human",
+    "language",
+    "detection",
+    "translation"
   ],
   "dependencies": {
     "es6-promise": "^4.2.5",
