@@ -2,7 +2,7 @@ env:
   node: true
 extends: 'eslint:recommended'
 parserOptions:
-  ecmaVersion: 6
+  ecmaVersion: 2017  #async/await
 rules:
   accessor-pairs: error
   array-bracket-newline: error
