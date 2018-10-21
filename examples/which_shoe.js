@@ -27,10 +27,6 @@ multiInstanceImageSegmentation.instanceSegmentor(IMG_PATH + IMG_SHOE_TEST)
         }
       });
   })
-  .then(() => imageFeatureExtraction.featureExtraction("croped.jpg"))
-  .then((body) => {
-    vector0 = body.predictions[0].featureVectors;
-  })
   .then(() => imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE1))
   .then((body) => {
     vector1 = body.predictions[0].featureVectors;
@@ -38,6 +34,10 @@ multiInstanceImageSegmentation.instanceSegmentor(IMG_PATH + IMG_SHOE_TEST)
   .then(() => imageFeatureExtraction.featureExtraction(IMG_PATH + IMG_SHOE2))
   .then((body) => {
     vector2 = body.predictions[0].featureVectors;
+  })
+  .then(() => imageFeatureExtraction.featureExtraction("croped.jpg"))
+  .then((body) => {
+    vector0 = body.predictions[0].featureVectors;
   })
   .then(() => {
 
