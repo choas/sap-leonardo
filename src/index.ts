@@ -12,3 +12,4 @@ export * from "./similarity_scoring";
 export * from "./image_feature_extraction";
 export * from "./face_feature_extraction";
 export * from "./product_image_classification";
+export * from "./topic_detection";

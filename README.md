@@ -60,7 +60,7 @@ Following services (with a link) are implemented:
 - [Product Image Classification API](https://api.sap.com/api/product_image_classification_api/resource)
 - ~~Training Service for Customizable Similarity Search~~
 - ~~Inference Service for Customizable Similarity Search~~
-- ~~Inference Service for Topic Detection~~
+- [Inference Service for Topic Detection](https://api.sap.com/api/topic_detection_api/resource)
 
 - [Inference Service for Human Detection](https://api.sap.com/api/human_detection_api/resource)
 - [Inference Service for Face Detection](https://api.sap.com/api/face_detection_api/resource)
