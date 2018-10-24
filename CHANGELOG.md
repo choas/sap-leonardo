@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.5.5
+- adjust timeout for ocr test
+
 ## 0.5.4
 - typo in Inference Service for Topic Detection
 - examples:

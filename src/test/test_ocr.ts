@@ -6,6 +6,7 @@ import { OCR } from "../index";
 describe("ocr", () => {
 
   const ocr = new OCR(process.env.API_KEY);
+  const timeout = 40000;
 
   describe("image to text", () => {
     it("should return an English text", (done) => {
@@ -22,7 +23,7 @@ describe("ocr", () => {
         expect(body.predictions[0]).to.be.equal(englishText);
 
       }).then(done, done);
-    }).timeout(30000);
+    }).timeout(timeout);
   });
 
   describe("image to text with options", () => {
@@ -39,7 +40,7 @@ describe("ocr", () => {
         expect(body.predictions[0]).to.match(/^<html:html/);
 
       }).then(done, done);
-    }).timeout(30000);
+    }).timeout(timeout);
 
     it("should return a German text", (done) => {
       const options = { lang: "de", outputType: "txt", pageSegMode: "1", modelType: "lstmStandard" };
@@ -54,7 +55,7 @@ describe("ocr", () => {
         expect(body.predictions[0]).to.match(/Stückchen/);
 
       }).then(done, done);
-    }).timeout(30000);
+    }).timeout(timeout);
 
   });
 
