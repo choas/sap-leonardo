@@ -99,7 +99,7 @@ npm test
 - [NPM Module for SAP Leonardo Machine Learning](https://blogs.sap.com/2018/10/04/npm-module-for-sap-leonardo-machine-learning/)
 
 
-## Image Sources
+## Testdata Sources
 
 - [testdata/elephant-114543_*.jpg](https://pixabay.com/en/elephant-african-bush-elephant-114543/)
 - [testdata/ocr/english.png](https://help.sap.com/viewer/b04a8fe9c04745b98ad8652ccd5d636f/1.0/en-US/3fa18aca0e35421394b620327875f04a.html) (Screenshot)
@@ -111,6 +111,10 @@ npm test
 - [hiking-shoes-3074971_640.png](https://pixabay.com/en/hiking-shoes-boots-leather-3074971/)
 - [converse-2069209_640.jpg](https://pixabay.com/en/converse-shoes-grass-outdoors-2069209/)
 - [keyboard-70506_640.jpg](https://pixabay.com/en/keyboard-computer-hardware-keys-70506/)
+- topic_detection.zip:
+  - https://en.wikipedia.org/wiki/Apple_pie
+  - https://en.wikipedia.org/wiki/Computer_science
+  - https://en.wikipedia.org/wiki/Computational_complexity_theory
 
 
 ## License
