@@ -41,7 +41,7 @@ More examples can be found in the examples and src/test folder.
 
 ## Implemented Services
 
-Following services (with a link) are implemented:
+### Following services are implemented:
 
 - [Inference Service For Customizable Image Feature Extraction](https://api.sap.com/api/img_feature_extraction_api/resource)
 - [Product Text Classification API](https://api.sap.com/api/product_text_classification_api/resource)
@@ -50,27 +50,22 @@ Following services (with a link) are implemented:
 - [Inference Service for Multi-Instance Image Segmentation](https://api.sap.com/api/instance_segmentor_api/resource)
 - [Inference Service for Face Feature Extraction](https://api.sap.com/api/face_feature_extraction_api/resource)
 - [Inference Service for Machine Translation](https://api.sap.com/api/translation_api/resource)
-
-- ~~Training Service for Customizable Object Detection~~
-
 - [Inference Service for Similarity Scoring](https://api.sap.com/api/similarity_scoring_api/resource)
 - [Inference Service for Customizable Image Classification](https://api.sap.com/api/image_classification_api/resource)
-
-- ~~decommissioned: Time Series Changepoint Detection API~~
+- ~~Time Series Changepoint Detection API~~ (decommissioned)
 - [Product Image Classification API](https://api.sap.com/api/product_image_classification_api/resource)
-- ~~Training Service for Customizable Similarity Search~~
-- ~~Inference Service for Customizable Similarity Search~~
 - [Inference Service for Topic Detection](https://api.sap.com/api/topic_detection_api/resource)
-
 - [Inference Service for Human Detection](https://api.sap.com/api/human_detection_api/resource)
 - [Inference Service for Face Detection](https://api.sap.com/api/face_detection_api/resource)
 - [Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)
-
-- ~~Training Service for Customizable Text Classification~~
-- [Inference Service for Customizable Object Detection](https://api.sap.com/api/object_detection_api/resource) (not implemted)
-
+- [Inference Service for Customizable Object Detection](https://api.sap.com/api/object_detection_api/resource) (not implemented)
 - [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
 
+### Following services require a training instance (not implemented)
+- ~~Training Service for Customizable Object Detection~~
+- ~~Training Service for Customizable Similarity Search~~
+- ~~Inference Service for Customizable Similarity Search~~
+- ~~Training Service for Customizable Text Classification~~
 - ~~Inference Service for Customizable Text Classification~~
 - ~~Training Service For Customizable Image Classification and Feature Extraction~~
 
