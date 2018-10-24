@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## next
+## 0.5.4
 - typo in Inference Service for Topic Detection
 - examples:
   - topic detection
