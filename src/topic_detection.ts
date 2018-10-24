@@ -5,7 +5,7 @@ import { Promise } from "es6-promise";
 import * as fs from "fs";
 import * as request from "request";
 
-export class TopicDectection {
+export class TopicDetection {
 
   private apiKey: string;
   private baseUrl: string;
@@ -16,7 +16,7 @@ export class TopicDectection {
     this.baseUrl = baseUrl;
   }
 
-  public topicDectection(files: any, options: string): Promise<any> {
+  public topicDetection(files: any, options: string): Promise<any> {
 
     return new Promise<any>((resolve, reject) => {
       const headers = {

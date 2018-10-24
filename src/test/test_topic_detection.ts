@@ -1,11 +1,11 @@
 "use strict";
 
 import { expect } from "chai";
-import { TopicDectection } from "../index";
+import { TopicDetection } from "../index";
 
 describe("topic detection", () => {
 
-  const topicDectection = new TopicDectection(process.env.API_KEY);
+  const topicDetection = new TopicDetection(process.env.API_KEY);
 
   const options = JSON.stringify({ numTopics: 3, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
 
@@ -13,7 +13,7 @@ describe("topic detection", () => {
 
     it("should detect topics", (done) => {
 
-      topicDectection.topicDectection("./testdata/topic_detection.zip", options).then((body) => {
+      topicDetection.topicDetection("./testdata/topic_detection.zip", options).then((body) => {
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
         expect(body).to.have.property("processedTime");
@@ -27,11 +27,11 @@ describe("topic detection", () => {
 
   describe("topic detection with different options", () => {
 
-    const topicDectectionWithOptions = new TopicDectection(process.env.API_KEY);
+    const topicDectectionWithOptions = new TopicDetection(process.env.API_KEY);
 
     it("should detect 2 keywords for numTopics 2", (done) => {
       const otherOptions = JSON.stringify({ numTopics: 2, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
-      topicDectectionWithOptions.topicDectection("./testdata/topic_detection.zip", otherOptions).then((body) => {
+      topicDectectionWithOptions.topicDetection("./testdata/topic_detection.zip", otherOptions).then((body) => {
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
         expect(body).to.have.property("processedTime");
@@ -45,7 +45,7 @@ describe("topic detection", () => {
 
     it("should detect 1 keyword for numTopics 1", (done) => {
       const otherOptions = JSON.stringify({ numTopics: 1, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
-      topicDectectionWithOptions.topicDectection("./testdata/topic_detection.zip", otherOptions).then((body) => {
+      topicDectectionWithOptions.topicDetection("./testdata/topic_detection.zip", otherOptions).then((body) => {
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
         expect(body).to.have.property("processedTime");
@@ -61,7 +61,7 @@ describe("topic detection", () => {
 
   describe("error messages", () => {
     it("should return an error message, that service requires at least 2 documents", (done) => {
-      topicDectection.topicDectection("./testdata/product_text.zip", options).then((body) => {
+      topicDetection.topicDetection("./testdata/product_text.zip", options).then((body) => {
         expect(body).to.have.property("error");
         expect(body.error).to.have.property("code").to.be.equal("400");
         // tslint:disable:max-line-length
@@ -73,12 +73,12 @@ describe("topic detection", () => {
 
   describe("error coverage", () => {
 
-    const topicDectectionErr = new TopicDectection(
+    const topicDectectionErr = new TopicDetection(
       process.env.API_KEY,
       "http://localhost:11111");
 
     it("should return a file not found error", (done) => {
-      topicDectectionErr.topicDectection("file_does_not_exist", "").then(
+      topicDectectionErr.topicDetection("file_does_not_exist", "").then(
         () => { expect.fail(); },
         (err) => {
           expect(err).to.have.property("errno").to.be.equal(-2);
@@ -87,7 +87,7 @@ describe("topic detection", () => {
     });
 
     it("should return connection refused error", (done) => {
-      topicDectectionErr.topicDectection("./testdata/product_text.zip", "").then(
+      topicDectectionErr.topicDetection("./testdata/product_text.zip", "").then(
         () => { expect.fail(); },
         (err) => {
           expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
