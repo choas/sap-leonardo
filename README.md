@@ -67,7 +67,7 @@ Following services (with a link) are implemented:
 - [Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)
 
 - ~~Training Service for Customizable Text Classification~~
-- ~~Inference Service for Customizable Object Detection~~~~
+- [Inference Service for Customizable Object Detection](https://api.sap.com/api/object_detection_api/resource) (not implemted)
 
 - [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
 
