@@ -19,6 +19,15 @@ describe("object detection", () => {
         expect(body.fault.detail.errorcode).to.be.equal("messaging.adaptors.http.flow.ApplicationNotFound");
       }).then(done, done);
     }).timeout(60000);
+
+    it("should return an image, but causes an internal error", (done) => {
+      objectDetection.objectDetection("./testdata/" + fileName, true).then((body) => {
+        expect(body).to.have.property("fault");
+        expect(body.fault).to.have.property("detail");
+        expect(body.fault.detail).to.have.property("errorcode");
+        expect(body.fault.detail.errorcode).to.be.equal("messaging.adaptors.http.flow.ApplicationNotFound");
+      }).then(done, done);
+    }).timeout(60000);
   });
 
   describe("error coverage", () => {
