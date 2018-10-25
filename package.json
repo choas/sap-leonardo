@@ -6,6 +6,7 @@
   "scripts": {
     "build": "./node_modules/.bin/tsc",
     "test": "npm run build && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -s 10000 -t 10000 dist/test/test_*.js && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "coverage": "npm run build && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha  -- -s 10000 -t 10000 dist/test/test_*.js",
     "lint": "./node_modules/.bin/tslint src/**/*.ts && ./node_modules/.bin/eslint examples/*.js"
   },
   "author": "Lars Gregori <github@larsgregori.de>",
