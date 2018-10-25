@@ -3,6 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## 0.5.5
+- Inference Service for Customizable Object Detection
 - adjust timeout for ocr test
 
 ## 0.5.4
