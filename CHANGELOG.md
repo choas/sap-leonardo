@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.5.6
+- wrong API: Product Image Classification API
+- separate src and test
+
 ## 0.5.5
 - Inference Service for Customizable Object Detection
 - adjust timeout for ocr test

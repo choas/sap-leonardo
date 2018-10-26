@@ -5,9 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "./node_modules/.bin/tsc",
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -s 10000 -t 10000 -r ts-node/register test/test_*.ts && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha  -- -s 10000 -t 10000 -r ts-node/register test/test_*.ts",
-    "lint": "./node_modules/.bin/tslint src/**/*.ts && ./node_modules/.bin/eslint examples/*.js"
+    "build-test": "./node_modules/.bin/tsc --build test/tsconfig.json",
+    "build-all": "npm run build && npm run build-test",
+    "test": "npm run build-all && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -s 10000 -t 10000 dist/test/test_*.js && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "coverage": "npm run build-all && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report html -- -s 10000 -t 10000 dist/test/test_*.js",
+    "lint": "./node_modules/.bin/tslint src/*.ts && ./node_modules/.bin/tslint test/*.ts && ./node_modules/.bin/eslint examples/*.js"
   },
   "author": "Lars Gregori <github@larsgregori.de>",
   "license": "Apache-2.0",
@@ -49,7 +51,7 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "eslint": "^5.7.0",
-    "istanbul": "^0.4.5",
+    "istanbul": "^1.1.0-alpha.1",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",

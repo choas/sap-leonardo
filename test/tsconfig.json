@@ -3,14 +3,14 @@
         "target": "es2015",
         "module": "commonjs",
         "declaration": true,
-        "outDir": "dist",
+        "outDir": "../dist",
         "strict": true,
         "sourceMap": true,
     },
     "include": [
-        "./src/**/*"
+        "./**/*.ts"
     ],
     "exclude": [
-        "./dist"
+        "./src"
     ]
 }
