@@ -2,7 +2,7 @@
 
 import { expect } from "chai";
 // import * as fs from "fs";
-import { HumanDetection } from "../index";
+import { HumanDetection } from "../src/index";
 
 describe("human detection", () => {
 

@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import { FaceFeatureExtraction } from "../index";
+import { FaceFeatureExtraction } from "../src/index";
 
 describe("face feature extraction", () => {
 

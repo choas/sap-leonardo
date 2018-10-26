@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import { ProductTextClassification } from "../index";
+import { ProductTextClassification } from "../src/index";
 
 describe("product text classification", () => {
 

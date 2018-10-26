@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import { DocumentFeatureExtraction } from "../index";
+import { DocumentFeatureExtraction } from "../src/index";
 
 describe("document feature extraction", () => {
 

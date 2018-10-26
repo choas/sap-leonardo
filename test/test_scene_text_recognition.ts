@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import { SceneTextRecognition } from "../index";
+import { SceneTextRecognition } from "../src/index";
 
 describe("SceneTextRecognition", () => {
 

@@ -2,7 +2,7 @@
 
 import { expect } from "chai";
 // import * as fs from "fs";
-import { MultiInstanceImageSegmentation } from "../index";
+import { MultiInstanceImageSegmentation } from "../src/index";
 
 const fileName = "juice-1271881_640.jpg";
 

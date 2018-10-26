@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import { Imageclassification } from "../index";
+import { Imageclassification } from "../src/index";
 
 describe("imageclassification", () => {
 

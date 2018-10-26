@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import { OCR } from "../index";
+import { OCR } from "../src/index";
 
 describe("ocr", () => {
 

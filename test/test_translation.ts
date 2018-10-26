@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import { ITranslationRequest, Translation } from "../index";
+import { ITranslationRequest, Translation } from "../src/index";
 
 describe("translation", () => {
 

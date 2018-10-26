@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import { TopicDetection } from "../index";
+import { TopicDetection } from "../src/index";
 
 describe("topic detection", () => {
 

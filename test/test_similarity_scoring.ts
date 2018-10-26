@@ -1,7 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
-import { SimilarityScoring } from "../index";
+import { SimilarityScoring } from "../src/index";
 
 describe("similarity scoring", () => {
 
