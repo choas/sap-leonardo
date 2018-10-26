@@ -27,11 +27,11 @@ describe("topic detection", () => {
 
   describe("topic detection with different options", () => {
 
-    const topicDectectionWithOptions = new TopicDetection(process.env.API_KEY);
+    const topicDetectionWithOptions = new TopicDetection(process.env.API_KEY);
 
     it("should detect 2 keywords for numTopics 2", (done) => {
       const otherOptions = JSON.stringify({ numTopics: 2, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
-      topicDectectionWithOptions.topicDetection("./testdata/topic_detection.zip", otherOptions).then((body) => {
+      topicDetectionWithOptions.topicDetection("./testdata/topic_detection.zip", otherOptions).then((body) => {
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
         expect(body).to.have.property("processedTime");
@@ -45,7 +45,7 @@ describe("topic detection", () => {
 
     it("should detect 1 keyword for numTopics 1", (done) => {
       const otherOptions = JSON.stringify({ numTopics: 1, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
-      topicDectectionWithOptions.topicDetection("./testdata/topic_detection.zip", otherOptions).then((body) => {
+      topicDetectionWithOptions.topicDetection("./testdata/topic_detection.zip", otherOptions).then((body) => {
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
         expect(body).to.have.property("processedTime");
@@ -73,12 +73,12 @@ describe("topic detection", () => {
 
   describe("error coverage", () => {
 
-    const topicDectectionErr = new TopicDetection(
+    const topicDetectionErr = new TopicDetection(
       process.env.API_KEY,
       "http://localhost:11111");
 
     it("should return a file not found error", (done) => {
-      topicDectectionErr.topicDetection("file_does_not_exist", "").then(
+      topicDetectionErr.topicDetection("file_does_not_exist", "").then(
         () => { expect.fail(); },
         (err) => {
           expect(err).to.have.property("errno").to.be.equal(-2);
@@ -87,7 +87,7 @@ describe("topic detection", () => {
     });
 
     it("should return connection refused error", (done) => {
-      topicDectectionErr.topicDetection("./testdata/product_text.zip", "").then(
+      topicDetectionErr.topicDetection("./testdata/product_text.zip", "").then(
         () => { expect.fail(); },
         (err) => {
           expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
