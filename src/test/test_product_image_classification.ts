@@ -10,16 +10,14 @@ describe("product image classification", () => {
   describe("keyboard", () => {
     it("should predict a keyboard (as second)", (done) => {
       productimageclassification.inferenceSync("./testdata/keyboard-70506_640.jpg").then((body) => {
-
-        expect(body).to.have.property("id");
+        expect(body).to.have.property("_id");
         expect(body).to.have.property("predictions");
-        expect(body).to.have.property("processedTime");
+        expect(body).to.have.property("processed_time");
         expect(body).to.have.property("status").to.be.equal("DONE");
 
         expect(body.predictions).to.be.an("array").have.lengthOf(1);
         expect(body.predictions[0]).to.have.property("results");
         expect(body.predictions[0].results).to.be.an("array").have.lengthOf(5).to.be.eql(expectedResults);
-
       }).then(done, done);
     });
   });
@@ -27,24 +25,22 @@ describe("product image classification", () => {
   describe("some image classification errors", () => {
     it("should throw an error for wrong file type (text)", (done) => {
       productimageclassification.inferenceSync("./LICENSE").then((body) => {
-        expect(body).to.have.property("error");
-        expect(body.error).to.have.property("message");
-        expect(body.error.message).to.be.equal("Error when uploading files:: Invalid file type");
+        expect(body).to.have.property("error").to.be.equal("Error when uploading files:");
+        expect(body).to.have.property("error_description").to.be.equal("Invalid file type");
       }).then(done, done);
     });
 
     it("should throw an error for zip with hierarchy", (done) => {
       productimageclassification.inferenceSync("./testdata/Archive.zip").then((body) => {
-        expect(body).to.have.property("error");
-        expect(body.error).to.have.property("message");
+        expect(body).to.have.property("error").to.be.equal("Invalid Archive Input");
         // tslint:disable-next-line:max-line-length
-        expect(body.error.message).to.be.equal("Invalid request: Absolute path, or hierarchy in archive file is not allowed");
+        expect(body).to.have.property("error_description").to.be.equal("Only archive without hierarchy is accepted. __MACOSX/ is a folder. ");
       }).then(done, done);
     });
 
     it("should throw an error for wrong API Key", (done) => {
       const productimageclassificationWithWrongApiKey = new ProductImageClassification("WRONG");
-      productimageclassificationWithWrongApiKey.inferenceSync("./testdata/elephant-114543_640.jpg").then((body) => {
+      productimageclassificationWithWrongApiKey.inferenceSync("./testdata/keyboard-70506_640.jpg").then((body) => {
         expect(body).to.have.property("fault");
         expect(body.fault).to.have.property("faultstring");
         expect(body.fault.faultstring).to.be.equal("Invalid ApiKey");
@@ -83,24 +79,24 @@ describe("product image classification", () => {
 
   const expectedResults = [
     {
-      "label": "computer keyboard, keypad",
-      "score": 0.4066023826599121
+      "label": "notebooks & accessories",
+      "score": 0.551319
     },
     {
-      "label": "notebook, notebook computer",
-      "score": 0.10607732087373734
+      "label": "keyboards",
+      "score": 0.400047
     },
     {
-      "label": "space bar",
-      "score": 0.02238370105624199
+      "label": "tablets",
+      "score": 0.026898
     },
     {
-      "label": "mouse, computer mouse",
-      "score": 0.021463630720973015
+      "label": "external hard drives",
+      "score": 0.015235
     },
     {
-      "label": "laptop, laptop computer",
-      "score": 0.014565951190888882
+      "label": "other",
+      "score": 0.004329
     }
   ];
 

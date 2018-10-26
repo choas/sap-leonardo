@@ -33,7 +33,7 @@ export class ProductImageClassification {
           Accept: "application/json",
         };
 
-        const url = this.baseUrl + "/ml/imageclassification/classification";
+        const url = this.baseUrl + "/ml/prodimgclassifier/inference_sync";
 
         request.post({ url, formData, headers }, (err, response, body) => {
           if (err) {
