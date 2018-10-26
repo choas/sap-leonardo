@@ -1,6 +1,6 @@
 "use strict";
 
-const leonardo = require('sap-leonardo');
+const leonardo = require("sap-leonardo");
 
 // set the API_KEY in the console, e.g. export API_KEY=abc123
 const faceFeatureExtraction = new leonardo.FaceFeatureExtraction(process.env.API_KEY);

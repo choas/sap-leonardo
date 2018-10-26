@@ -2,7 +2,7 @@
 
 // this is the same example as the ocr.js example, using async and await
 
-const leonardo = require('sap-leonardo');
+const leonardo = require("sap-leonardo");
 async function runOcr() {
   // set the API_KEY in the console, e.g. export API_KEY=abc123
   try {
