@@ -25,7 +25,7 @@ Sign up a free account at [SAP API Business Hub](https://api.sap.com/) and get y
 
 Use e.g. the image classification service with your API key:
 ```javascript
-const leonardo = require('sap-leonardo');
+const leonardo = require("sap-leonardo");
 
 var imageclassification = new leonardo.Imageclassification("apiKey");
 imageclassification.classification("./elephant-114543_640.jpg")
@@ -58,7 +58,7 @@ More examples can be found in the examples and src/test folder.
 - [Inference Service for Human Detection](https://api.sap.com/api/human_detection_api/resource)
 - [Inference Service for Face Detection](https://api.sap.com/api/face_detection_api/resource)
 - [Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)
-- [Inference Service for Customizable Object Detection](https://api.sap.com/api/object_detection_api/resource) (not implemented)
+- ~~[Inference Service for Customizable Object Detection](https://api.sap.com/api/object_detection_api/resource)~~
 - [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
 
 ### Following services require a training instance (not implemented)
