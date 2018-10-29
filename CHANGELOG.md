@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## next
+- more examples
+
 ## 0.5.6
 - wrong API: Product Image Classification API
 - separate src and test
