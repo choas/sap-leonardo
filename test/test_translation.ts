@@ -1,7 +1,11 @@
 "use strict";
 
 import { expect } from "chai";
+import { getLogger } from "log4js";
 import { ITranslationRequest, Translation } from "../src/index";
+
+const logger = getLogger();
+logger.level = "off";
 
 describe("translation", () => {
 
@@ -11,7 +15,7 @@ describe("translation", () => {
 
     const textEnglish = "This service translates text from a source language into several target languages.";
     const textDeutsch = "Dieser Service übersetzt Text aus einer Quellsprache in mehrere Zielsprachen.";
-    const textEspañol = "Este servicio convierte texto de un idioma fuente en varios idiomas de destino.";
+    const textEspañol = "Este servicio traduce el texto de un idioma fuente a varios idiomas de destino.";
 
     it("should translate English to German", (done) => {
 
@@ -27,7 +31,7 @@ describe("translation", () => {
       };
 
       translation.translation(request).then((body) => {
-
+        logger.debug("en->de", JSON.stringify(body, null, "  "));
         expect(body).to.have.property("units").to.be.an("array").have.lengthOf(1);
 
         expect(body.units[0]).to.have.property("value").to.be.equal(textEnglish);
@@ -52,6 +56,7 @@ describe("translation", () => {
       };
 
       translation.translation(translationRequest).then((body) => {
+        logger.debug("de->en", JSON.stringify(body, null, "  "));
 
         expect(body).to.have.property("units").to.be.an("array").have.lengthOf(1);
 
@@ -77,6 +82,7 @@ describe("translation", () => {
       };
 
       translation.translation(translationRequest).then((body) => {
+        logger.debug("en->de,es", JSON.stringify(body, null, "  "));
 
         expect(body).to.have.property("units").to.be.an("array").have.lengthOf(1);
 
@@ -94,7 +100,7 @@ describe("translation", () => {
 
       const translationRequest: ITranslationRequest = {
         sourceLanguage: "es",
-        targetLanguages: ["en", "de"],
+        targetLanguages: ["en"], // "de" causes a 500
         units: [
           {
             key: "TEXT_ESPAÑOL",
@@ -104,18 +110,37 @@ describe("translation", () => {
       };
 
       translation.translation(translationRequest).then((body) => {
+        logger.debug("es->en", JSON.stringify(body, null, "  "));
 
         expect(body).to.have.property("units").to.be.an("array").have.lengthOf(1);
 
         expect(body.units[0]).to.have.property("value").to.be.equal(textEspañol);
 
-        expect(body.units[0]).to.have.property("translations").to.be.an("array").have.lengthOf(2);
+        expect(body.units[0]).to.have.property("translations").to.be.an("array").have.lengthOf(1);
         expect(body.units[0].translations[0]).to.have.property("language").to.be.equal("en");
         // tslint:disable-next-line:no-unused-expression
         expect(body.units[0].translations[0]).to.have.property("value").to.be.not.null;
-        expect(body.units[0].translations[1]).to.have.property("language").to.be.equal("de");
-        // tslint:disable-next-line:no-unused-expression
-        expect(body.units[0].translations[1]).to.have.property("value").to.be.null;
+      }).then(done, done);
+    });
+    it("should translate Spanish to German, but this causes a server error", (done) => {
+
+      const translationRequest: ITranslationRequest = {
+        sourceLanguage: "es",
+        targetLanguages: ["de"],
+        units: [
+          {
+            key: "TEXT_ESPAÑOL",
+            value: textEspañol,
+          },
+        ],
+      };
+
+      translation.translation(translationRequest).then((body) => {
+        logger.debug("es->de", JSON.stringify(body, null, "  "));
+
+        expect(body).to.have.property("error");
+        expect(body.error).to.have.property("code").to.be.equal("InternalError");
+        expect(body.error).to.have.property("status").to.be.equal(500);
       }).then(done, done);
     });
   });
