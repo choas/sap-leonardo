@@ -96,11 +96,11 @@ describe("translation", () => {
       }).then(done, done);
     });
 
-    it("should translate Spanish to English, but Spanish to German is not available", (done) => {
+    it("should translate Spanish to English", (done) => {
 
       const translationRequest: ITranslationRequest = {
         sourceLanguage: "es",
-        targetLanguages: ["en"], // "de" causes a 500
+        targetLanguages: ["en"], // "de" causes a 500 (see next test)
         units: [
           {
             key: "TEXT_ESPAÑOL",
