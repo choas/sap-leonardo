@@ -1,4 +1,4 @@
-export * from "./imageclassification";
+export * from "./image_classification";
 export * from "./ocr";
 export * from "./translation";
 export * from "./language_detection";
