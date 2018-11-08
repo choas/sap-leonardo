@@ -1,24 +1,30 @@
 "use strict";
 
 import { expect } from "chai";
+import { getLogger } from "log4js";
 import { ProductImageClassification } from "../src/index";
+
+const logger = getLogger();
+logger.level = "off";
 
 describe("product image classification", () => {
 
   const productimageclassification = new ProductImageClassification(process.env.API_KEY);
 
   describe("keyboard", () => {
-    it("should predict a keyboard (as second)", (done) => {
-      productimageclassification.inferenceSync("./testdata/keyboard-70506_640.jpg").then((body) => {
-        expect(body).to.have.property("_id");
-        expect(body).to.have.property("predictions");
-        expect(body).to.have.property("processed_time");
-        expect(body).to.have.property("status").to.be.equal("DONE");
+    it("should predict a USB flash drive", (done) => {
+      productimageclassification.inferenceSync("./testdata/data-transfer-3199547_640.jpg")
+        .then((body) => {
+          logger.debug("usb", JSON.stringify(body, null, "  "));
+          expect(body).to.have.property("_id");
+          expect(body).to.have.property("predictions");
+          expect(body).to.have.property("processed_time");
+          expect(body).to.have.property("status").to.be.equal("DONE");
 
-        expect(body.predictions).to.be.an("array").have.lengthOf(1);
-        expect(body.predictions[0]).to.have.property("results");
-        expect(body.predictions[0].results).to.be.an("array").have.lengthOf(5).to.be.eql(expectedResults);
-      }).then(done, done);
+          expect(body.predictions).to.be.an("array").have.lengthOf(1);
+          expect(body.predictions[0]).to.have.property("results");
+          expect(body.predictions[0].results).to.be.an("array").have.lengthOf(5).to.be.eql(expectedResults);
+        }).then(done, done);
     });
   });
 
@@ -40,11 +46,12 @@ describe("product image classification", () => {
 
     it("should throw an error for wrong API Key", (done) => {
       const productimageclassificationWithWrongApiKey = new ProductImageClassification("WRONG");
-      productimageclassificationWithWrongApiKey.inferenceSync("./testdata/keyboard-70506_640.jpg").then((body) => {
-        expect(body).to.have.property("fault");
-        expect(body.fault).to.have.property("faultstring");
-        expect(body.fault.faultstring).to.be.equal("Invalid ApiKey");
-      }).then(done, done);
+      productimageclassificationWithWrongApiKey.inferenceSync("./testdata/data-transfer-3199547_640.jpg")
+        .then((body) => {
+          expect(body).to.have.property("fault");
+          expect(body.fault).to.have.property("faultstring");
+          expect(body.fault.faultstring).to.be.equal("Invalid ApiKey");
+        }).then(done, done);
     });
 
   });
@@ -64,12 +71,13 @@ describe("product image classification", () => {
       const productimageclassificationErr = new ProductImageClassification(
         process.env.API_KEY,
         "http://localhost:11111");
-      productimageclassificationErr.inferenceSync("./testdata/keyboard-70506_640.jpg").then(
-        () => { expect.fail(); },
-        (err) => {
-          expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
-          expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
-        }).then(done, done);
+      productimageclassificationErr.inferenceSync("./testdata/data-transfer-3199547_640.jpg")
+        .then(
+          () => { expect.fail(); },
+          (err) => {
+            expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
+            expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
+          }).then(done, done);
     });
   });
 
@@ -79,24 +87,24 @@ describe("product image classification", () => {
 
   const expectedResults = [
     {
-      "label": "notebooks & accessories",
-      "score": 0.551319
+      "label": "USB flash drives & accessories",
+      "score": 0.919727
     },
     {
-      "label": "keyboards",
-      "score": 0.400047
+      "label": "networking cards",
+      "score": 0.0296
     },
     {
-      "label": "tablets",
-      "score": 0.026898
+      "label": "smartphones",
+      "score": 0.016453
     },
     {
-      "label": "external hard drives",
-      "score": 0.015235
+      "label": "digital cameras",
+      "score": 0.009214
     },
     {
-      "label": "other",
-      "score": 0.004329
+      "label": "power adapters",
+      "score": 0.00612
     }
   ];
 
