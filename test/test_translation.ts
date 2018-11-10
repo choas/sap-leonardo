@@ -2,7 +2,7 @@
 
 import { expect } from "chai";
 import { getLogger } from "log4js";
-import { ITranslationRequest, Translation } from "../src/index";
+import { ITranslationRequest, Translation, Align } from "../src/index";
 
 const logger = getLogger();
 logger.level = "off";
@@ -11,11 +11,11 @@ describe("translation", () => {
 
   const translation = new Translation(process.env.API_KEY);
 
-  describe("translate text", () => {
+  const textEnglish = "This service translates text from a source language into several target languages.";
+  const textDeutsch = "Dieser Service übersetzt Text aus einer Quellsprache in mehrere Zielsprachen.";
+  const textEspañol = "Este servicio traduce el texto de un idioma fuente a varios idiomas de destino.";
 
-    const textEnglish = "This service translates text from a source language into several target languages.";
-    const textDeutsch = "Dieser Service übersetzt Text aus einer Quellsprache in mehrere Zielsprachen.";
-    const textEspañol = "Este servicio traduce el texto de un idioma fuente a varios idiomas de destino.";
+  describe("translate text", () => {
 
     it("should translate English to German", (done) => {
 
@@ -144,6 +144,59 @@ describe("translation", () => {
       }).then(done, done);
     });
   });
+
+  xdescribe("translate inline text", () => {
+    const elementBegin = "<body style=\"surprise me\">";
+    const elementEnd = "</body>";
+    const inlineElement = "<picture href=\"wonderful image.jpg\" />";
+    const textEnglishInline = elementBegin + textEnglish + inlineElement + elementEnd;
+    const textDeutschInline = elementBegin + textDeutsch + inlineElement + elementEnd;
+    //const textEspañol = "Este servicio traduce el texto de un idioma fuente a varios idiomas de destino.";
+
+    it("should translate English to German", (done) => {
+
+      const request: ITranslationRequest = {
+        sourceLanguage: "en",
+        targetLanguages: ["de"],
+        units: [
+          {
+            key: "TEXT_ENGLISH",
+            value: textEnglishInline,
+            inlineElements: {
+              ranges: [
+                {
+                  id: 1,
+                  begin: textEnglishInline.indexOf(">") + 1,
+                  end: textEnglishInline.indexOf("<", 10) - 1,
+                },
+              ],
+              markers: [
+                {
+                  id: 1,
+                  position: textEnglishInline.indexOf("<img") + 1,
+                  align: Align.Right,
+                }
+              ]
+            },
+          }
+        ],
+      };
+
+      translation.translation(request).then((body) => {
+
+        logger.debug("en->de", JSON.stringify(request, null, "  "));
+        logger.debug("en->de", JSON.stringify(body, null, "  "));
+        expect(body).to.have.property("units").to.be.an("array").have.lengthOf(1);
+
+        expect(body.units[0]).to.have.property("value").to.be.equal(textEnglishInline);
+
+        expect(body.units[0]).to.have.property("translations").to.be.an("array").have.lengthOf(1);
+        expect(body.units[0].translations[0]).to.have.property("language").to.be.equal("de");
+        expect(body.units[0].translations[0]).to.have.property("value").to.be.equal(textDeutschInline);
+      }).then(done, done);
+    });
+  });
+
 
   describe("error coverage", () => {
 
