@@ -13,6 +13,29 @@ export interface ITranslationRequest {
 export interface ITextTranslationRequest {
   value: string;
   key: string;
+  inlineElements?: ITextTranslationRequestMarkup;
+}
+
+export interface ITextTranslationRequestMarkup {
+  ranges?: ITextTranslationRequestMarkupRange[];
+  markers?: ITextTranslationRequestMarkupMarker[];
+}
+
+export interface ITextTranslationRequestMarkupRange {
+  id: number;
+  begin: number;
+  end: number;
+}
+
+export interface ITextTranslationRequestMarkupMarker {
+  id: number;
+  position: number;
+  align: Align;
+}
+
+export enum Align {
+  Left = "left",
+  Right = "right"
 }
 
 export class Translation {
