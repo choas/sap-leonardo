@@ -2,7 +2,11 @@
 
 import { expect } from "chai";
 // import * as fs from "fs";
+import { getLogger } from "log4js";
 import { HumanDetection } from "../src/index";
+
+const logger = getLogger();
+logger.level = "off";
 
 describe("human detection", () => {
 
@@ -11,6 +15,7 @@ describe("human detection", () => {
   describe("four people", () => {
     it("should predict four people", (done) => {
       humanDetection.humanDetection("./testdata/man-3365368_640.jpg").then((body) => {
+        logger.debug("four people:", JSON.stringify(body, null, "  "));
 
         expect(body).to.have.property("detection_boxes").to.be.an("array").have.lengthOf(4);
         expect(body).to.have.property("detection_classes").to.be.an("array").have.lengthOf(4);
@@ -18,23 +23,32 @@ describe("human detection", () => {
         expect(body).to.have.property("num_detections").to.be.equal(4);
 
         const expectedResults = {
-          detection_boxes:
-            [[0.13377800583839417,
-              0.485458105802536,
+          detection_boxes: [
+            [
+              0.1337779015302658,
+              0.48545804619789124,
               0.9857560396194458,
-              0.7680479288101196],
-            [0.0999714657664299,
-              0.20566348731517792,
+              0.7680479288101196
+            ],
+            [
+              0.09997151792049408,
+              0.20566344261169434,
               0.9941292405128479,
-              0.4770410656929016],
-            [0.009488373063504696,
-              0.009807304479181767,
+              0.4770410656929016
+            ],
+            [
+              0.009488373063504696,
+              0.009807314723730087,
               0.9621061682701111,
-              0.2491825520992279],
-            [0.16002099215984344,
-              0.7634855508804321,
+              0.2491825371980667
+            ],
+            [
+              0.16002103686332703,
+              0.7634854912757874,
               0.9644148945808411,
-              0.9987258911132812]],
+              0.998725950717926
+            ]
+          ],        
           detection_classes: ["human", "human", "human", "human"],
           detection_scores:
             [0.9962896108627319,
@@ -65,6 +79,7 @@ describe("human detection", () => {
     describe("four people", () => {
       it("should predict four people", (done) => {
         humanDetectionImage.humanDetectionImage("./testdata/man-3365368_640.jpg").then((body) => {
+          logger.debug("image length:", body.length);
 
           expect(body.length).to.be.equal(393486);
 
