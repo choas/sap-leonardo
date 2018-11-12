@@ -69,7 +69,19 @@ describe("topic detection", () => {
         expect(body.error).to.have.property("requestId");
       }).then(done, done);
     });
-  });
+
+    it("should return an error message, that topics should not exceed the number of documents", (done) => {
+      const wrongOptions = JSON.stringify({ numTopics: 4, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
+      const topicDetectionWithWrongOptions = new TopicDetection(process.env.API_KEY);
+      topicDetectionWithWrongOptions.topicDetection("./testdata/topic_detection.zip", wrongOptions).then((body) => {
+        expect(body).to.have.property("error");
+        expect(body.error).to.have.property("code").to.be.equal("400");
+        // tslint:disable:max-line-length
+        expect(body.error).to.have.property("message").to.be.equal("Invalid request: Number of topics should not exceed the number of documents.#Topics: 4, #Documents: 3");
+        expect(body.error).to.have.property("requestId");
+      }).then(done, done);
+    });
+ });
 
   describe("error coverage", () => {
 

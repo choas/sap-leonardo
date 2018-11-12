@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - add log4js
 - update translate service to [1810B](https://help.sap.com/viewer/2e6173bf645243bb9a88f0269250f3a2/1.0/en-US)
 - adjust detection_boxes for four people at human detection test
+- add topic dection test: topics should not exceed the number of documents
 
 ## 0.5.6
 
