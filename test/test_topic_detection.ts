@@ -1,7 +1,11 @@
 "use strict";
 
 import { expect } from "chai";
+import { getLogger } from "log4js";
 import { TopicDetection } from "../src/index";
+
+const logger = getLogger();
+logger.level = "off";
 
 describe("topic detection", () => {
 
@@ -14,6 +18,8 @@ describe("topic detection", () => {
     it("should detect topics", (done) => {
 
       topicDetection.topicDetection("./testdata/topic_detection.zip", options).then((body) => {
+        logger.debug("topics", JSON.stringify(body, null, "  "));
+
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
         expect(body).to.have.property("processedTime");
@@ -32,6 +38,8 @@ describe("topic detection", () => {
     it("should detect 2 keywords for numTopics 2", (done) => {
       const otherOptions = JSON.stringify({ numTopics: 2, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
       topicDetectionWithOptions.topicDetection("./testdata/topic_detection.zip", otherOptions).then((body) => {
+        logger.debug("2 keywords / numTopics 2", JSON.stringify(body, null, "  "));
+
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
         expect(body).to.have.property("processedTime");
@@ -46,6 +54,8 @@ describe("topic detection", () => {
     it("should detect 1 keyword for numTopics 1", (done) => {
       const otherOptions = JSON.stringify({ numTopics: 1, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
       topicDetectionWithOptions.topicDetection("./testdata/topic_detection.zip", otherOptions).then((body) => {
+        logger.debug("1 keyword / numTopics 1", JSON.stringify(body, null, "  "));
+
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
         expect(body).to.have.property("processedTime");
@@ -62,6 +72,8 @@ describe("topic detection", () => {
   describe("error messages", () => {
     it("should return an error message, that service requires at least 2 documents", (done) => {
       topicDetection.topicDetection("./testdata/product_text.zip", options).then((body) => {
+        logger.debug("require 2 docs", JSON.stringify(body, null, "  "));
+
         expect(body).to.have.property("error");
         expect(body.error).to.have.property("code").to.be.equal("400");
         // tslint:disable:max-line-length
@@ -74,6 +86,8 @@ describe("topic detection", () => {
       const wrongOptions = JSON.stringify({ numTopics: 4, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
       const topicDetectionWithWrongOptions = new TopicDetection(process.env.API_KEY);
       topicDetectionWithWrongOptions.topicDetection("./testdata/topic_detection.zip", wrongOptions).then((body) => {
+        logger.debug("num docs", JSON.stringify(body, null, "  "));
+
         expect(body).to.have.property("error");
         expect(body.error).to.have.property("code").to.be.equal("400");
         // tslint:disable:max-line-length
@@ -81,7 +95,35 @@ describe("topic detection", () => {
         expect(body.error).to.have.property("requestId");
       }).then(done, done);
     });
- });
+
+    it("should return an error message, if only one text file is send", (done) => {
+      const wrongOptions = JSON.stringify({ numTopics: 4, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
+      const topicDetectionWithWrongOptions = new TopicDetection(process.env.API_KEY);
+      topicDetectionWithWrongOptions.topicDetection("./node_modules/typescript/LICENSE.txt", wrongOptions).then((body) => {
+        logger.debug("only one text file", JSON.stringify(body, null, "  "));
+
+        expect(body).to.have.property("error");
+        expect(body.error).to.have.property("code").to.be.equal("400");
+        // tslint:disable:max-line-length
+        expect(body.error).to.have.property("message").to.be.equal("Invalid request: This service requires at least 2 files or 1 archive");
+        expect(body.error).to.have.property("requestId");
+      }).then(done, done);
+    });
+
+    it("should return an error message, of an invalid file type", (done) => {
+      const wrongOptions = JSON.stringify({ numTopics: 4, numTopicsPerDoc: 2, numKeywordsPerTopic: 15 });
+      const topicDetectionWithWrongOptions = new TopicDetection(process.env.API_KEY);
+      topicDetectionWithWrongOptions.topicDetection("./README.md", wrongOptions).then((body) => {
+        logger.debug("invalid file type", JSON.stringify(body, null, "  "));
+
+        expect(body).to.have.property("error");
+        expect(body.error).to.have.property("code").to.be.equal("400");
+        // tslint:disable:max-line-length
+        expect(body.error).to.have.property("message").to.be.equal("Error when uploading files:: Invalid file type");
+        expect(body.error).to.have.property("requestId");
+      }).then(done, done);
+    });
+  });
 
   describe("error coverage", () => {
 
