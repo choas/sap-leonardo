@@ -4,7 +4,7 @@
 
 [NPM module](https://www.npmjs.com/package/sap-leonardo) for SAP Leonardo Machine Learning Foundation - Functional Services
 
-"SAP Leonardo Machine Learning foundation provides readily consumable pre-trained models, as well as customizable models." ---- https://api.sap.com/package/SAPLeonardoMLFunctionalServices
+"SAP Leonardo Machine Learning foundation provides readily consumable pre-trained models, as well as customizable models." ---- [SAP Leonardo Machine Learning Foundation - Functional Services](https://api.sap.com/package/SAPLeonardoMLFunctionalServices)
 
 [![Build Status](https://api.travis-ci.org/choas/sap-leonardo.svg?branch=master)](https://travis-ci.org/choas/sap-leonardo)
 [![Dependency status](https://david-dm.org/choas/sap-leonardo/status.svg)](https://david-dm.org/choas/sap-leonardo)
@@ -13,10 +13,10 @@
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fchoas%2Fsap-leonardo.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fchoas%2Fsap-leonardo?ref=badge_shield)
 [![Coverage Status](https://coveralls.io/repos/github/choas/sap-leonardo/badge.svg?branch=master)](https://coveralls.io/github/choas/sap-leonardo?branch=master)
 
-
 ## Usage
 
 Install the npm package:
+
 ```sh
 npm install sap-leonardo
 ```
@@ -24,6 +24,7 @@ npm install sap-leonardo
 Sign up a free account at [SAP API Business Hub](https://api.sap.com/) and get your API key.
 
 Use e.g. the image classification service with your API key:
+
 ```javascript
 const leonardo = require("sap-leonardo");
 
@@ -36,12 +37,12 @@ imageclassification.classification("./elephant-114543_640.jpg")
   })
   .catch((err) => { console.error(err); });
 ```
-More examples can be found in the examples and src/test folder.
 
+More examples can be found in the examples and src/test folder.
 
 ## Implemented Services
 
-### Following services are implemented:
+### Following services are implemented
 
 - [Inference Service For Customizable Image Feature Extraction](https://api.sap.com/api/img_feature_extraction_api/resource)
 - [Product Text Classification API](https://api.sap.com/api/product_text_classification_api/resource)
@@ -62,6 +63,7 @@ More examples can be found in the examples and src/test folder.
 - [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
 
 ### Following services require a training instance (not implemented)
+
 - ~~Training Service for Customizable Object Detection~~
 - ~~Training Service for Customizable Similarity Search~~
 - ~~Inference Service for Customizable Similarity Search~~
@@ -69,13 +71,11 @@ More examples can be found in the examples and src/test folder.
 - ~~Inference Service for Customizable Text Classification~~
 - ~~Training Service For Customizable Image Classification and Feature Extraction~~
 
-
 ## Build
 
 ```sh
 npm run build
 ```
-
 
 ## Test
 
@@ -86,18 +86,20 @@ export API_KEY="apiKey3x4mpleUs3y0ur0wnKey112233"
 ```
 
 install all dependencies:
+
 ```sh
 npm install
 ```
 
 run the tests:
+
 ```sh
 npm test
 ```
 
 ## Blog Posts
-- [NPM Module for SAP Leonardo Machine Learning](https://blogs.sap.com/2018/10/04/npm-module-for-sap-leonardo-machine-learning/)
 
+- [NPM Module for SAP Leonardo Machine Learning](https://blogs.sap.com/2018/10/04/npm-module-for-sap-leonardo-machine-learning/)
 
 ## Testdata Sources
 
@@ -113,10 +115,9 @@ npm test
 - ~[keyboard-70506_640.jpg](https://pixabay.com/en/keyboard-computer-hardware-keys-70506/)~
 - [data-transfer-3199547_640.jpg](https://pixabay.com/en/data-transfer-connection-data-3199547/)
 - topic_detection.zip:
-  - https://en.wikipedia.org/wiki/Apple_pie
-  - https://en.wikipedia.org/wiki/Computer_science
-  - https://en.wikipedia.org/wiki/Computational_complexity_theory
-
+  - [Wikipedia apple pie](https://en.wikipedia.org/wiki/Apple_pie)
+  - [Wikipedia computer science](https://en.wikipedia.org/wiki/Computer_science)
+  - [Wikipedio computational complexity theory](https://en.wikipedia.org/wiki/Computational_complexity_theory)
 
 ## License
 
@@ -124,6 +125,7 @@ Copyright 2018 Lars Gregori
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-http://www.apache.org/licenses/LICENSE-2.0
+[http://www.apache.org/licenses/LICENSE-2.0
+](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
