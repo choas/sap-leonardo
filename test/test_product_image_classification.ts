@@ -28,26 +28,31 @@ describe("product image classification", () => {
     });
   });
 
-  describe("some image classification errors", () => {
+  describe("some product image classification errors", () => {
     it("should throw an error for wrong file type (text)", (done) => {
       productimageclassification.inferenceSync("./LICENSE").then((body) => {
+        logger.debug("wrong file type", JSON.stringify(body, null, "  "));
         expect(body).to.have.property("error").to.be.equal("Error when uploading files:");
+        expect(body).to.have.property("status_code").to.be.equal(400);
         expect(body).to.have.property("error_description").to.be.equal("Invalid file type");
       }).then(done, done);
     });
 
     it("should throw an error for zip with hierarchy", (done) => {
       productimageclassification.inferenceSync("./testdata/Archive.zip").then((body) => {
+        logger.debug("zip with hierarchy", JSON.stringify(body, null, "  "));
         expect(body).to.have.property("error").to.be.equal("Invalid Archive Input");
+        expect(body).to.have.property("status_code").to.be.equal(400);
         // tslint:disable-next-line:max-line-length
         expect(body).to.have.property("error_description").to.be.equal("Only archive without hierarchy is accepted. __MACOSX/ is a folder. ");
       }).then(done, done);
     });
 
-    it("should throw an error for wrong API Key", (done) => {
+    it("should throw an error for wrong API key", (done) => {
       const productimageclassificationWithWrongApiKey = new ProductImageClassification("WRONG");
       productimageclassificationWithWrongApiKey.inferenceSync("./testdata/data-transfer-3199547_640.jpg")
         .then((body) => {
+          logger.debug("wrong API key", JSON.stringify(body, null, "  "));
           expect(body).to.have.property("fault");
           expect(body.fault).to.have.property("faultstring");
           expect(body.fault.faultstring).to.be.equal("Invalid ApiKey");
