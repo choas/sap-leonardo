@@ -1,7 +1,11 @@
 "use strict";
 
 import { expect } from "chai";
+import { getLogger } from "log4js";
 import { Imageclassification } from "../src/index";
+
+const logger = getLogger();
+logger.level = "off";
 
 describe("imageclassification", () => {
 
@@ -39,24 +43,26 @@ describe("imageclassification", () => {
   describe("some image classification errors", () => {
     it("should throw an error for wrong file type (text)", (done) => {
       imageclassification.classification("./LICENSE").then((body) => {
+        logger.debug("wrong file type", JSON.stringify(body, null, "  "));
         expect(body).to.have.property("error");
-        expect(body.error).to.have.property("message");
-        expect(body.error.message).to.be.equal("Error when uploading files:: Invalid file type");
+        expect(body.error).to.have.property("message").to.be.equal("Error when uploading files:: Invalid file type");
+        expect(body.error).to.have.property("code").to.be.equal("400");
       }).then(done, done);
     });
 
     it("should throw an error for zip with hierarchy", (done) => {
       imageclassification.classification("./testdata/Archive.zip").then((body) => {
         expect(body).to.have.property("error");
-        expect(body.error).to.have.property("message");
         // tslint:disable-next-line:max-line-length
-        expect(body.error.message).to.be.equal("Invalid request: Absolute path, or hierarchy in archive file is not allowed");
+        expect(body.error).to.have.property("message").to.be.equal("Invalid request: Absolute path, or hierarchy in archive file is not allowed");
+        expect(body.error).to.have.property("code").to.be.equal("400");
       }).then(done, done);
     });
 
     it("should throw an error for wrong API Key", (done) => {
       const imageclassificationWithWrongApiKey = new Imageclassification("WRONG");
       imageclassificationWithWrongApiKey.classification("./testdata/elephant-114543_640.jpg").then((body) => {
+        logger.debug("wrong API key", JSON.stringify(body, null, "  "));
         expect(body).to.have.property("fault");
         expect(body.fault).to.have.property("faultstring");
         expect(body.fault.faultstring).to.be.equal("Invalid ApiKey");
