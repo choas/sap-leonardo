@@ -1,7 +1,11 @@
 "use strict";
 
 import { expect } from "chai";
+import { getLogger } from "log4js";
 import { DocumentFeatureExtraction } from "../src/index";
+
+const logger = getLogger();
+logger.level = "off";
 
 describe("document feature extraction", () => {
 
@@ -15,6 +19,8 @@ describe("document feature extraction", () => {
     it("should detect features", (done) => {
 
       documentFeatureExtraction.inferenceSync(null, productText).then((body) => {
+        logger.debug("texts", JSON.stringify(body, null, "  "));
+
         expect(body).to.have.property("_id");
         expect(body).to.have.property("doc_vectors").to.be.an("array").with.length(1);
         expect(body).to.have.property("processed_time");
@@ -35,6 +41,8 @@ describe("document feature extraction", () => {
     it("should detect features", (done) => {
 
       documentFeatureExtraction.inferenceSync("./testdata/product_text.zip", null).then((body) => {
+        logger.debug("files", JSON.stringify(body, null, "  "));
+
         expect(body).to.have.property("_id");
         expect(body).to.have.property("doc_vectors").to.be.an("array").with.length(1);
         expect(body).to.have.property("processed_time");
