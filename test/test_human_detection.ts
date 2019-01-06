@@ -5,6 +5,8 @@ import { expect } from "chai";
 import { getLogger } from "log4js";
 import { HumanDetection } from "../src/index";
 
+const timeout = 15000;
+
 const logger = getLogger();
 logger.level = "off";
 
@@ -25,36 +27,36 @@ describe("human detection", () => {
         const expectedResults = {
           detection_boxes: [
             [
-              0.1337779015302658,
-              0.48545804619789124,
+              0.13377785682678223,
+              0.48545801639556885,
               0.9857560396194458,
-              0.7680479288101196
+              0.7680480480194092,
             ],
             [
-              0.09997151792049408,
+              0.0999714657664299,
               0.20566344261169434,
               0.9941292405128479,
-              0.4770410656929016
+              0.4770410656929016,
             ],
             [
               0.009488373063504696,
-              0.009807314723730087,
-              0.9621061682701111,
-              0.2491825371980667
+              0.009807335212826729,
+              0.962105929851532,
+              0.24918246269226074,
             ],
             [
-              0.16002103686332703,
+              0.16002106666564941,
               0.7634854912757874,
-              0.9644148945808411,
-              0.998725950717926
-            ]
-          ],        
+              0.9644147157669067,
+              0.998725950717926,
+            ],
+          ],
           detection_classes: ["human", "human", "human", "human"],
           detection_scores:
             [0.9962896108627319,
-              0.9920268654823303,
-              0.9907668828964233,
-              0.9902926683425903],
+              0.9920267462730408,
+              0.9907666444778442,
+              0.9902925491333008],
           num_detections: 4,
         };
 
@@ -69,7 +71,7 @@ describe("human detection", () => {
         }
 
       }).then(done, done);
-    });
+    }).timeout(timeout);
   });
 
   describe("human detection image", () => {
@@ -86,7 +88,7 @@ describe("human detection", () => {
           // fs.writeFileSync("human-detection-image.png", body);
 
         }).then(done, done);
-      });
+      }).timeout(timeout);
     });
 
   });
