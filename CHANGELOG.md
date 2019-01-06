@@ -13,6 +13,9 @@ All notable changes to this project will be documented in this file.
 - add topic detection test: topics should not exceed the number of documents
 - more topic detection tests
 - upgrade dev dependencies
+- error code: (product) image classification
+- adjust timeouts human detection (15sec) and result vulues
+- turn off timeout at multi-instance image segmentation (normal 10sec)
 
 ## 0.5.6
 
