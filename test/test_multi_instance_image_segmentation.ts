@@ -5,6 +5,7 @@ import { expect } from "chai";
 import { MultiInstanceImageSegmentation } from "../src/index";
 
 const fileName = "juice-1271881_640.jpg";
+const timeout = 10000;
 
 describe("multi-instance image segmentation", () => {
 
@@ -36,7 +37,7 @@ describe("multi-instance image segmentation", () => {
           expect(encodedMaskData.length).to.be.equal(bboxWidth * bboxHeight);
         }
       }).then(done, done);
-    }).timeout(60000);
+    }).timeout(timeout);
   });
 
   describe("multi-instance image segmentation image:jpg", () => {
@@ -81,7 +82,7 @@ describe("multi-instance image segmentation", () => {
           expect(isPNG).is.true;
 
         }).then(done, done);
-      }).timeout(60000);
+      }).timeout(timeout);
     });
 
   });
