@@ -35,7 +35,7 @@ export interface ITextTranslationRequestMarkupMarker {
 
 export enum Align {
   Left = "left",
-  Right = "right"
+  Right = "right",
 }
 
 export class Translation {

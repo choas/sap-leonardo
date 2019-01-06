@@ -2,7 +2,7 @@
 
 import { expect } from "chai";
 import { getLogger } from "log4js";
-import { ITranslationRequest, Translation, Align } from "../src/index";
+import { Align, ITranslationRequest, Translation } from "../src/index";
 
 const logger = getLogger();
 logger.level = "off";
@@ -151,7 +151,7 @@ describe("translation", () => {
     const inlineElement = "<picture href=\"wonderful image.jpg\" />";
     const textEnglishInline = elementBegin + textEnglish + inlineElement + elementEnd;
     const textDeutschInline = elementBegin + textDeutsch + inlineElement + elementEnd;
-    //const textEspañol = "Este servicio traduce el texto de un idioma fuente a varios idiomas de destino.";
+    // const textEspañol = "Este servicio traduce el texto de un idioma fuente a varios idiomas de destino.";
 
     it("should translate English to German", (done) => {
 
@@ -175,10 +175,10 @@ describe("translation", () => {
                   id: 1,
                   position: textEnglishInline.indexOf("<img") + 1,
                   align: Align.Right,
-                }
-              ]
+                },
+              ],
             },
-          }
+          },
         ],
       };
 
@@ -196,7 +196,6 @@ describe("translation", () => {
       }).then(done, done);
     });
   });
-
 
   describe("error coverage", () => {
 
