@@ -4,7 +4,7 @@ import { expect } from "chai";
 import { getLogger } from "log4js";
 import { TopicDetection } from "../src/index";
 
-const logger = getLogger();
+const logger = getLogger("test-topic-detection");
 logger.level = "off";
 
 describe("topic detection", () => {
