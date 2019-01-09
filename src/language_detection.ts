@@ -24,7 +24,7 @@ export class LanguageDetection {
         "Content-Type": "application/json",
       };
 
-      const url = this.baseUrl + "/ml/languagedetection/language";
+      const url = this.baseUrl + "/ml/languagedetection/lang-detect/";
       const data = JSON.stringify({ message });
 
       request.post({ url, body: data, headers }, (err, response, body) => {
@@ -46,7 +46,7 @@ export class LanguageDetection {
         "Content-Type": "application/json",
       };
 
-      const url = this.baseUrl + "/ml/languagedetection/version";
+      const url = this.baseUrl + "/ml/languagedetection/lang-detect/version";
 
       request.get({ url, headers }, (err, response, body) => {
         if (err) {

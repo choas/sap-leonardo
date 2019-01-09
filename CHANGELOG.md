@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - error code: (product) image classification
 - adjust timeouts human detection (15sec) and result vulues
 - turn off timeout at multi-instance image segmentation (normal 10sec)
+- adjust language detection service
 
 ## 0.5.6
 
