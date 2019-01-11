@@ -59,7 +59,7 @@ More examples can be found in the examples and src/test folder.
 - [Inference Service for Human Detection](https://api.sap.com/api/human_detection_api/resource)
 - [Inference Service for Face Detection](https://api.sap.com/api/face_detection_api/resource)
 - [Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)
-- ~~[Inference Service for Customizable Object Detection](https://api.sap.com/api/object_detection_api/resource)~~
+- ~~[Inference Service for Customizable Object Detection](https://api.sap.com/api/object_detection_api/resource)~~ (API Sandbox is not available)
 - [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
 
 ### Following services require a training instance (not implemented)
