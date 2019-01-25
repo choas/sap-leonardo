@@ -2,7 +2,11 @@
 
 import { expect } from "chai";
 // import * as fs from "fs";
+import { getLogger } from "log4js";
 import { ObjectDetection } from "../src/index";
+
+const logger = getLogger("object detection");
+logger.level = "off";
 
 const fileName = "juice-1271881_640.jpg";
 
@@ -13,19 +17,21 @@ describe("object detection", () => {
   describe("juice", () => {
     it("should predict something, but causes an internal error", (done) => {
       objectDetection.objectDetection("./testdata/" + fileName).then((body) => {
+        logger.debug("something:", JSON.stringify(body, null, "  "));
         expect(body).to.have.property("fault");
         expect(body.fault).to.have.property("detail");
         expect(body.fault.detail).to.have.property("errorcode");
-        expect(body.fault.detail.errorcode).to.be.equal("messaging.adaptors.http.flow.ApplicationNotFound");
+        expect(body.fault.detail.errorcode).to.be.equal("messaging.runtime.RouteFailed");
       }).then(done, done);
     }).timeout(60000);
 
     it("should return an image, but causes an internal error", (done) => {
       objectDetection.objectDetection("./testdata/" + fileName, true).then((body) => {
+        logger.debug("image:", JSON.stringify(body, null, "  "));
         expect(body).to.have.property("fault");
         expect(body.fault).to.have.property("detail");
         expect(body.fault.detail).to.have.property("errorcode");
-        expect(body.fault.detail.errorcode).to.be.equal("messaging.adaptors.http.flow.ApplicationNotFound");
+        expect(body.fault.detail.errorcode).to.be.equal("messaging.runtime.RouteFailed");
       }).then(done, done);
     }).timeout(60000);
   });
@@ -54,58 +60,4 @@ describe("object detection", () => {
     });
 
   });
-
-  // tslint:disable:object-literal-key-quotes
-  // tslint:disable:max-line-length
-  // tslint:disable:trailing-comma
-  // const expectedResults = [
-  //   {
-  //     "bbox": {
-  //       "x1": 366,
-  //       "x2": 577,
-  //       "y1": 143,
-  //       "y2": 575
-  //     },
-  //     "classId": 5,
-  //     "className": "Glass Bottle",
-  //     "mask": "...",
-  //     "score": 1
-  //   },
-  //   {
-  //     "bbox": {
-  //       "x1": 49,
-  //       "x2": 266,
-  //       "y1": 321,
-  //       "y2": 579
-  //     },
-  //     "classId": 1,
-  //     "className": "Can",
-  //     "mask": "...",
-  //     "score": 1
-  //   },
-  //   {
-  //     "bbox": {
-  //       "x1": 244,
-  //       "x2": 356,
-  //       "y1": 92,
-  //       "y2": 489
-  //     },
-  //     "classId": 4,
-  //     "className": "Pet Bottle",
-  //     "mask": "...",
-  //     "score": 0.98
-  //   },
-  //   {
-  //     "bbox": {
-  //       "x1": 289,
-  //       "x2": 421,
-  //       "y1": 149,
-  //       "y2": 536
-  //     },
-  //     "classId": 5,
-  //     "className": "Glass Bottle",
-  //     "mask": "...",
-  //     "score": 0.94
-  //   }
-  // ];
 });
