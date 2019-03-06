@@ -162,18 +162,18 @@ describe("topic detection", () => {
           "pie",
           "apple",
           "crust",
-          "bake",
-          "double",
           "cream",
+          "double",
           "pastry",
-          "ingredient",
-          "comfort",
-          "foods",
-          "baker",
-          "strip",
+          "bake",
           "know",
-          "la",
-          "cheese"
+          "generally",
+          "get",
+          "soggy.[2",
+          "signature",
+          "ice",
+          "baker",
+          "ingredient"
         ],
         [
           "computer",
@@ -184,18 +184,18 @@ describe("topic detection", () => {
           "programming",
           "science",
           "computational",
-          "consider",
-          "use",
-          "approach",
-          "design",
           "language",
+          "consider",
           "challenge",
-          "practical"
+          "design",
+          "approach",
+          "use",
+          "application"
         ]
       ],
       "scores": [
-        1.0003991552443705,
-        0
+        1.0001081712355928,
+        1.5256569816232505e-18
       ],
       "topics": [
         1,
@@ -214,35 +214,35 @@ describe("topic detection", () => {
           "resource",
           "algorithm",
           "computer",
+          "number",
+          "mathematical",
+          "analysis",
           "circuit",
           "classify",
-          "principle",
-          "ask",
-          "analysis",
           "computability",
-          "mathematical"
+          "principle"
         ],
         [
           "pie",
           "apple",
           "crust",
-          "bake",
-          "double",
           "cream",
+          "double",
           "pastry",
-          "ingredient",
-          "comfort",
-          "foods",
-          "baker",
-          "strip",
+          "bake",
           "know",
-          "la",
-          "cheese"
+          "generally",
+          "get",
+          "soggy.[2",
+          "signature",
+          "ice",
+          "baker",
+          "ingredient"
         ]
       ],
       "scores": [
-        0.9025471754157848,
-        2.443577889647612e-10
+        0.9014963178483772,
+        1.0550173980612786e-10
       ],
       "topics": [
         0,
@@ -261,13 +261,13 @@ describe("topic detection", () => {
           "programming",
           "science",
           "computational",
-          "consider",
-          "use",
-          "approach",
-          "design",
           "language",
+          "consider",
           "challenge",
-          "practical"
+          "design",
+          "approach",
+          "use",
+          "application"
         ],
         [
           "problem",
@@ -278,18 +278,18 @@ describe("topic detection", () => {
           "resource",
           "algorithm",
           "computer",
+          "number",
+          "mathematical",
+          "analysis",
           "circuit",
           "classify",
-          "principle",
-          "ask",
-          "analysis",
           "computability",
-          "mathematical"
+          "principle"
         ]
       ],
       "scores": [
-        1.088289450895757,
-        0.00014159262045315344
+        1.0828392850608868,
+        0.00012080046893635658
       ],
       "topics": [
         2,
