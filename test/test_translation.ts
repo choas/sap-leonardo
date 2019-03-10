@@ -145,7 +145,7 @@ describe("translation", () => {
     });
   });
 
-  xdescribe("translate inline text", () => {
+  describe("translate inline text", () => {
     const elementBegin = "<body style=\"surprise me\">";
     const elementEnd = "</body>";
     const inlineElement = "<picture href=\"wonderful image.jpg\" />";
@@ -155,6 +155,7 @@ describe("translation", () => {
 
     it("should translate English to German", (done) => {
 
+      // tslint:disable:object-literal-sort-keys
       const request: ITranslationRequest = {
         sourceLanguage: "en",
         targetLanguages: ["de"],
