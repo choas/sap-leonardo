@@ -1,6 +1,7 @@
 "use strict";
 
 import { expect } from "chai";
+import * as fs from "fs";
 import { getLogger } from "log4js";
 import { Imageclassification } from "../src/index";
 
@@ -10,6 +11,14 @@ logger.level = "off";
 describe("imageclassification", () => {
 
   const imageclassification = new Imageclassification(process.env.API_KEY);
+
+  const expectedResults = [
+    { label: "tusker", score: 0.7052137851715088 },
+    { label: "African elephant, Loxodonta africana", score: 0.14608600735664368 },
+    { label: "Indian elephant, Elephas maximus", score: 0.08779436349868774 },
+    { label: "toaster", score: 0.0002799317880999297 },
+    { label: "combination lock", score: 0.0002534814993850887 },
+  ];
 
   describe("elephant", () => {
     it("should predict a tusker and an elephant", (done) => {
@@ -24,19 +33,37 @@ describe("imageclassification", () => {
         expect(body.predictions[0]).to.have.property("results");
         expect(body.predictions[0].results).to.be.an("array").have.lengthOf(5);
 
-        const expectedResults = [
-          { label: "tusker", score: 0.7052137851715088 },
-          { label: "African elephant, Loxodonta africana", score: 0.14608600735664368 },
-          { label: "Indian elephant, Elephas maximus", score: 0.08779436349868774 },
-          { label: "toaster", score: 0.0002799317880999297 },
-          { label: "combination lock", score: 0.0002534814993850887 },
-        ];
-
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < expectedResults.length; i++) {
           expect(body.predictions[0].results[i].label).to.be.equal(expectedResults[i].label);
           expect(body.predictions[0].results[i].score).to.be.equal(expectedResults[i].score);
         }
       }).then(done, done);
+    });
+
+    it("should predict a tusker and an elephant (Buffer)", (done) => {
+
+      fs.readFile("./testdata/elephant-114543_640.jpg", {}, (fileErr, fileData) => {
+        if (fileErr) {
+          expect.fail();
+        }
+
+        imageclassification.classification(fileData).then((body) => {
+
+          expect(body).to.have.property("id");
+          expect(body).to.have.property("predictions");
+          expect(body).to.have.property("processedTime");
+          expect(body).to.have.property("status").to.be.equal("DONE");
+
+          expect(body.predictions).to.be.an("array").have.lengthOf(1);
+          expect(body.predictions[0]).to.have.property("results");
+          expect(body.predictions[0].results).to.be.an("array").have.lengthOf(5);
+
+          for (let i = 0; i < expectedResults.length; i++) {
+            expect(body.predictions[0].results[i].label).to.be.equal(expectedResults[i].label);
+            expect(body.predictions[0].results[i].score).to.be.equal(expectedResults[i].score);
+          }
+        }).then(done, done);
+      });
     });
   });
 

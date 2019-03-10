@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## next
+## 0.5.8
+
+- image classification service handles filenames and buffers
+
+## 0.5.7
 
 - rename image_classification
 - more examples

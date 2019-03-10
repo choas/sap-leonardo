@@ -16,33 +16,19 @@ export class Imageclassification {
     this.baseUrl = baseUrl;
   }
 
-  public classification(files: string): Promise<any> {
-
+  public classification(files: string | Buffer): Promise<any> {
     return new Promise<any>((resolve, reject) => {
 
-      fs.readFile(files, {}, (fileErr, fileData) => {
-        if (fileErr) {
-          return reject(fileErr);
-        }
-        const formData = {
-          files: { value: fileData, options: files },
-        };
-
-        const headers = {
-          APIKey: this.apiKey,
-          Accept: "application/json",
-        };
-
-        const url = this.baseUrl + "/ml/imageclassification/classification";
-
-        request.post({ url, formData, headers }, (err, response, body) => {
-          if (err) {
-            return reject(err);
+      if (Buffer.isBuffer(files)) {
+        this.call(resolve, reject, "image.jpg", files);
+      } else {
+        fs.readFile(files, {}, (fileErr, fileData) => {
+          if (fileErr) {
+            return reject(fileErr);
           }
-          resolve(JSON.parse(body));
+          this.call(resolve, reject, files, fileData);
         });
-
-      });
+      }
     });
   }
 
@@ -51,6 +37,26 @@ export class Imageclassification {
     return new Promise<any>((resolve, reject) => {
       // const url = "/ml/imageclassification/models/" + modelName + "/versions/" + version;
       reject("not implemented");
+    });
+  }
+
+  private call(resolve: any, reject: any, files: string, fileData: Buffer) {
+    const formData = {
+      files: { value: fileData, options: files },
+    };
+
+    const headers = {
+      APIKey: this.apiKey,
+      Accept: "application/json",
+    };
+
+    const url = this.baseUrl + "/ml/imageclassification/classification";
+
+    request.post({ url, formData, headers }, (err, response, body) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(JSON.parse(body));
     });
   }
 }
