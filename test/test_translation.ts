@@ -145,7 +145,7 @@ describe("translation", () => {
     });
   });
 
-  describe("translate inline text", () => {
+  xdescribe("translate inline text", () => {
     const elementBegin = "<body style=\"surprise me\">";
     const elementEnd = "</body>";
     const inlineElement = "<picture href=\"wonderful image.jpg\" />";
