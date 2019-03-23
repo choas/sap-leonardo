@@ -53,9 +53,9 @@
     "coveralls": "^3.0.3",
     "eslint": "^5.15.1",
     "istanbul": "^1.1.0-alpha.1",
-    "log4js": "^3.0.6",
-    "mocha": "^5.2.0",
-    "ts-node": "^7.0.1",
+    "log4js": "^4.0.2",
+    "mocha": "^6.0.2",
+    "ts-node": "^8.0.3",
     "tslint": "^5.13.1",
     "typescript": "^3.3.3333"
   }
