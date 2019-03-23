@@ -8,16 +8,20 @@ import * as request from "request";
 export class ImageFeatureExtraction {
 
   private apiKey: string;
+  private token: string;
   private baseUrl: string;
 
-  constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
-    assert(apiKey, "apiKey is required");
+  constructor(
+    apiKey: any,
+    token: any,
+    baseUrl: string = "https://sandbox.api.sap.com/ml/imagefeatureextraction/feature-extraction") {
+    assert(apiKey || token, "apiKey or token is required");
     this.apiKey = apiKey;
+    this.token = token;
     this.baseUrl = baseUrl;
   }
 
-  public featureExtraction(files: string, authorization: any = null): Promise<any> {
-
+  public featureExtraction(files: string, modelName: any = null, version: any = null): Promise<any> {
     return new Promise<any>((resolve, reject) => {
 
       fs.readFile(files, {}, (fileErr, fileData) => {
@@ -26,15 +30,18 @@ export class ImageFeatureExtraction {
         }
         const formData = {
           files: { value: fileData, options: files },
-          // Authorization: authorization
         };
 
         const headers = {
           APIKey: this.apiKey,
           Accept: "application/json",
+          Authorization: this.token,
         };
 
-        const url = this.baseUrl + "/ml/imagefeatureextraction/feature-extraction";
+        let url = this.baseUrl;
+        if (modelName && version) {
+          url += "/models/" + modelName + "/versions/" + version;
+        }
 
         request.post({ url, formData, headers }, (err, response, body) => {
           if (err) {
@@ -46,13 +53,4 @@ export class ImageFeatureExtraction {
       });
     });
   }
-
-  /*eslint no-unused-vars ["off", { "args": "all" }]*/
-  public customizable(modelName: string, version: string, files: string): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      // const url = "/ml/imageclassification/models/" + modelName + "/versions/" + version;
-      reject("not implemented");
-    });
-  }
-
 }

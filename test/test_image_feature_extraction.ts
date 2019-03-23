@@ -5,7 +5,7 @@ import { ImageFeatureExtraction } from "../src/index";
 
 describe("image feature extraction", () => {
 
-  const imageFeatureExtraction = new ImageFeatureExtraction(process.env.API_KEY);
+  const imageFeatureExtraction = new ImageFeatureExtraction(process.env.API_KEY, null);
 
   describe("shoe", () => {
     it("should return a vector", (done) => {
@@ -44,14 +44,6 @@ describe("image feature extraction", () => {
         (err) => {
           expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
           expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
-        }).then(done, done);
-    });
-
-    it("should return method not implemented error", (done) => {
-      imageFeatureExtraction.customizable("", "", "").then(
-        () => { expect.fail(); },
-        (err) => {
-          expect(err).is.equal("not implemented");
         }).then(done, done);
     });
 

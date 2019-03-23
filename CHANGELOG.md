@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## next
+- adjust image feature extraction for trial account
+
 ## 0.5.8
 
 - image classification service handles filenames and buffers
