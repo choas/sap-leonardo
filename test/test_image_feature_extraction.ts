@@ -38,6 +38,7 @@ describe("image feature extraction", () => {
     it("should return connection refused error", (done) => {
       const imageFeatureExtractionErr = new ImageFeatureExtraction(
         process.env.API_KEY,
+        null,
         "http://localhost:11111");
       imageFeatureExtractionErr.featureExtraction("./testdata/chucks-153310_640.png").then(
         () => { expect.fail(); },
