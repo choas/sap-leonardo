@@ -83,10 +83,9 @@ describe("human detection", () => {
         humanDetectionImage.humanDetectionImage("./testdata/man-3365368_640.jpg").then((body) => {
           logger.debug("image length:", body.length);
 
-          expect(body.length).to.be.equal(393486);
-
           // fs.writeFileSync("human-detection-image.png", body);
 
+          expect(body.length).to.be.equal(393486);
         }).then(done, done);
       }).timeout(timeout);
     });

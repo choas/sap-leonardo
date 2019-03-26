@@ -1,15 +1,20 @@
 "use strict";
 
 import { expect } from "chai";
+import { getLogger } from "log4js";
 import { FaceDetection } from "../src/index";
+
+const logger = getLogger();
+logger.level = "off";
 
 describe("face detection", () => {
 
   const faceDetection = new FaceDetection(process.env.API_KEY);
 
-  describe("four people", () => {
+  describe("four faces", () => {
     it("should predict four faces", (done) => {
       faceDetection.faceDetection("./testdata/man-3365368_640.jpg").then((body) => {
+        logger.debug("four faces", JSON.stringify(body, null, "  "));
 
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");

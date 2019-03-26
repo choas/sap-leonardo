@@ -10,7 +10,9 @@ export class MultiInstanceImageSegmentation {
   private apiKey: string;
   private baseUrl: string;
 
-  constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
+  constructor(
+    apiKey: any,
+    baseUrl: string = "https://sandbox.api.sap.com/ml/api/v2alpha1/image/instance-segmentor") {
     assert(apiKey, "apiKey is required");
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
@@ -33,7 +35,7 @@ export class MultiInstanceImageSegmentation {
           Accept: "application/json",
         };
 
-        let url = this.baseUrl + "/ml/instancesegmentor/instance-segmentor";
+        let url = this.baseUrl;
 
         if (format) {
           url += "/format:jpg";

@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## next
+
 - adjust image feature extraction for trial account
+- adjust URLs to new SAP Leonardo release
 
 ## 0.5.8
 

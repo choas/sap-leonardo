@@ -10,7 +10,9 @@ export class FaceFeatureExtraction {
   private apiKey: string;
   private baseUrl: string;
 
-  constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
+  constructor(
+    apiKey: any,
+    baseUrl: string = "https://sandbox.api.sap.com/ml/api/v2alpha1/image/face-feature-extraction") {
     assert(apiKey, "apiKey is required");
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
@@ -33,7 +35,7 @@ export class FaceFeatureExtraction {
           Accept: "application/json",
         };
 
-        const url = this.baseUrl + "/ml/facefeatureextraction/face-feature-extraction";
+        const url = this.baseUrl;
 
         request.post({ url, formData, headers }, (err, response, body) => {
           if (err) {
