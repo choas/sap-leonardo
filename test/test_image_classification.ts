@@ -23,6 +23,7 @@ describe("imageclassification", () => {
   describe("elephant", () => {
     it("should predict a tusker and an elephant", (done) => {
       imageclassification.classification("./testdata/elephant-114543_640.jpg").then((body) => {
+        logger.debug("elephant", JSON.stringify(body, null, "  "));
 
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
@@ -48,6 +49,7 @@ describe("imageclassification", () => {
         }
 
         imageclassification.classification(fileData).then((body) => {
+          logger.debug("elephant (Buffer)", JSON.stringify(body, null, "  "));
 
           expect(body).to.have.property("id");
           expect(body).to.have.property("predictions");
