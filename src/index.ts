@@ -5,7 +5,6 @@ export * from "./language_detection";
 export * from "./face_detection";
 export * from "./human_detection";
 export * from "./product_text_classification";
-export * from "./multi_instance_image_segmentation";
 export * from "./scene_text_recognition";
 export * from "./document_feature_extraction";
 export * from "./similarity_scoring";
