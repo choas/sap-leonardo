@@ -3,7 +3,7 @@
 import { expect } from "chai";
 import { ProductTextClassification } from "../src/index";
 
-describe("product text classification", () => {
+xdescribe("product text classification", () => {
 
   const productTextClassification = new ProductTextClassification(process.env.API_KEY);
 
