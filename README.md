@@ -50,7 +50,7 @@ image
 - [Product Image Classification API](https://api.sap.com/api/product_image_classification_api/resource)
 - [Inference Service for Face Detection](https://api.sap.com/api/face_detection_api/resource)
 - [Inference Service for Human Detection](https://api.sap.com/api/human_detection_api/resource)
-- [Inference Service for Multi-Instance Image Segmentation](https://api.sap.com/api/instance_segmentor_api/resource)
+- ~[Inference Service for Multi-Instance Image Segmentation](https://api.sap.com/api/instance_segmentor_api/resource)~
 - [Inference Service for Scene Text Recognition](https://api.sap.com/api/scene_text_recognition_api/resource)
 - [Inference Service for Optical Character Recognition (OCR)](https://api.sap.com/api/ocr_api/resource)
 
