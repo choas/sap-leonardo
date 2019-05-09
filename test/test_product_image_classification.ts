@@ -24,7 +24,8 @@ describe("product image classification", () => {
           expect(body.predictions).to.be.an("array").have.lengthOf(1);
           expect(body.predictions[0]).to.have.property("results");
           expect(body.predictions[0].results).to.be.an("array").have.lengthOf(5).to.be.eql(expectedResults);
-        }).then(done, done);
+        },
+        (err) => { expect.fail(err); }).then(done, done);
     });
   });
 
@@ -35,7 +36,8 @@ describe("product image classification", () => {
         expect(body).to.have.property("error").to.be.equal("Error when uploading files:");
         expect(body).to.have.property("status_code").to.be.equal(400);
         expect(body).to.have.property("error_description").to.be.equal("Invalid file type");
-      }).then(done, done);
+      },
+      (err) => { expect.fail(err); }).then(done, done);
     });
 
     it("should throw an error for zip with hierarchy", (done) => {
@@ -45,7 +47,8 @@ describe("product image classification", () => {
         expect(body).to.have.property("status_code").to.be.equal(400);
         // tslint:disable-next-line:max-line-length
         expect(body).to.have.property("error_description").to.be.equal("Only archive without hierarchy is accepted. __MACOSX/ is a folder. ");
-      }).then(done, done);
+      },
+      (err) => { expect.fail(err); }).then(done, done);
     });
 
     it("should throw an error for wrong API key", (done) => {

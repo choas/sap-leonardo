@@ -39,7 +39,14 @@ export class ProductImageClassification {
           if (err) {
             return reject(err);
           }
-          resolve(JSON.parse(body));
+          if (response.statusCode === 404) {
+            return reject(body);
+          }
+          try {
+            resolve(JSON.parse(body));
+          } catch (exception) {
+            return reject(exception);
+          }
         });
 
       });

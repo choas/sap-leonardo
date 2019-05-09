@@ -10,7 +10,9 @@ export class Imageclassification {
   private apiKey: string;
   private baseUrl: string;
 
-  constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
+  constructor(
+    apiKey: any,
+    baseUrl: string = "https://sandbox.api.sap.com/ml/imageclassification/classification") {
     assert(apiKey, "apiKey is required");
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
@@ -50,13 +52,20 @@ export class Imageclassification {
       Accept: "application/json",
     };
 
-    const url = this.baseUrl + "/ml/imageclassification/classification";
+    const url = this.baseUrl;
 
     request.post({ url, formData, headers }, (err, response, body) => {
       if (err) {
         return reject(err);
       }
-      resolve(JSON.parse(body));
+      if (response.statusCode === 404) {
+        return reject(body);
+      }
+      try {
+        resolve(JSON.parse(body));
+      } catch (exception) {
+        return reject(exception);
+      }
     });
   }
 }

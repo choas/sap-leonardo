@@ -22,34 +22,9 @@ describe("imageclassification", () => {
 
   describe("elephant", () => {
     it("should predict a tusker and an elephant", (done) => {
-      imageclassification.classification("./testdata/elephant-114543_640.jpg").then((body) => {
-        logger.debug("elephant", JSON.stringify(body, null, "  "));
-
-        expect(body).to.have.property("id");
-        expect(body).to.have.property("predictions");
-        expect(body).to.have.property("processedTime");
-        expect(body).to.have.property("status").to.be.equal("DONE");
-
-        expect(body.predictions).to.be.an("array").have.lengthOf(1);
-        expect(body.predictions[0]).to.have.property("results");
-        expect(body.predictions[0].results).to.be.an("array").have.lengthOf(5);
-
-        for (let i = 0; i < expectedResults.length; i++) {
-          expect(body.predictions[0].results[i].label).to.be.equal(expectedResults[i].label);
-          expect(body.predictions[0].results[i].score).to.be.equal(expectedResults[i].score);
-        }
-      }).then(done, done);
-    });
-
-    it("should predict a tusker and an elephant (Buffer)", (done) => {
-
-      fs.readFile("./testdata/elephant-114543_640.jpg", {}, (fileErr, fileData) => {
-        if (fileErr) {
-          expect.fail();
-        }
-
-        imageclassification.classification(fileData).then((body) => {
-          logger.debug("elephant (Buffer)", JSON.stringify(body, null, "  "));
+      imageclassification.classification("./testdata/elephant-114543_640.jpg").then(
+        (body) => {
+          logger.debug("elephant", JSON.stringify(body, null, "  "));
 
           expect(body).to.have.property("id");
           expect(body).to.have.property("predictions");
@@ -64,7 +39,36 @@ describe("imageclassification", () => {
             expect(body.predictions[0].results[i].label).to.be.equal(expectedResults[i].label);
             expect(body.predictions[0].results[i].score).to.be.equal(expectedResults[i].score);
           }
-        }).then(done, done);
+        },
+        (err) => { expect.fail(err); }).then(done, done);
+    });
+
+    it("should predict a tusker and an elephant (Buffer)", (done) => {
+
+      fs.readFile("./testdata/elephant-114543_640.jpg", {}, (fileErr, fileData) => {
+        if (fileErr) {
+          expect.fail();
+        }
+
+        imageclassification.classification(fileData).then(
+          (body) => {
+            logger.debug("elephant (Buffer)", JSON.stringify(body, null, "  "));
+
+            expect(body).to.have.property("id");
+            expect(body).to.have.property("predictions");
+            expect(body).to.have.property("processedTime");
+            expect(body).to.have.property("status").to.be.equal("DONE");
+
+            expect(body.predictions).to.be.an("array").have.lengthOf(1);
+            expect(body.predictions[0]).to.have.property("results");
+            expect(body.predictions[0].results).to.be.an("array").have.lengthOf(5);
+
+            for (let i = 0; i < expectedResults.length; i++) {
+              expect(body.predictions[0].results[i].label).to.be.equal(expectedResults[i].label);
+              expect(body.predictions[0].results[i].score).to.be.equal(expectedResults[i].score);
+            }
+          },
+          (err) => { expect.fail(err); }).then(done, done);
       });
     });
   });
@@ -129,6 +133,23 @@ describe("imageclassification", () => {
         (err) => {
           expect(err).is.equal("not implemented");
         }).then(done, done);
+    });
+
+    it("should throw an error for wrong base URL", (done) => {
+      const imageclassificationWithWrongBaseUrl =
+        new Imageclassification(process.env.API_KEY,
+          "https://sandbox.api.sap.com/ml/imageclassification/classification_WRONG");
+      imageclassificationWithWrongBaseUrl.classification("./testdata/elephant-114543_640.jpg").then(
+        (body) => {
+          expect.fail(body);
+      },
+      (err) => {
+        err = JSON.parse(err);
+
+        expect(err).to.have.property("error");
+        expect(err.error).to.have.property("code").to.be.equal("404");
+        expect(err.error).to.have.property("message").to.have.string("URL does not exist");
+      }).then(done, done);
     });
 
   });
