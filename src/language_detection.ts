@@ -9,7 +9,7 @@ export class LanguageDetection {
   private apiKey: string;
   private baseUrl: string;
 
-  constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com") {
+  constructor(apiKey: any, baseUrl: string = "https://sandbox.api.sap.com/ml/api/v2alpha1/text/lang-detect/") {
     assert(apiKey, "apiKey is required");
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
@@ -24,7 +24,7 @@ export class LanguageDetection {
         "Content-Type": "application/json",
       };
 
-      const url = this.baseUrl + "/ml/languagedetection/lang-detect/";
+      const url = this.baseUrl;
       const data = JSON.stringify({ message });
 
       request.post({ url, body: data, headers }, (err, response, body) => {
@@ -46,7 +46,7 @@ export class LanguageDetection {
         "Content-Type": "application/json",
       };
 
-      const url = this.baseUrl + "/ml/languagedetection/lang-detect/version";
+      const url = this.baseUrl + "version";
 
       request.get({ url, headers }, (err, response, body) => {
         if (err) {
