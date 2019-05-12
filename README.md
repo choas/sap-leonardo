@@ -64,9 +64,9 @@ text
 feature extraction
 
 - [Inference Service for Similarity Scoring](https://api.sap.com/api/similarity_scoring_api/resource)
-- [Inference Service For Customizable Image Feature Extraction](https://api.sap.com/api/img_feature_extraction_api/resource)
 - [Inference Service for Document Feature Extraction](https://api.sap.com/api/document_feature_extraction_api/resource)
 - [Inference Service for Face Feature Extraction](https://api.sap.com/api/face_feature_extraction_api/resource)
+- [Inference Service For Customizable Image Feature Extraction](https://api.sap.com/api/img_feature_extraction_api/resource)
 
 ## Build
 
