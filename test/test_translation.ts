@@ -7,6 +7,8 @@ import { Align, ITranslationRequest, Translation } from "../src/index";
 const logger = getLogger();
 logger.level = "off";
 
+const TIMEOUT = 15000;
+
 describe("translation", () => {
 
   const translation = new Translation(process.env.API_KEY);
@@ -40,7 +42,7 @@ describe("translation", () => {
         expect(body.units[0].translations[0]).to.have.property("language").to.be.equal("de");
         expect(body.units[0].translations[0]).to.have.property("value").to.be.equal(textDeutsch);
       }).then(done, done);
-    });
+    }).timeout(TIMEOUT);
 
     it("should translate German to English", (done) => {
 
@@ -66,7 +68,7 @@ describe("translation", () => {
         expect(body.units[0].translations[0]).to.have.property("language").to.be.equal("en");
         expect(body.units[0].translations[0]).to.have.property("value").to.be.equal(textEnglish);
       }).then(done, done);
-    });
+    }).timeout(TIMEOUT);
 
     it("should translate English to German and Spanish", (done) => {
 
@@ -94,7 +96,7 @@ describe("translation", () => {
         expect(body.units[0].translations[1]).to.have.property("language").to.be.equal("es");
         expect(body.units[0].translations[1]).to.have.property("value").to.be.equal(textEspañol);
       }).then(done, done);
-    });
+    }).timeout(TIMEOUT);
 
     it("should translate Spanish to English", (done) => {
 
@@ -121,7 +123,8 @@ describe("translation", () => {
         // tslint:disable-next-line:no-unused-expression
         expect(body.units[0].translations[0]).to.have.property("value").to.be.not.null;
       }).then(done, done);
-    });
+    }).timeout(TIMEOUT);
+
     it("no requested language pair es-de", (done) => {
 
       const translationRequest: ITranslationRequest = {
@@ -141,7 +144,7 @@ describe("translation", () => {
         expect(body.error).to.have.property("status").to.be.equal(400);
         expect(body.error).to.have.property("message");
       }).then(done, done);
-    });
+    }).timeout(TIMEOUT);
   });
 
   xdescribe("translate inline text", () => {
