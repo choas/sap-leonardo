@@ -7,8 +7,8 @@
     "build": "./node_modules/.bin/tsc --sourceMap",
     "build-test": "./node_modules/.bin/tsc --build test/tsconfig.json",
     "build-all": "npm run build && npm run build-test",
-    "test": "npm run build-all && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -s 10000 -t 10000 dist/test/test_*.js && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "coverage": "npm run build-all && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report html -- -s 10000 -t 10000 dist/test/test_*.js",
+    "test": "npm run build-all && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -s 15000 -t 15000 dist/test/test_*.js && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "coverage": "npm run build-all && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report html -- -s 15000 -t 15000 dist/test/test_*.js",
     "lint": "./node_modules/.bin/tslint src/*.ts && ./node_modules/.bin/tslint test/*.ts && ./node_modules/.bin/eslint examples/*.js",
     "prepack": "rm -r dist; ./node_modules/.bin/tsc"
   },
