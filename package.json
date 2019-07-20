@@ -42,21 +42,21 @@
     "translation"
   ],
   "dependencies": {
-    "es6-promise": "^4.2.6",
+    "es6-promise": "^4.2.8",
     "request": "^2.88.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.6",
-    "@types/request": "^2.48.1",
+    "@types/mocha": "^5.2.7",
+    "@types/request": "^2.48.2",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.3",
-    "eslint": "^5.15.1",
+    "coveralls": "^3.0.5",
+    "eslint": "^6.0.1",
     "istanbul": "^1.1.0-alpha.1",
     "log4js": "^4.0.2",
     "mocha": "^6.0.2",
     "ts-node": "^8.0.3",
-    "tslint": "^5.13.1",
-    "typescript": "^3.3.3333"
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
   }
 }
