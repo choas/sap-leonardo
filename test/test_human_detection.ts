@@ -5,7 +5,7 @@ import { expect } from "chai";
 import { getLogger } from "log4js";
 import { HumanDetection } from "../src/index";
 
-const timeout = 15000;
+const timeout = 30000;
 
 const logger = getLogger();
 logger.level = "off";

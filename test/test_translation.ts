@@ -7,7 +7,7 @@ import { Align, ITranslationRequest, Translation } from "../src/index";
 const logger = getLogger();
 logger.level = "off";
 
-const TIMEOUT = 15000;
+const TIMEOUT = 30000;
 
 describe("translation", () => {
 
