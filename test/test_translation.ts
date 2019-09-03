@@ -13,9 +13,9 @@ describe("translation", () => {
 
   const translation = new Translation(process.env.API_KEY);
 
-  const textEnglish = "This service translates text from a source language into several target languages.";
+  const textEnglish = "This service translates text from one source language into several target languages.";
   const textDeutsch = "Dieser Service übersetzt Text aus einer Quellsprache in mehrere Zielsprachen.";
-  const textEspañol = "Este servicio traduce el texto de un idioma fuente a varios idiomas de destino.";
+  const textEspañol = "Este servicio traduce el texto de un idioma fuente en varios idiomas de destino.";
 
   describe("translate text", () => {
 
