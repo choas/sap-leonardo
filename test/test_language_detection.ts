@@ -57,7 +57,7 @@ describe("language detection", () => {
     it("should provide version", (done) => {
       languageDetection.version().then((body) => {
         logger.debug("version:", JSON.stringify(body, null, "  "));
-        expect(body).to.have.property("version").to.be.equal("1.0.6");
+        expect(body).to.have.property("version").to.be.equal("1.0.7");
       }).then(done, done);
     });
   });
