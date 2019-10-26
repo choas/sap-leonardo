@@ -35,16 +35,16 @@ describe("image feature extraction", () => {
         }).then(done, done);
     });
 
-    it("should return connection refused error", (done) => {
+    it("should return url not found error", (done) => {
       const imageFeatureExtractionErr = new ImageFeatureExtraction(
         process.env.API_KEY,
         null,
-        "http://localhost:11111");
+        "http://wrong.url");
       imageFeatureExtractionErr.featureExtraction("./testdata/chucks-153310_640.png").then(
         () => { expect.fail(); },
         (err) => {
-          expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
-          expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
+          expect(err).to.have.property("errno").to.be.equal("ENOTFOUND");
+          expect(err).to.have.property("code").to.be.equal("ENOTFOUND");
         }).then(done, done);
     });
 

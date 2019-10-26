@@ -66,14 +66,14 @@ describe("language detection", () => {
 
     const languageDetectionErr = new LanguageDetection(
       process.env.API_KEY,
-      "http://localhost:11111");
+      "http://wrong.url");
 
-    it("should return connection refused error", (done) => {
+    it("should return url not found error", (done) => {
       languageDetectionErr.language("").then(
         (body) => { newFunction(); },
         (err) => {
-          expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
-          expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
+          expect(err).to.have.property("errno").to.be.equal("ENOTFOUND");
+          expect(err).to.have.property("code").to.be.equal("ENOTFOUND");
         }).then(done, done);
     });
 
@@ -81,8 +81,8 @@ describe("language detection", () => {
       languageDetectionErr.version().then(
         (body) => { newFunction_1(); },
         (err) => {
-          expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
-          expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
+          expect(err).to.have.property("errno").to.be.equal("ENOTFOUND");
+          expect(err).to.have.property("code").to.be.equal("ENOTFOUND");
         }).then(done, done);
     });
 

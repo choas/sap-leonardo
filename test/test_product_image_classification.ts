@@ -75,16 +75,16 @@ describe("product image classification", () => {
         }).then(done, done);
     });
 
-    it("should return connection refused error", (done) => {
+    it("should return url not found error", (done) => {
       const productimageclassificationErr = new ProductImageClassification(
         process.env.API_KEY,
-        "http://localhost:11111");
+        "http://wrong.url");
       productimageclassificationErr.inferenceSync("./testdata/data-transfer-3199547_640.jpg")
         .then(
           () => { expect.fail(); },
           (err) => {
-            expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
-            expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
+            expect(err).to.have.property("errno").to.be.equal("ENOTFOUND");
+            expect(err).to.have.property("code").to.be.equal("ENOTFOUND");
           }).then(done, done);
     });
   });

@@ -35,15 +35,15 @@ describe("SceneTextRecognition", () => {
         }).then(done, done);
     });
 
-    it("should return connection refused error", (done) => {
+    it("should return url not found error", (done) => {
       const sceneTextRecognitionErr = new SceneTextRecognition(
         process.env.API_KEY,
-        "http://localhost:11111");
+        "http://wrong.url");
       sceneTextRecognitionErr.sceneTextRecognition("./testdata/stop-634941_640.jpg").then(
         () => { expect.fail(); },
         (err) => {
-          expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
-          expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
+          expect(err).to.have.property("errno").to.be.equal("ENOTFOUND");
+          expect(err).to.have.property("code").to.be.equal("ENOTFOUND");
         }).then(done, done);
     });
 
