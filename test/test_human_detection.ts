@@ -138,8 +138,8 @@ describe("human detection", () => {
       humanDetectionErr.humanDetection("./testdata/man-3365368_640.jpg").then(
         () => { expect.fail(); },
         (err) => {
-          expect(err).to.have.property("errno").to.be.equal("ENOTFOUND");
-          expect(err).to.have.property("code").to.be.equal("ENOTFOUND");
+          expect(err).to.have.property("errno");
+          expect(err).to.have.property("code");
         }).then(done, done);
     });
 
