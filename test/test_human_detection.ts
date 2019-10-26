@@ -1,14 +1,15 @@
 "use strict";
 
 import { expect } from "chai";
-// import * as fs from "fs";
+import * as fs from "fs";
 import { getLogger } from "log4js";
 import { HumanDetection } from "../src/index";
 
+const SAVE_FILE = false;
 const timeout = 30000;
 
 const logger = getLogger();
-logger.level = "off";
+logger.level = "error";
 
 describe("human detection", () => {
 
@@ -70,7 +71,15 @@ describe("human detection", () => {
           expect(body.detection_scores[i]).to.be.equal(expectedResults.detection_scores[i]);
         }
 
-      }).then(done, done);
+      },
+      (error) => {
+        logger.error(error);
+        expect.fail();
+      }).then(done, done)
+      .catch((e) => {
+        logger.error(e);
+        expect.fail();
+      });
     }).timeout(timeout);
   });
 
@@ -83,10 +92,20 @@ describe("human detection", () => {
         humanDetectionImage.humanDetectionImage("./testdata/man-3365368_640.jpg").then((body) => {
           logger.debug("image length:", body.length);
 
-          // fs.writeFileSync("human-detection-image.png", body);
+          if (SAVE_FILE) {
+            fs.writeFileSync("human-detection-image.png", body);
+          }
 
           expect(body.length).to.be.equal(393486);
-        }).then(done, done);
+        },
+        (error) => {
+          logger.error(error);
+          expect.fail();
+        }).then(done, done)
+        .catch((e) => {
+          logger.error(e);
+          expect.fail();
+        });
       }).timeout(timeout);
     });
 
@@ -112,15 +131,15 @@ describe("human detection", () => {
         }).then(done, done);
     });
 
-    it("should return connection refused error", (done) => {
+    it("should return url not found error", (done) => {
       const humanDetectionErr = new HumanDetection(
         process.env.API_KEY,
-        "http://localhost:11111");
+        "http://wrong.url");
       humanDetectionErr.humanDetection("./testdata/man-3365368_640.jpg").then(
         () => { expect.fail(); },
         (err) => {
-          expect(err).to.have.property("errno").to.be.equal("ECONNREFUSED");
-          expect(err).to.have.property("code").to.be.equal("ECONNREFUSED");
+          expect(err).to.have.property("errno").to.be.equal("ENOTFOUND");
+          expect(err).to.have.property("code").to.be.equal("ENOTFOUND");
         }).then(done, done);
     });
 
