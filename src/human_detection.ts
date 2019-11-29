@@ -37,9 +37,16 @@ export class HumanDetection {
 
         request.post({ url, formData, headers }, (err, response, body) => {
           if (err) {
-            return reject(err);
+            reject(err);
           }
-          resolve(JSON.parse(body));
+          if (response && response.statusCode >= 400) {
+            reject({body});
+          }
+          try {
+            resolve(JSON.parse(body));
+          } catch (exception) {
+            reject({exception, body});
+          }
         });
 
       });
