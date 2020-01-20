@@ -6,7 +6,7 @@ import { getLogger } from "log4js";
 import { Imageclassification } from "../src/index";
 
 const logger = getLogger();
-logger.level = "debug";
+logger.level = "off";
 
 describe("imageclassification", () => {
 
