@@ -6,18 +6,18 @@ import { getLogger } from "log4js";
 import { Imageclassification } from "../src/index";
 
 const logger = getLogger();
-logger.level = "off";
+logger.level = "debug";
 
 describe("imageclassification", () => {
 
   const imageclassification = new Imageclassification(process.env.API_KEY);
 
   const expectedResults = [
-    { label: "tusker", score: 0.7052137851715088 },
-    { label: "African elephant, Loxodonta africana", score: 0.14608600735664368 },
-    { label: "Indian elephant, Elephas maximus", score: 0.08779436349868774 },
-    { label: "toaster", score: 0.0002799317880999297 },
-    { label: "combination lock", score: 0.0002534814993850887 },
+    { label: "tusker", score: 0.7052140235900879 },
+    { label: "African elephant, Loxodonta africana", score: 0.14608584344387054 },
+    { label: "Indian elephant, Elephas maximus", score: 0.08779430389404297 },
+    { label: "toaster", score:0.00027993161347694695 },
+    { label: "combination lock", score: 0.0002534812083467841 },
   ];
 
   describe("elephant", () => {
