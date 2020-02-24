@@ -1,7 +1,6 @@
 export * from "./image_classification";
 export * from "./ocr";
 export * from "./translation";
-export * from "./human_detection";
 export * from "./product_text_classification";
 export * from "./scene_text_recognition";
 export * from "./document_feature_extraction";
