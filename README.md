@@ -48,7 +48,7 @@ image
 
 - [Inference Service for Customizable Image Classification](https://api.sap.com/api/image_classification_api/resource)
 - [Product Image Classification API](https://api.sap.com/api/product_image_classification_api/resource)
-- [Inference Service for Face Detection](https://api.sap.com/api/face_detection_api/resource)
+- ~[Inference Service for Face Detection](https://api.sap.com/api/face_detection_api/resource)~
 - [Inference Service for Human Detection](https://api.sap.com/api/human_detection_api/resource)
 - ~[Inference Service for Multi-Instance Image Segmentation](https://api.sap.com/api/instance_segmentor_api/resource)~
 - [Inference Service for Scene Text Recognition](https://api.sap.com/api/scene_text_recognition_api/resource)
@@ -56,7 +56,7 @@ image
 
 text
 
-- [Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)
+- ~[Inference Service for Language Detection](https://api.sap.com/api/language_detection_api/resource)~
 - [Inference Service for Machine Translation](https://api.sap.com/api/translation_api/resource)
 - [Product Text Classification API](https://api.sap.com/api/product_text_classification_api/resource)
 - [Inference Service for Topic Detection](https://api.sap.com/api/topic_detection_api/resource)
@@ -65,7 +65,7 @@ feature extraction
 
 - [Inference Service for Similarity Scoring](https://api.sap.com/api/similarity_scoring_api/resource)
 - [Inference Service for Document Feature Extraction](https://api.sap.com/api/document_feature_extraction_api/resource)
-- [Inference Service for Face Feature Extraction](https://api.sap.com/api/face_feature_extraction_api/resource)
+- ~[Inference Service for Face Feature Extraction](https://api.sap.com/api/face_feature_extraction_api/resource)~
 - [Inference Service For Customizable Image Feature Extraction](https://api.sap.com/api/img_feature_extraction_api/resource)
 
 ## Build
