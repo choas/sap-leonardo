@@ -4,13 +4,13 @@
   "description": "NPM module for SAP Leonardo Machine Learning Foundation - Functional Services https://api.sap.com/package/SAPLeonardoMLFunctionalServices",
   "main": "dist/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/tsc --sourceMap",
-    "build-test": "./node_modules/.bin/tsc --build test/tsconfig.json",
+    "build": "npx tsc --sourceMap",
+    "build-test": "npx tsc --build test/tsconfig.json",
     "build-all": "npm run build && npm run build-test",
-    "test": "npm run build-all && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -s 30000 -t 30000 dist/test/test_*.js && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "coverage": "npm run build-all && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report html -- -s 30000 -t 30000 dist/test/test_*.js",
-    "lint": "./node_modules/.bin/tslint src/*.ts && ./node_modules/.bin/tslint test/*.ts && ./node_modules/.bin/eslint examples/*.js",
-    "prepack": "rm -r dist; ./node_modules/.bin/tsc"
+    "test": "npm run build-all && npx istanbul cover _mocha --report lcovonly -- -s 30000 -t 30000 dist/test/test_*.js && cat ./coverage/lcov.info | npx coveralls",
+    "coverage": "npm run build-all && npx istanbul cover _mocha --report html -- -s 30000 -t 30000 dist/test/test_*.js",
+    "lint": "npx tslint src/*.ts && npx tslint test/*.ts && npx eslint examples/*.js",
+    "prepack": "rm -r dist; npx tsc"
   },
   "author": "Lars Gregori <github@larsgregori.de>",
   "license": "Apache-2.0",
