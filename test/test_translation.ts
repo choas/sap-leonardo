@@ -15,7 +15,7 @@ describe("translation", () => {
 
   const textEnglish = "This service translates text from one source language into several target languages.";
   const textDeutsch = "Dieser Service übersetzt Text aus einer Quellsprache in mehrere Zielsprachen.";
-  const textEspañol = "Este servicio traduce el texto de un idioma fuente en varios idiomas de destino.";
+  const textEspañol = "Este servicio traduce texto de un idioma fuente a varios idiomas destino.";
 
   describe("translate text", () => {
 
