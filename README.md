@@ -6,6 +6,9 @@
 
 "SAP Leonardo Machine Learning foundation provides readily consumable pre-trained models, as well as customizable models." ---- [SAP Leonardo Machine Learning Foundation - Functional Services](https://api.sap.com/package/SAPLeonardoMLFunctionalServices)
 
+I have also written a book: [Machine Learning mit SAP Leonardo](http://sappress.de/4795) (in German).
+
+
 [![Build Status](https://api.travis-ci.org/choas/sap-leonardo.svg?branch=master)](https://travis-ci.org/choas/sap-leonardo)
 [![Dependency status](https://david-dm.org/choas/sap-leonardo/status.svg)](https://david-dm.org/choas/sap-leonardo)
 [![devDependencies Status](https://david-dm.org/choas/sap-leonardo/dev-status.svg)](https://david-dm.org/choas/sap-leonardo?type=dev)
@@ -118,7 +121,7 @@ npm test
 
 ## License
 
-Copyright 2018-2019 Lars Gregori
+Copyright 2018-2020 Lars Gregori
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
