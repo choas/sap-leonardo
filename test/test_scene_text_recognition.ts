@@ -1,7 +1,11 @@
 "use strict";
 
 import { expect } from "chai";
+import { getLogger } from "log4js";
 import { SceneTextRecognition } from "../src/index";
+
+const logger = getLogger();
+logger.level = "off";
 
 describe("SceneTextRecognition", () => {
 
@@ -10,6 +14,7 @@ describe("SceneTextRecognition", () => {
   describe("scene text", () => {
     it("should return a text", (done) => {
       sceneTextRecognition.sceneTextRecognition("./testdata/stop-634941_640.jpg").then((body) => {
+        logger.debug("body", JSON.stringify(body, null, "  "));
 
         expect(body).to.have.property("id");
         expect(body).to.have.property("predictions");
@@ -30,6 +35,8 @@ describe("SceneTextRecognition", () => {
       sceneTextRecognition.sceneTextRecognition("file_does_not_exist").then(
         () => { expect.fail(); },
         (err) => {
+          logger.debug("err", JSON.stringify(err, null, "  "));
+
           expect(err).to.have.property("errno").to.be.equal(-2);
           expect(err).to.have.property("code").to.be.equal("ENOENT");
         }).then(done, done);
@@ -42,6 +49,8 @@ describe("SceneTextRecognition", () => {
       sceneTextRecognitionErr.sceneTextRecognition("./testdata/stop-634941_640.jpg").then(
         () => { expect.fail(); },
         (err) => {
+          logger.debug("err", JSON.stringify(err, null, "  "));
+
           expect(err).to.have.property("errno");
           expect(err).to.have.property("code");
         }).then(done, done);
