@@ -1,5 +1,5 @@
 {
-  "name": "sap-leonardo",
+  "name": "@choas/sap-leonardo",
   "version": "0.6.0",
   "description": "NPM module for SAP Leonardo Machine Learning Foundation - Functional Services https://api.sap.com/package/SAPLeonardoMLFunctionalServices",
   "main": "dist/index.js",
@@ -17,6 +17,9 @@
   "repository": {
     "type": "https",
     "url": "https://github.com/choas/sap-leonardo.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "files": [
     "dist/",
@@ -47,16 +50,16 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
-    "@types/mocha": "^8.0.0",
+    "@types/mocha": "^8.0.1",
     "@types/request": "^2.48.5",
     "chai": "^4.2.0",
     "coveralls": "^3.1.0",
-    "eslint": "^7.5.0",
+    "eslint": "^7.6.0",
     "istanbul": "^1.1.0-alpha.1",
     "log4js": "^6.3.0",
-    "mocha": "^8.0.1",
+    "mocha": "^8.1.1",
     "ts-node": "^8.10.2",
-    "tslint": "^6.1.2",
+    "tslint": "^6.1.3",
     "typescript": "^3.9.7"
   }
 }
